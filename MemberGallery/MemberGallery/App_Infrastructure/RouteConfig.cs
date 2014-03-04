@@ -15,7 +15,7 @@ namespace MemberGallery.App_Infrastructure
         {
             route.MapPageRoute("error", "Error", "~/error.aspx");
             route.MapPageRoute("Start", "kontakter", "~/default.aspx");
-            route.MapPageRoute("Default", "", "~/default.aspx");
+            route.MapPageRoute("Default", "", "~/Pages/MemberGalleryPages/CategoryList.aspx");
         }
     }
 }

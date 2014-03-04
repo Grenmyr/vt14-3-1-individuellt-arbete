@@ -80,6 +80,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\DAL\CategoryDAL.cs" />
+    <Compile Include="Model\DAL\DALBase.cs" />
+    <Compile Include="Model\DAL\ImageDAL.cs" />
+    <Compile Include="Model\DAL\ImageDescriptionDAL.cs" />
+    <Compile Include="Model\Image.cs" />
+    <Compile Include="Model\ImageDescription.cs" />
+    <Compile Include="Model\Service.cs" />
     <Compile Include="Pages\MemberGalleryPages\CategoryList.aspx.cs">
       <DependentUpon>CategoryList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,7 +135,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Pictures\" />
-    <Folder Include="Model\DAL\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

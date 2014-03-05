@@ -7,13 +7,6 @@
     <%-- Kod här --%>
     <h2>Bildkategorier</h2>
     <div class="GalleryList">
-        <asp:Repeater ID="Repeater" runat="server">
-           <%-- Kod för generera alla Kategorier. --%>
-            <ItemTemplate>
-                <div>
-                    CategoriNamn
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
+        
     </div>
 </asp:Content>

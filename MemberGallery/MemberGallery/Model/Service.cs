@@ -18,7 +18,7 @@ namespace MemberGallery.Model
 
         public IEnumerable<Category> GetContacts()
         {
-            return CategoryDAL.GetCategorys();
+            return CategoryDAL.GetCategories();
         }
     }
 }

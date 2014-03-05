@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MemberGallery.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,15 @@ namespace MemberGallery.Pages.MemberGalleryPages
 {
     public partial class CategoryList : System.Web.UI.Page
     {
+        private Service _service;
+        // Property to return a Servince reference, if null create new one.
+        private Service Service
+        {
+            get { return _service ?? (_service = new Service()); }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Service.GetContacts();
         }
     }
 }

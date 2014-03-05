@@ -14,13 +14,13 @@ namespace MemberGallery.Model.DAL
         {  
             using (var conn = CreateConnection())
             {
-                try
-                {
+                //try
+                //{
      
                     var categories = new List<Category>(100);
 
-         
-                    var cmd = new SqlCommand("Person.uspGetContacts", conn);
+
+                    var cmd = new SqlCommand("AppSchema.GetCategories", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     conn.Open();
@@ -37,17 +37,17 @@ namespace MemberGallery.Model.DAL
                             categories.Add(new Category
                             {
                                 CategoryID = reader.GetInt16(categoryIDIndex),
-                                Category = reader.GetString(categoryIndex)
+                                CategoryProp = reader.GetString(categoryIndex)
                             });
                         }
                     }
                     categories.TrimExcess();
-                    return categories.OrderBy(c => c.Category);
-                }
-                catch
-                {
-                    throw new ApplicationException("Ett fel har skett i DAL för kategorier");
-                }
+                    return categories.OrderBy(c => c.CategoryProp);
+                //}
+                //catch
+                //{
+                //    throw new ApplicationException("Ett fel har skett i DAL för kategorier");
+                //}
             }
         }
 

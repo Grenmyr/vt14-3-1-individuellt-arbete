@@ -18,7 +18,18 @@ namespace MemberGallery.Pages.MemberGalleryPages
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            Service.GetContacts();
+            //Service.GetContacts();
+        }
+
+        // The return type can be changed to IEnumerable, however to support
+        // paging and sorting, the following parameters must be added:
+        //     int maximumRows
+        //     int startRowIndex
+        //     out int totalRowCount
+        //     string sortByExpression
+        public IEnumerable<Category> CategoryListView_GetData()
+        {
+            return Service.GetContacts();
         }
     }
 }

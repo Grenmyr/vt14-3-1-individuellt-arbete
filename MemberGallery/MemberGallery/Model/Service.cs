@@ -10,15 +10,26 @@ namespace MemberGallery.Model
     {
         // TODO: My serviceclass, to acces my DAL.
         private CategoryDAL _categoryDAL;
+        private ImageDescDAL _imageDescDAL;
 
         public CategoryDAL CategoryDAL
         {
             get { return _categoryDAL ?? (_categoryDAL = new CategoryDAL()); }
         }
 
-        public IEnumerable<Category> GetContacts()
+        public ImageDescDAL ImageDescDAL
+        {
+            get { return _imageDescDAL ?? (_imageDescDAL = new ImageDescDAL()); }
+        }
+
+        public IEnumerable<Category> GetCategories()
         {
             return CategoryDAL.GetCategories();
+        }
+
+        public ImageDesc GetImageDescByID(short categoryID)
+        {
+             return ImageDescDAL.GetImageDescByID(categoryID);
         }
     }
 }

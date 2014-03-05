@@ -29,7 +29,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         //     string sortByExpression
         public IEnumerable<Category> CategoryListView_GetData()
         {
-            return Service.GetContacts();
+            return Service.GetCategories();
         }
     }
 }

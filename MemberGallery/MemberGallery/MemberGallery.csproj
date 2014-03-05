@@ -65,11 +65,13 @@
     <Content Include="Pages\MemberGalleryPages\CategoryList.aspx" />
     <Content Include="Pages\MemberGalleryPages\Create.aspx" />
     <Content Include="Pages\MemberGalleryPages\Home.aspx" />
+    <Content Include="Pages\MemberGalleryPages\ImageDescList.aspx" />
     <Content Include="Pages\MemberGalleryPages\ImageList.aspx" />
     <Content Include="Pages\Shared\Site.Master" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <Content Include="Style\Style.css" />
     <Content Include="Web.config" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
   </ItemGroup>
@@ -84,9 +86,9 @@
     <Compile Include="Model\DAL\CategoryDAL.cs" />
     <Compile Include="Model\DAL\DALBase.cs" />
     <Compile Include="Model\DAL\ImageDAL.cs" />
-    <Compile Include="Model\DAL\ImageDescriptionDAL.cs" />
+    <Compile Include="Model\DAL\ImageDescDAL.cs" />
     <Compile Include="Model\Image.cs" />
-    <Compile Include="Model\ImageDescription.cs" />
+    <Compile Include="Model\ImageDesc.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Pages\MemberGalleryPages\CategoryList.aspx.cs">
       <DependentUpon>CategoryList.aspx</DependentUpon>
@@ -108,6 +110,13 @@
     </Compile>
     <Compile Include="Pages\MemberGalleryPages\Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MemberGalleryPages\ImageDescList.aspx.cs">
+      <DependentUpon>ImageDescList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MemberGalleryPages\ImageDescList.aspx.designer.cs">
+      <DependentUpon>ImageDescList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MemberGalleryPages\ImageList.aspx.cs">
       <DependentUpon>ImageList.aspx</DependentUpon>

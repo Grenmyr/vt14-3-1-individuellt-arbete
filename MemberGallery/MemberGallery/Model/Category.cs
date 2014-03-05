@@ -8,7 +8,7 @@ namespace MemberGallery.Model
 {
     public class Category
     {
-        public int CategoryID { get; set; }
+        public short CategoryID { get; set; }
 
         [Required(ErrorMessage = "Fält Kategori får ej lämnas tomt.")]
         [StringLength(20, ErrorMessage = "Kategori kan max vara 50 tecken långt.")]

@@ -26,9 +26,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
         public void Repeater_GetData([RouteData] short CategoryID)
         {
             // TODO: Om denna sidan laddas först krachar aplikationen efter detta ska jag debugga och kolla att IMGKategorier sparas.
-            
-            var galleryDesc = Service.GetImageDescByID(CategoryID);
-            Service.GenerateImages(galleryDesc);
+
+            var galleryDesc = Service.GetImagesByCategoryID(CategoryID);
+            //Service.GenerateImages(galleryDesc);
             
         }
     }

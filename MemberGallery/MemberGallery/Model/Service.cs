@@ -34,20 +34,20 @@ namespace MemberGallery.Model
             return CategoryDAL.GetCategories();
         }
 
-        public List<ImageDesc> GetImageDescByID(short categoryID)
+        public List<Image> GetImagesByCategoryID(short categoryID)
         {
-             return ImageDescDAL.GetImageDescByID(categoryID);
+            return ImageDAL.GetImagesByCategoryID(categoryID);
         }
 
-        public void GenerateImages(List<ImageDesc> galleryDesc)
-        {
-            ICollection<ValidationResult> validationresults;
-            if (!galleryDesc.Validate(out validationresults))
-            {
-                throw new ApplicationException();
-            }
-            ImageDAL.GenerateImages(galleryDesc);
+        //public void GenerateImages(List<Image> galleryDesc)
+        //{
+        //    ICollection<ValidationResult> validationresults;
+        //    if (!galleryDesc.Validate(out validationresults))
+        //    {
+        //        throw new ApplicationException();
+        //    }
+        //    ImageDAL.GetImageByID(galleryDesc);
 
-        }
+        //}
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using MemberGallery.Model.DAL;
 
 namespace MemberGallery.Model
 {
-    public class Image
+    public class Image 
     {
         // TODO: Not sure about YEAR and DateTime format
         public int ImageID { get; set; }

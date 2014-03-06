@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MemberGallery.Model
 {
-    public class ImageDesc
+    public class ImageDesc 
     {
         // TODO: Not sure about YEAR and DateTime format, also how to do with Index?
         public int ImageID { get; set; }

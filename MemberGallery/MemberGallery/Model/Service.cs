@@ -1,6 +1,7 @@
 ﻿using MemberGallery.Model.DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,6 +12,12 @@ namespace MemberGallery.Model
         // TODO: My serviceclass, to acces my DAL.
         private CategoryDAL _categoryDAL;
         private ImageDescDAL _imageDescDAL;
+        private ImageDAL _imageDAL;
+
+        public ImageDAL ImageDAL
+        {
+            get { return _imageDAL ?? (_imageDAL = new ImageDAL()); }
+        }
 
         public CategoryDAL CategoryDAL
         {
@@ -27,9 +34,19 @@ namespace MemberGallery.Model
             return CategoryDAL.GetCategories();
         }
 
-        public ImageDesc GetImageDescByID(short categoryID)
+        public List<ImageDesc> GetImageDescByID(short categoryID)
         {
              return ImageDescDAL.GetImageDescByID(categoryID);
+        }
+
+        public static void GenerateImages(List<ImageDesc> galleryDesc)
+        {
+            ICollection<ValidationResult> validationresults;
+            if (!galleryDesc.Validate(out validationresults))
+            {
+                throw new ApplicationException();
+            }
+
         }
     }
 }

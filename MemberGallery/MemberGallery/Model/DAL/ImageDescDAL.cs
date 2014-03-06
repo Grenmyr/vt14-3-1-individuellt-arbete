@@ -10,31 +10,38 @@ namespace MemberGallery.Model.DAL
     public class ImageDescDAL : DALBase
     {
         // TODO: Implement ImageDescriptionDAL
-        public ImageDesc GetImageDescByID(short categoryID) 
+        public List<ImageDesc> GetImageDescByID(short categoryID) 
         {
             using (SqlConnection conn = CreateConnection())
             {
                 //try
                 //{   // Se metod GetContacs för kommentarer.
-                    var cmd = new SqlCommand("Person.uspGetContacts", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+                    var imgDesc = new List<ImageDesc>(100);
 
+                    var cmd = new SqlCommand("AppSchema.GetImgByCategory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Value = categoryID;
                     conn.Open();
 
                     using (var reader = cmd.ExecuteReader())
                     {
+                        
                         var categoryIDIndex = reader.GetOrdinal("CategoryID");
-                        var imageIDIndex = reader.GetOrdinal("ImgName");
+                        var imageIDIndex = reader.GetOrdinal("ImageID");
+                        var yearIndex = reader.GetOrdinal("Year");
 
-                        if (reader.Read())
+                        while (reader.Read())
                         {
-                            return new ImageDesc
+                            imgDesc.Add(new ImageDesc
+                           
                             {
                                  CategoryID = reader.GetInt16(categoryIDIndex),
-                                 ImageID = reader.GetInt16(imageIDIndex),                            
-                            };
+                                 ImageID = reader.GetInt16(imageIDIndex),
+                                 Year = reader.GetDateTime(yearIndex)
+                            });
                         }
-                        return null;
+                        imgDesc.TrimExcess();
+                        return imgDesc;
                     }
                 //}
                 //catch

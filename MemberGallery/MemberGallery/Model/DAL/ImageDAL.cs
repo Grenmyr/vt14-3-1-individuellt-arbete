@@ -48,5 +48,20 @@ namespace MemberGallery.Model.DAL
                 //}
             }
         }
+
+        public void SaveFileName(string fileName)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+
+                SqlCommand cmd = new SqlCommand("AppSchema.SaveFileName", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 50).Value = fileName;
+                conn.Open();
+                cmd.ExecuteNonQuery();
+
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <%-- Kod här --%>
     <h2>Bildkategorier -- Här börjar min ContentPlaceholder</h2>
-    <div class="GalleryList">
+    <div class="ContentList">
         <asp:ListView ID="CategoryListView" runat="server" ItemType="MemberGallery.Model.Category"
             SelectMethod="CategoryListView_GetData" DataKeyNames="CategoryID" >
             <LayoutTemplate>

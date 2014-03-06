@@ -30,6 +30,19 @@ namespace MemberGallery.Pages.MemberGalleryPages
             return galleryDesc;
         }
 
+        protected void UploadButton_Click(object sender, EventArgs e)
+        {
+            var selectedPic = Select.FileContent;
+            var selectedName = Select.FileName;
+
+            Service.SaveFileName(selectedName);
+        }
+
+        protected void DeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
     }
 }

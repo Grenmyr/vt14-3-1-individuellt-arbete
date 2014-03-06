@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -40,5 +41,11 @@ namespace MemberGallery.Model
         {
             return ImageDAL.GetImagesByCategoryID(categoryID);
         }
+
+        public void SaveFileName( string fileName)
+        {
+            ImageDAL.SaveFileName(fileName);
+        }
+
     }
 }

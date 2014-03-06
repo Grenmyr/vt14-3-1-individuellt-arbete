@@ -24,8 +24,6 @@ namespace MemberGallery.Model.DAL
 
                 using (var reader = cmd.ExecuteReader())
                 {
-
-                 
                     var imageIDIndex = reader.GetOrdinal("ImageID");
                     var upLoadedIndex = reader.GetOrdinal("UpLoaded");
                     var imgNameIndex = reader.GetOrdinal("ImgName");

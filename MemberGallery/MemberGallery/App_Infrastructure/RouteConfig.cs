@@ -16,7 +16,7 @@ namespace MemberGallery.App_Infrastructure
             route.MapPageRoute("error", "Error", "~/error.aspx");
             route.MapPageRoute("Start", "kontakter", "~/default.aspx");
             route.MapPageRoute("Default", "", "~/Pages/MemberGalleryPages/CategoryList.aspx");
-            route.MapPageRoute("ImageDesc", "Bilder/{CategoryID}", "~/Pages/MemberGalleryPages/ImageDescList.aspx");
+            
             route.MapPageRoute("ImageList", "Bilder/{CategoryID}", "~/Pages/MemberGalleryPages/ImageList.aspx");
 
             // ska lägga in routen.

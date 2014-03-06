@@ -29,25 +29,16 @@ namespace MemberGallery.Model
             get { return _imageDescDAL ?? (_imageDescDAL = new ImageDescDAL()); }
         }
 
+        // Method to generate all categories from my Category Table
         public IEnumerable<Category> GetCategories()
         {
             return CategoryDAL.GetCategories();
         }
 
+        // Method to generate all Images from CategoryID
         public List<Image> GetImagesByCategoryID(short categoryID)
         {
             return ImageDAL.GetImagesByCategoryID(categoryID);
         }
-
-        //public void GenerateImages(List<Image> galleryDesc)
-        //{
-        //    ICollection<ValidationResult> validationresults;
-        //    if (!galleryDesc.Validate(out validationresults))
-        //    {
-        //        throw new ApplicationException();
-        //    }
-        //    ImageDAL.GetImageByID(galleryDesc);
-
-        //}
     }
 }

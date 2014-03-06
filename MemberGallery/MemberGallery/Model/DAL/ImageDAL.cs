@@ -5,8 +5,12 @@ using System.Web;
 
 namespace MemberGallery.Model.DAL
 {
-    public class ImageDAL
+    public class ImageDAL : DALBase
     {
         // TODO: Implement ImageDAL
+        public void GenerateImages(List<ImageDesc> galleryDesc)
+        {
+
+        }
     }
 }

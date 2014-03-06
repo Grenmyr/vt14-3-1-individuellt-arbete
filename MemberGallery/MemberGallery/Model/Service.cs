@@ -39,13 +39,14 @@ namespace MemberGallery.Model
              return ImageDescDAL.GetImageDescByID(categoryID);
         }
 
-        public static void GenerateImages(List<ImageDesc> galleryDesc)
+        public void GenerateImages(List<ImageDesc> galleryDesc)
         {
             ICollection<ValidationResult> validationresults;
             if (!galleryDesc.Validate(out validationresults))
             {
                 throw new ApplicationException();
             }
+            ImageDAL.GenerateImages(galleryDesc);
 
         }
     }

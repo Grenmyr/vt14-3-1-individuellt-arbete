@@ -38,8 +38,8 @@ namespace MemberGallery.Model
             ApprovedExtensions = new Regex(pattern, RegexOptions.IgnoreCase);
 
             //Setting physical direction to my files
-            PhysicalUploadedImagesPath = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString(), @"Files\Images");
-            PhysicalUploadedThumbNailPath = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString(), @"Files\Thumbnails");
+            PhysicalUploadedImagesPath = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString(), @"Content\Pictures");
+            PhysicalUploadedThumbNailPath = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString(), @"Content\Thumbnails");
 
             // "GetInvalidFileNameChars()" is a built in collection of illegal chars, which i after saving into variable "invalidchars".
             // Using my expression "invalidchars "to set my field "sanitizePath" IF the regex escape "invalidchars"
@@ -82,9 +82,9 @@ namespace MemberGallery.Model
         }
 
         // Return true if valid image
-        private bool IsValidImage(Image image)
+        private bool IsValidImage(System.Drawing.Image image)
         {
-            return image.Rawformat.Guid == System.Drawing.Imaging.ImageFormat.Gif.Guid ||
+            return image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Gif.Guid ||
             image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid ||
             image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid;
         }

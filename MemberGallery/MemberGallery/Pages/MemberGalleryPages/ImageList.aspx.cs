@@ -19,15 +19,27 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             get { return _service ?? (_service = new Service()); }
         }
+        public string FileName
+        {
+            get
+            {
+                var message = Session["text"] as string;
+
+                return message;
+            }
+
+            set { Session["text"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            CurrentImage.ImageUrl = "~/Content/Pictures/" + FileName;
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
         private MemberGallery.Model.Image ImageProp
         {
             get { return _image ?? (_image = new MemberGallery.Model.Image()); }
+
         }
 
 
@@ -36,7 +48,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
             // TODO: Om denna sidan laddas först krachar aplikationen efter detta ska jag debugga och kolla att IMGKategorier sparas.
 
             var galleryDesc = Service.GetImagesByCategoryID(CategoryID);
+
             return galleryDesc;
+
         }
 
         protected void UploadButton_Click(object sender, EventArgs e)
@@ -54,19 +68,16 @@ namespace MemberGallery.Pages.MemberGalleryPages
             // Sätter sparade namnet till mitt image objekt. och laddar därefter upp referens till databas.
             image.ImgName = savedFilename;
             Service.SaveFileName(image);
-      
+            FileName = savedFilename;
 
+            // Saving imagedesc for the picture.
             foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
             {
                 var cat = new ImageDesc();
                 cat.CategoryID = int.Parse(item.Value);
                 cat.ImageID = image.ImageID;
                 Service.SaveImageDesc(cat);
-
-
             }
-
-
         }
 
         protected void DeleteButton_Click(object sender, EventArgs e)

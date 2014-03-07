@@ -70,6 +70,7 @@
     <Content Include="Pages\Shared\Categories.ascx" />
     <Content Include="Pages\Shared\Site.Master" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
+    <Content Include="Pages\Shared\ViewImage.ascx" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
     <Content Include="Style\Style.css" />
@@ -140,6 +141,13 @@
     </Compile>
     <Compile Include="Pages\Shared\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shared\ViewImage.ascx.cs">
+      <DependentUpon>ViewImage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shared\ViewImage.ascx.designer.cs">
+      <DependentUpon>ViewImage.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

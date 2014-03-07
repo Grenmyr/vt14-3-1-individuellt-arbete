@@ -31,7 +31,7 @@
                 </div>
             </ItemTemplate>
             <InsertItemTemplate>
-
+                
             </InsertItemTemplate>
         </asp:ListView>
         
@@ -46,13 +46,12 @@
                 <asp:Button ID="UploadButton" runat="server" Text="Ladda upp" OnClick="UploadButton_Click" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera" OnClick="DeleteButton_Click" />
             </asp:PlaceHolder>
+
             <asp:DropDownList ID="ContactTypeDropDownList" runat="server"
                     ItemType="MemberGallery.Model.Category"
                     SelectMethod="CategoryListView_GetData"
                     DataTextField="CategoryProp"
-                    DataValueField="CategoryID"
-                    SelectedValue='<%# "fdsafads" %>'
-
+                    DataValueField="CategoryID"   
                   />
            
         </div>

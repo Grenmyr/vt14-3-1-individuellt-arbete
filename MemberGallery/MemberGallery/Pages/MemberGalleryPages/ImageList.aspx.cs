@@ -37,9 +37,10 @@ namespace MemberGallery.Pages.MemberGalleryPages
             var selectedName = Select.FileName;
             MemberGallery.Model.Image image = new MemberGallery.Model.Image();
             image.ImgName = selectedName;
+            image.Stream = selectedPic;
             Service.SaveFileName(image);
 
-            var xxx = Categories.ID;
+            
 
         }
 

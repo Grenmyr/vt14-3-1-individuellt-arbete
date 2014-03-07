@@ -16,7 +16,7 @@
 
         <%-- Listview generating images --%>
         <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
-            SelectMethod="ImageListView_GetData" DataKeyNames="ImageID">
+            SelectMethod="ImageListView_GetData" DataKeyNames="ImageID" InsertItemPosition="LastItem">
             <LayoutTemplate>
                 <div>
                     <h4>Kategorier-- Detta är min databas ImageList.aspx</h4>
@@ -31,30 +31,33 @@
                 </div>
             </ItemTemplate>
             <InsertItemTemplate>
-                
-            </InsertItemTemplate>
+                </InsertItemTemplate>
+          
+            
         </asp:ListView>
-        
-        <%-- Här laddar jag categories.ascx --%>
-        <uc1:Categories runat="server" id="Categories" />
-      
-        <%-- Here starts part contecrning upload new images. --%>
-        <div id="upload">
+               <div id="upload">
             <asp:ValidationSummary ID="ValidationSummary" runat="server" />
             <asp:PlaceHolder ID="ButtonPlaceHolder" runat="server" Visible="true">
                 <asp:FileUpload ID="Select" runat="server" />
                 <asp:Button ID="UploadButton" runat="server" Text="Ladda upp" OnClick="UploadButton_Click" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera" OnClick="DeleteButton_Click" />
             </asp:PlaceHolder>
-
-            <asp:DropDownList ID="ContactTypeDropDownList" runat="server"
+                     <asp:CheckBoxList ID="CheckBoxList" runat="server"  ItemType="MemberGallery.Model.Category" DataTextField="CategoryProp" DataValueField="CategoryID"  SelectMethod="CategoryListView_GetData"
+                         ></asp:CheckBoxList>
+           <%-- <asp:DropDownList ID="ContactTypeDropDownList" runat="server"
                     ItemType="MemberGallery.Model.Category"
                     SelectMethod="CategoryListView_GetData"
                     DataTextField="CategoryProp"
-                    DataValueField="CategoryID"   
-                  />
+                    DataValueField="CategoryID"
+                  />--%>
            
         </div>
+        
+        <%-- Här laddar jag categories.ascx --%>
+        <uc1:Categories runat="server" id="Categories" />
+      
+        <%-- Here starts part contecrning upload new images. --%>
+       
 
     </div>
 </asp:Content>

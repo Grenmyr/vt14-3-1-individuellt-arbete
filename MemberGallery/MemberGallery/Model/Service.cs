@@ -46,6 +46,10 @@ namespace MemberGallery.Model
         {
          ImageDAL.SaveFileName(image);
         }
+        public void listan(ImageDesc imageDesc) 
+        { 
+
+        }
 
     }
 }

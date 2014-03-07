@@ -33,7 +33,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         public void UploadButton_Click(object sender, EventArgs e)
         {
-            // IF tryupdatemodel e valid
+           
+            
             var selectedPic = Select.FileContent;
             var selectedName = Select.FileName;
             MemberGallery.Model.Image image = new MemberGallery.Model.Image();
@@ -41,7 +42,16 @@ namespace MemberGallery.Pages.MemberGalleryPages
             image.Stream = selectedPic;
             Service.SaveFileName(image);
 
-            
+
+            foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(a => a.Selected))
+            {
+                var cat = new ImageDesc();
+                cat.CategoryID = int.Parse(item.Value);
+                cat.ImageID = image.ImageID;
+
+             
+                    
+            }
 
         }
 

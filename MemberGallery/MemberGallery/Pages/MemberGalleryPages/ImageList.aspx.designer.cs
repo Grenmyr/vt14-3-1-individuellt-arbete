@@ -31,15 +31,6 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         protected global::System.Web.UI.WebControls.ListView ImageListView;
         
         /// <summary>
-        /// Categories control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::MemberGallery.Pages.Shared.Categories Categories;
-        
-        /// <summary>
         /// ValidationSummary control.
         /// </summary>
         /// <remarks>
@@ -85,12 +76,21 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         protected global::System.Web.UI.WebControls.Button DeleteButton;
         
         /// <summary>
-        /// ContactTypeDropDownList control.
+        /// CheckBoxList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ContactTypeDropDownList;
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList;
+        
+        /// <summary>
+        /// Categories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::MemberGallery.Pages.Shared.Categories Categories;
     }
 }

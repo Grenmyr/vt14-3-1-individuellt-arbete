@@ -49,7 +49,7 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        public void SaveFileName(string fileName)
+        public void SaveFileName(Image image)
         {
             using (SqlConnection conn = CreateConnection())
             {
@@ -57,9 +57,12 @@ namespace MemberGallery.Model.DAL
                 SqlCommand cmd = new SqlCommand("AppSchema.SaveFileName", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 50).Value = fileName;
+                cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
+                cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
                 conn.Open();
                 cmd.ExecuteNonQuery();
+                 image.ImageID = (int)cmd.Parameters["@ImageID"].Value;
 
             }
         }

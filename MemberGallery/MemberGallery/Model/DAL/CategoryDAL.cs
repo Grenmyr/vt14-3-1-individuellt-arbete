@@ -18,8 +18,6 @@ namespace MemberGallery.Model.DAL
                 //{
      
                     var categories = new List<Category>(100);
-
-
                     var cmd = new SqlCommand("AppSchema.GetCategories", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 

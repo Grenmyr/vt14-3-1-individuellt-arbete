@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/Site.Master" AutoEventWireup="true" CodeBehind="ImageList.aspx.cs" Inherits="MemberGallery.Pages.MemberGalleryPages.ImageList" %>
 
+<%@ Register Src="~/Pages/Shared/Categories.ascx" TagPrefix="uc1" TagName="Categories" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
@@ -22,12 +25,14 @@
             </LayoutTemplate>
             <ItemTemplate>
                 <div>
-                    <%-- Hyperlink which present images throug imageurl, the "Item" is the picture. And Navigateurl "# "?" + Item" expression set filename in browser field. --%>
+                    <%-- Hyperlink which present images throug imageurl, the "Item" is the picture. And Navigateurl "# "?"  Item" expression set filename in browser field. --%>
                     <asp:HyperLink runat="server" Text='<%# Item.ImgName%>' ImageUrl='<%#"~/Content/Pictures/"+Item.ImgName %>' NavigateUrl='<%# "?name=" + Item%>'></asp:HyperLink>
                 </div>
             </ItemTemplate>
         </asp:ListView>
-
+        
+        <uc1:Categories runat="server" id="Categories" />
+      
         <%-- Here starts part contecrning upload new images. --%>
         <div id="upload">
             <asp:ValidationSummary ID="ValidationSummary" runat="server" />

@@ -30,12 +30,17 @@ namespace MemberGallery.Pages.MemberGalleryPages
             return galleryDesc;
         }
 
-        protected void UploadButton_Click(object sender, EventArgs e)
+        public void UploadButton_Click(object sender, EventArgs e)
         {
+            // IF tryupdatemodel e valid
             var selectedPic = Select.FileContent;
             var selectedName = Select.FileName;
+            MemberGallery.Model.Image image = new MemberGallery.Model.Image();
+            image.ImgName = selectedName;
+            Service.SaveFileName(image);
 
-            Service.SaveFileName(selectedName);
+            var xxx = Categories.ID;
+
         }
 
         protected void DeleteButton_Click(object sender, EventArgs e)

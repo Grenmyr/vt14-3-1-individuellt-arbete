@@ -42,9 +42,9 @@ namespace MemberGallery.Model
             return ImageDAL.GetImagesByCategoryID(categoryID);
         }
 
-        public void SaveFileName( string fileName)
+        public void SaveFileName(Image image)
         {
-            ImageDAL.SaveFileName(fileName);
+         ImageDAL.SaveFileName(image);
         }
 
     }

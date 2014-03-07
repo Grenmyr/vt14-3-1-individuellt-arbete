@@ -67,6 +67,7 @@
     <Content Include="Pages\MemberGalleryPages\Home.aspx" />
     <Content Include="Pages\MemberGalleryPages\ImageDescList.aspx" />
     <Content Include="Pages\MemberGalleryPages\ImageList.aspx" />
+    <Content Include="Pages\Shared\Categories.ascx" />
     <Content Include="Pages\Shared\Site.Master" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
@@ -125,6 +126,13 @@
     </Compile>
     <Compile Include="Pages\MemberGalleryPages\ImageList.aspx.designer.cs">
       <DependentUpon>ImageList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Shared\Categories.ascx.cs">
+      <DependentUpon>Categories.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Shared\Categories.ascx.designer.cs">
+      <DependentUpon>Categories.ascx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Shared\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

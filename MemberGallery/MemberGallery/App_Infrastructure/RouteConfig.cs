@@ -18,7 +18,7 @@ namespace MemberGallery.App_Infrastructure
             route.MapPageRoute("Default", "", "~/Pages/MemberGalleryPages/CategoryList.aspx");
             
             route.MapPageRoute("ImageList", "Bilder/{CategoryID}", "~/Pages/MemberGalleryPages/ImageList.aspx");
-
+            route.MapPageRoute("Categories", "Kategorier", "~/Pages/MemberGalleryPages/Categories.ascx");
             // ska lägga in routen.
         }
     }

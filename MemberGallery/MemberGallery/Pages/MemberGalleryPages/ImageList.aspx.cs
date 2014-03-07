@@ -54,7 +54,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             // Sätter sparade namnet till mitt image objekt. och laddar därefter upp referens till databas.
             image.ImgName = savedFilename;
             Service.SaveFileName(image);
-            // Sparar image objkt i path.
+      
 
             foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
             {

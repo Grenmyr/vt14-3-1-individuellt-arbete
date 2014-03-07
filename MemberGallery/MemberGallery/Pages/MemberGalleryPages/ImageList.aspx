@@ -27,7 +27,8 @@
                 <div>
                     <%-- Hyperlink which present images throug imageurl, the "Item" is the picture. And Navigateurl "# "?"  Item" expression set filename in browser field. --%>
                     <asp:HyperLink runat="server" Text='<%# Item.ImgName%>' 
-                        ImageUrl='<%#"~/Content/Thumbnails/"+Item %>' NavigateUrl='<%# "?name=" + Item%>'></asp:HyperLink>
+                        ImageUrl='<%#"~/Content/Thumbnails/"+Item.ImgName %>' NavigateUrl='<%# "?name=" + Item%>'></asp:HyperLink>
+                     <%-- <asp:HyperLink ID="HyperLink1" runat="server" Text='<%#: Item%>' ImageUrl='<%#"~/Files/Thumbnails/"+Item %>' NavigateUrl='<%# "?name=" + Item%>'></asp:HyperLink>--%>
                 </div>
             </ItemTemplate>
             <InsertItemTemplate>

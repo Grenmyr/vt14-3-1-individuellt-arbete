@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 
+
 namespace MemberGallery.Pages.MemberGalleryPages
 {
     public partial class ImageList : System.Web.UI.Page
@@ -22,6 +23,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
 
         }
+        private MemberGallery.Model.Image _image;
+        // Property to return a Image reference, if null create new one.
+        private MemberGallery.Model.Image ImageProp
+        {
+            get { return _image ?? (_image = new MemberGallery.Model.Image()); }
+        }
+
 
         public IEnumerable<MemberGallery.Model.Image> ImageListView_GetData([RouteData] short CategoryID)
         {
@@ -31,27 +39,33 @@ namespace MemberGallery.Pages.MemberGalleryPages
             return galleryDesc;
         }
 
-        public void UploadButton_Click(object sender, EventArgs e)
+        protected void UploadButton_Click(object sender, EventArgs e)
         {
-           
-            
+
+            // Hämtar filnamn och steam 
             var selectedPic = Select.FileContent;
             var selectedName = Select.FileName;
-            MemberGallery.Model.Image image = new MemberGallery.Model.Image();
-            image.ImgName = selectedName;
-            image.Stream = selectedPic;
+
+            // Skapar Image objekt 
+            var image = ImageProp;
+            // Anropar min imageklass och sparar filreferens och namn.
+            var savedFilename = image.SaveImage(selectedPic, selectedName);
+
+            // Sätter sparade namnet till mitt image objekt. och laddar därefter upp referens till databas.
+            image.ImgName = savedFilename;
             Service.SaveFileName(image);
+            // Sparar image objkt i path.
 
-
-            foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(a => a.Selected))
+            foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
             {
                 var cat = new ImageDesc();
                 cat.CategoryID = int.Parse(item.Value);
                 cat.ImageID = image.ImageID;
+                Service.SaveImageDesc(cat);
 
-             
-                    
+
             }
+
 
         }
 
@@ -66,6 +80,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         }
 
-        
+
     }
 }

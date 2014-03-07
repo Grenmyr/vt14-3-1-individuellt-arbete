@@ -23,8 +23,6 @@ namespace MemberGallery.Model
         [Required(ErrorMessage = "Datum Förnamn får ej lämnas tomt.")]
         public DateTime UpLoaded { get; set; }
 
-        public Stream Stream { get; set; }
-
         private static readonly Regex ApprovedExtensions;
         private static readonly Regex SantizePath;
         private static string PhysicalUploadedImagesPath;
@@ -150,6 +148,7 @@ namespace MemberGallery.Model
                 }
             }
         }
+
 
     }
 }

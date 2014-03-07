@@ -10,7 +10,7 @@ namespace MemberGallery.Model
     {
         // TODO: Not sure about YEAR and DateTime format, also how to do with Index?
         public int ImageID { get; set; }
-        public int ImageDescID { get; set; }
+        public int ImgDescID { get; set; }
         public int CategoryID { get; set; }
 
         [Required(ErrorMessage = "Fält Year får ej lämnas tomt.")]

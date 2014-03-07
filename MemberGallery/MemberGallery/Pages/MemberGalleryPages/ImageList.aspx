@@ -19,18 +19,23 @@
             SelectMethod="ImageListView_GetData" DataKeyNames="ImageID">
             <LayoutTemplate>
                 <div>
-                    <h4>Kategorier-- Detta är min databas Images</h4>
+                    <h4>Kategorier-- Detta är min databas ImageList.aspx</h4>
                 </div>
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </LayoutTemplate>
             <ItemTemplate>
                 <div>
                     <%-- Hyperlink which present images throug imageurl, the "Item" is the picture. And Navigateurl "# "?"  Item" expression set filename in browser field. --%>
-                    <asp:HyperLink runat="server" Text='<%# Item.ImgName%>' ImageUrl='<%#"~/Content/Pictures/"+Item.ImgName %>' NavigateUrl='<%# "?name=" + Item%>'></asp:HyperLink>
+                    <asp:HyperLink runat="server" Text='<%# Item.ImgName%>' 
+                        ImageUrl='<%#"~/Content/Pictures/"+Item.ImgName %>' NavigateUrl='<%# "?name=" + Item%>'></asp:HyperLink>
                 </div>
             </ItemTemplate>
+            <InsertItemTemplate>
+
+            </InsertItemTemplate>
         </asp:ListView>
         
+        <%-- Här laddar jag categories.ascx --%>
         <uc1:Categories runat="server" id="Categories" />
       
         <%-- Here starts part contecrning upload new images. --%>
@@ -41,6 +46,16 @@
                 <asp:Button ID="UploadButton" runat="server" Text="Ladda upp" OnClick="UploadButton_Click" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera" OnClick="DeleteButton_Click" />
             </asp:PlaceHolder>
+            <asp:DropDownList ID="ContactTypeDropDownList" runat="server"
+                    ItemType="MemberGallery.Model.Category"
+                    SelectMethod="CategoryListView_GetData"
+                    DataTextField="CategoryProp"
+                    DataValueField="CategoryID"
+                    SelectedValue='<%# "fdsafads" %>'
+
+                  />
+           
         </div>
+
     </div>
 </asp:Content>

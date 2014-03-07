@@ -18,14 +18,17 @@
             <ItemTemplate>
                 <div>
                 <%--    <%#: Item.CategoryProp %>--%>
-                      <asp:HyperLink ID="HyperLink" runat="server" Text='<%#Item.CategoryProp%>' ImageUrl='<%#"~/Files/Thumbnails/"+Item %>'  NavigateUrl='<%# GetRouteUrl("ImageList", new { CategoryID = Item.CategoryID })  %>'></asp:HyperLink>
+                      <asp:HyperLink ID="HyperLink" runat="server" Text='<%#Item.CategoryProp%>'
+                           ImageUrl='<%#"~/Files/Thumbnails/"+Item %>' 
+                           NavigateUrl='<%# GetRouteUrl("ImageList", new { CategoryID = Item.CategoryID })  %>'></asp:HyperLink>
                 </div>
             </ItemTemplate>
-          <%--  <InsertItemTemplate>
+            <InsertItemTemplate>
                 <div>
+                 
                    <asp:HyperLink ID="CategoryHyperlink" runat="server" Text='<%# BindItem.CategoryProp %>'></asp:HyperLink>
                 </div>
-            </InsertItemTemplate>--%>
+            </InsertItemTemplate>
         </asp:ListView>
     </div>
 </asp:Content>

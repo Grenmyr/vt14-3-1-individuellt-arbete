@@ -47,6 +47,12 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
 
         }
+        public IEnumerable<Category> CategoryListView_GetData()
+        {
+            return Service.GetCategories();
+
+
+        }
 
         
     }

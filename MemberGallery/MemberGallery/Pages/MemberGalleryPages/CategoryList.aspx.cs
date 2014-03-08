@@ -16,9 +16,36 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             get { return _service ?? (_service = new Service()); }
         }
+        public string SessionProp
+        {
+            get
+            {
+                var confirmationMessage = Session["text"] as string;
+                Session.Remove("text");
+                return confirmationMessage;
+            }
+            set { Session["text"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             //Service.GetContacts();
+        }
+       
+        public void  CategoryListView_InsertItem(Category category)
+        {
+            //if (ModelState.IsValid)
+            //{
+                //try
+                //{
+                    Service.SaveCategory(category);
+                    SessionProp = String.Format("Du har laddat upp | Kategori: {0} |", category.CategoryProp);
+                //}
+                //catch (Exception)
+                //{
+                //    ModelState.AddModelError(String.Empty, "Fel inträffade när Kunduppgift skulle Läggas till.");
+                //}
+                    Response.RedirectToRoute("Default");
+            //}
         }
 
         // The return type can be changed to IEnumerable, however to support

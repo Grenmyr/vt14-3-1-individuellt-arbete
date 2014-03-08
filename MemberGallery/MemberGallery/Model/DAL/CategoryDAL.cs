@@ -49,5 +49,34 @@ namespace MemberGallery.Model.DAL
             }
         }
 
+
+        internal static void UpdateContact(Category category)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertContact(Category category)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                //try
+                //{
+                    SqlCommand cmd = new SqlCommand("AppSchema.SaveContact", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@Category", SqlDbType.VarChar, 50).Value = category.CategoryProp;
+                    cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    // Setting the ID of my newly created contact to my contacID parameter.
+                    category.CategoryID = (int)cmd.Parameters["@CategoryID"].Value;
+                //}
+                //catch
+                //{
+                //    throw new ApplicationException("Ett fel har skett i DAL");
+                //}
+            }
+        }
     }
 }

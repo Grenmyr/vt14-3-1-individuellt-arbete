@@ -32,7 +32,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            CurrentImage.ImageUrl = "~/Content/Pictures/" + FileName;
+            //CurrentImage.ImageUrl = "~/Content/Pictures/" + FileName;
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
@@ -42,20 +42,17 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         }
 
-
         public IEnumerable<MemberGallery.Model.Image> ImageListView_GetData([RouteData] short CategoryID)
         {
             // TODO: Om denna sidan laddas först krachar aplikationen efter detta ska jag debugga och kolla att IMGKategorier sparas.
 
             var galleryDesc = Service.GetImagesByCategoryID(CategoryID);
-
+        
             return galleryDesc;
-
         }
 
         protected void UploadButton_Click(object sender, EventArgs e)
         {
-
             // Hämtar filnamn och steam 
             var selectedPic = Select.FileContent;
             var selectedName = Select.FileName;
@@ -87,10 +84,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
         public IEnumerable<Category> CategoryListView_GetData()
         {
             return Service.GetCategories();
-
-
         }
-
-
     }
 }

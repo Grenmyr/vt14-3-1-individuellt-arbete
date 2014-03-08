@@ -13,6 +13,15 @@ namespace MemberGallery.Pages.MemberGalleryPages {
     public partial class ImageList {
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
         /// CurrentImage control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image CurrentImage;
+        
+        /// <summary>
+        /// ViewImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::MemberGallery.Pages.Shared.ViewImage ViewImage;
         
         /// <summary>
         /// ImageListView control.
@@ -83,6 +101,15 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList;
+        
+        /// <summary>
+        /// HyperLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLink;
         
         /// <summary>
         /// Categories control.

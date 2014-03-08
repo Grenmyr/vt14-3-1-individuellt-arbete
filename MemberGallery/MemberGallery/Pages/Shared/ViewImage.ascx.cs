@@ -9,9 +9,10 @@ namespace MemberGallery.Pages.Shared
 {
     public partial class ViewImage : System.Web.UI.UserControl
     {
-        protected void Page_Load(object sender, EventArgs e)
+        public void Page_Load(object sender, EventArgs e)
         {
 
         }
+      
     }
 }

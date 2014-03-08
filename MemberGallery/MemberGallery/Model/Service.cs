@@ -30,11 +30,7 @@ namespace MemberGallery.Model
             get { return _imageDescDAL ?? (_imageDescDAL = new ImageDescDAL()); }
         }
 
-        // Method to generate all categories from my Category Table
-        public IEnumerable<Category> GetCategories()
-        {
-            return CategoryDAL.GetCategories();
-        }
+       
 
         // Method to generate all Images from CategoryID
         public List<Image> GetImagesByCategoryID(short categoryID)
@@ -52,6 +48,29 @@ namespace MemberGallery.Model
             ImageDescDAL.SaveImageDesc(imageDesc);
         }
 
+        // Metoder till Category
 
+        public void SaveCategory(Category category)
+        {
+            ICollection<ValidationResult> validationresults;
+            if (!category.Validate(out validationresults))
+            {
+                throw new ApplicationException();
+            }
+
+            if (category.CategoryID == 0)
+            {
+                CategoryDAL.InsertContact(category);
+            }
+            else
+            {
+                CategoryDAL.UpdateContact(category);
+            }
+        }
+        // Method to generate all categories from my Category Table
+        public IEnumerable<Category> GetCategories()
+        {
+            return CategoryDAL.GetCategories();
+        }
     }
 }

@@ -23,6 +23,8 @@ namespace MemberGallery.Model
         [Required(ErrorMessage = "Datum Förnamn får ej lämnas tomt.")]
         public DateTime UpLoaded { get; set; }
 
+        public DateTime Year { get; set; }
+
         private static readonly Regex ApprovedExtensions;
         private static readonly Regex SantizePath;
         private static string PhysicalUploadedImagesPath;

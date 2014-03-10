@@ -72,5 +72,10 @@ namespace MemberGallery.Model
         {
             return CategoryDAL.GetCategories();
         }
+
+        public Category GetCategoryByCategoryID(int CategoryID)
+        {
+            return CategoryDAL.GetCategoryByCategoryID(CategoryID);
+        }
     }
 }

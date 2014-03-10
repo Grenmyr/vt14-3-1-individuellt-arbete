@@ -78,5 +78,40 @@ namespace MemberGallery.Model.DAL
                 //}
             }
         }
+
+        public Category GetCategoryByCategoryID(int CategoryID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {   // Se metod GetContacs för kommentarer.
+                    var cmd = new SqlCommand("Person.uspGetContacts", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    conn.Open();
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        var categoryIDIndex = reader.GetOrdinal("CategoryID");
+                        var categoryIndex = reader.GetOrdinal("Category");
+                  
+
+                        if (reader.Read())
+                        {
+                            return new Category
+                            {
+                                CategoryID = reader.GetInt32(categoryIDIndex),
+                                CategoryProp = reader.GetString(categoryIndex),       
+                            };
+                        }
+                        return null;
+                    }
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel har skett i DAL");
+                }
+            }
+        }
     }
 }

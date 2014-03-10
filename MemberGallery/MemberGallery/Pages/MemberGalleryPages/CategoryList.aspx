@@ -25,7 +25,7 @@
             <asp:ListView ItemType="MemberGallery.Model.Category" runat="server" ID="CategoryListView"
                 SelectMethod="CategoryListView_GetData"
                 InsertMethod="CategoryListView_InsertItem"
-                UpdateMethod="ContactListView_UpdateItem"
+                UpdateMethod="CategoryListView_UpdateItem"
                 DeleteMethod="ContactListView_DeleteItem"
                 DataKeyNames="CategoryID"
                 InsertItemPosition="FirstItem" ViewStateMode="Enabled" >

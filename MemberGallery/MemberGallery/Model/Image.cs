@@ -25,8 +25,11 @@ namespace MemberGallery.Model
 
         public DateTime Year { get; set; }
 
+<<<<<<< HEAD
         public string PhysicalFileName { get; set; }
 
+=======
+>>>>>>> 7f93f5b4e6529a50c648fe65c8a022f6ef73b219
 
 
         private static readonly Regex ApprovedExtensions;

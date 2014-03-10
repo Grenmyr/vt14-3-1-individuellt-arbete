@@ -25,6 +25,10 @@ namespace MemberGallery.Model
 
         public DateTime Year { get; set; }
 
+        public string PhysicalFileName { get; set; }
+
+
+
         private static readonly Regex ApprovedExtensions;
         private static readonly Regex SantizePath;
         private static string PhysicalUploadedImagesPath;
@@ -89,36 +93,28 @@ namespace MemberGallery.Model
             image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid;
         }
 
-        public string SaveImage(Stream stream, string fileName)
+        public void SaveImage(Stream stream, int imageID)
         {
-           
-            // Check if filename got correct filename, if not try to remove.
-            fileName =SantizePath.Replace(fileName, String.Empty);
 
-
-            if (!ApprovedExtensions.IsMatch(fileName))
-            {
-                throw new ArgumentException("Du kan endast spara bilder i format gif|jpg|png");
-            }
-
-            // If filename exist, do while loop calling "ImageExist(return true/false) and add number in ending. 
-            if (ImageExist(fileName))
-            {
-                var extension = Path.GetExtension(fileName);
-                var imageName = Path.GetFileNameWithoutExtension(fileName);
-
-                int i = 0;
-                do
-                {
-                    fileName = String.Format("{0}{1}{2}", imageName, i, extension);
-                    i++;
-                } while (ImageExist(fileName));
-            }
-            // Setting my image/thumbnail as stream type and next line saving it with the path and filename. 
+            // Setting my image/thumbnail as stream type and next line saving it with the path and filename....
             try
             {
                 using (var image = System.Drawing.Image.FromStream(stream))
                 {
+                    var fileName = "";
+                    if (image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid)
+                    {
+                        fileName = String.Format("{0}.JPEG", imageID);
+                    }
+                    else if (   image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid)
+                    {
+                        fileName = String.Format("{0}.PNG", imageID);
+                    }
+                    else
+                    {
+                        throw new ArgumentException();
+                    }
+
                     if (IsValidImage(image))
                     {
                         image.Save(Path.Combine(PhysicalUploadedImagesPath, fileName));
@@ -128,14 +124,14 @@ namespace MemberGallery.Model
                         thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
                     }
                 }
+               
             }
             catch (Exception)
             {
                 throw new ArgumentException("Ett oväntat undantag inträffade, du har nu fått virus.");
             }
-            return fileName;
         }
-        public void DeleteImage(string fileName)
+        private void DeleteImage(string fileName)
         {
             if (ImageExist(fileName))
             {
@@ -149,6 +145,13 @@ namespace MemberGallery.Model
                     throw new ArgumentException("Ett oväntat undantag inträffade, du har nu fått virus.");
                 }
             }
+        }
+        public void DeleteImage(int imageId)
+        {
+
+            DeleteImage(string.Format("{0}.JPEG",imageId));
+            DeleteImage(string.Format("{0}.PNG", imageId));
+            
         }
 
 

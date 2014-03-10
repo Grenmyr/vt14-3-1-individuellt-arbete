@@ -1,6 +1,7 @@
 ﻿using MemberGallery.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.ModelBinding;
@@ -59,30 +60,31 @@ namespace MemberGallery.Pages.MemberGalleryPages
             return galleryDesc;
         }
 
-        protected void UploadButton_Click(object sender, EventArgs e)
+        protected void UploadButton_Click(object sender, EventArgs e )
         {
-            // Hämtar filnamn och steam 
-            var selectedPic = Select.FileContent;
-            var selectedName = Select.FileName;
-
-            // Skapar Image objekt 
+            /// image obj
             var image = ImageProp;
-            // Anropar min imageklass och sparar filreferens och namn.
-            var savedFilename = image.SaveImage(selectedPic, selectedName);
-
-            // Sätter sparade namnet till mitt image objekt. och laddar därefter upp referens till databas.
-            image.ImgName = savedFilename;
+            // upload button
+            var selectedPic = Select.FileContent;
+            var selectedFilename = Select.FileName;
+            image.ImgName = selectedFilename;
             Service.SaveFileName(image);
-            FileName = savedFilename;
 
-            // Saving imagedesc for the picture.
+            // gallery stream string filnamn disk
+            image.SaveImage(selectedPic, image.ImageID);
+          
+            // sparar vilka kategetorier bilden tillhör
             foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
             {
                 var cat = new ImageDesc();
                 cat.CategoryID = int.Parse(item.Value);
                 cat.ImageID = image.ImageID;
                 Service.SaveImageDesc(cat);
+
+                
+                FileName = image.ImgName ;
             }
+    
         }
 
         protected void DeleteButton_Click(object sender, EventArgs e)
@@ -93,7 +95,10 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 {
                     try
                     {
-                        ImageProp.DeleteImage(URL);
+                        // Method to delete image from database.
+                        //Service.DeleteImage();
+                        // Method to delete file physically.
+                        //ImageProp.DeleteImage(URL);
                         //Message = String.Format("Du har tagit bort{0}", FileName);
                         //Response.Redirect("?name=" + FileName);
                     }
@@ -107,6 +112,25 @@ namespace MemberGallery.Pages.MemberGalleryPages
         public IEnumerable<Category> CategoryListView_GetData()
         {
             return Service.GetCategories();
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void ImageListView_DeleteItem(int imageID,[RouteData] short CategoryID)
+        {
+            try
+            {
+               
+                
+
+            Service.DeleteImage(imageID, CategoryID);
+
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Raderas.");
+            }
+
+            ImageProp.DeleteImage(imageID);
         }
 
     }

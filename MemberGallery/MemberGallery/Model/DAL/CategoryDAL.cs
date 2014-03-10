@@ -136,5 +136,25 @@ namespace MemberGallery.Model.DAL
                 //}
             }
         }
+
+        public void DeleteCategory(int categoryID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("AppSchema.DeleteCategory", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Value = categoryID;
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel har skett i DAL");
+                }
+            }
+        }
     }
 }

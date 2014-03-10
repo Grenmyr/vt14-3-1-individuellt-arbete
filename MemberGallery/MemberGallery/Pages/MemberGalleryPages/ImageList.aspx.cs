@@ -79,7 +79,22 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         protected void DeleteButton_Click(object sender, EventArgs e)
         {
-
+            if (IsValid)
+            {
+                if (FileName != null)
+                {
+                    try
+                    {
+                        ImageProp.DeleteImage(FileName);
+                        //Message = String.Format("Du har tagit bort{0}", FileName);
+                        //Response.Redirect("?name=" + FileName);
+                    }
+                    catch (Exception ex)
+                    {
+                        ModelState.AddModelError(String.Empty, ex.Message);
+                    }
+                }
+            }
         }
         public IEnumerable<Category> CategoryListView_GetData()
         {

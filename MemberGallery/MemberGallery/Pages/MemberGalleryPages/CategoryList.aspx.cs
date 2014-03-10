@@ -68,14 +68,14 @@ namespace MemberGallery.Pages.MemberGalleryPages
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
-        public void CategoryListView_UpdateItem(int CategoryID)
+        public void CategoryListView_UpdateItem(int categoryID)
         {
-            var category = Service.GetCategoryByCategoryID(CategoryID);
+            var category = Service.GetCategoryByCategoryID(categoryID);
             // Load the item here, e.g. item = MyDataLayer.Find(id);
             if (category == null)
             {
                 // The item wasn't found
-                ModelState.AddModelError("", String.Format("Category with id {0} was not found", CategoryID));
+                ModelState.AddModelError("", String.Format("Category with id {0} was not found", categoryID));
                 return;
             }
             if (TryUpdateModel(category))
@@ -85,6 +85,19 @@ namespace MemberGallery.Pages.MemberGalleryPages
             ConfirmationMessage.Text = String.Format(" Efter Redigering är uppgifterna | Category: {0} | sparade.", category.CategoryProp);
            
           
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void CategoryListView_DeleteItem(int categoryID)
+        {
+            try
+            {
+                Service.DeleteCategory(categoryID);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Raderas.");
+            }
         }
     }
 }

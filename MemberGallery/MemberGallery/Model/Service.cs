@@ -30,7 +30,7 @@ namespace MemberGallery.Model
             get { return _imageDescDAL ?? (_imageDescDAL = new ImageDescDAL()); }
         }
 
-       
+
 
         // Method to generate all Images from CategoryID
         public List<Image> GetImagesByCategoryID(short categoryID)
@@ -40,10 +40,10 @@ namespace MemberGallery.Model
         // Metod för Spara Images.
         public void SaveFileName(Image image)
         {
-         ImageDAL.SaveFileName(image);
+            ImageDAL.SaveFileName(image);
         }
         // Metod för Spara Imagedescriptions
-        public void SaveImageDesc(ImageDesc imageDesc) 
+        public void SaveImageDesc(ImageDesc imageDesc)
         {
             ImageDescDAL.SaveImageDesc(imageDesc);
         }
@@ -72,10 +72,15 @@ namespace MemberGallery.Model
         {
             return CategoryDAL.GetCategories();
         }
-
+        // Method to Get my Category by CategoryID.
         public Category GetCategoryByCategoryID(int CategoryID)
         {
             return CategoryDAL.GetCategoryByCategoryID(CategoryID);
+        }
+        // Method to delete my Contact by CategoryID.
+        public void DeleteCategory(int categoryID)
+        {
+            CategoryDAL.DeleteCategory(categoryID);
         }
     }
 }

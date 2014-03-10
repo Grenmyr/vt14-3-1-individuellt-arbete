@@ -30,14 +30,7 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image CurrentImage;
         
-        /// <summary>
-        /// ViewImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::MemberGallery.Pages.Shared.ViewImage ViewImage;
+       
         
         /// <summary>
         /// ImageListView control.

@@ -32,12 +32,15 @@ namespace MemberGallery.Pages.MemberGalleryPages
         }
         public string URL
         {
-            set { }
             get { return Request.QueryString["name"]; }
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-             CurrentImage.ImageUrl = "~/Content/Pictures/" + URL;
+            if (URL != null) 
+            {
+                CurrentImage.ImageUrl = "~/Content/Pictures/" + URL;
+            }
+           
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
@@ -86,11 +89,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             if (IsValid)
             {
-                if (FileName != null)
+                if (URL != null)
                 {
                     try
                     {
-                        ImageProp.DeleteImage(FileName);
+                        ImageProp.DeleteImage(URL);
                         //Message = String.Format("Du har tagit bort{0}", FileName);
                         //Response.Redirect("?name=" + FileName);
                     }
@@ -106,9 +109,5 @@ namespace MemberGallery.Pages.MemberGalleryPages
             return Service.GetCategories();
         }
 
-        protected void ImageButton_Click(object sender, ImageClickEventArgs e)
-        {
-            //ViewImage.SetURL= 
-        }
     }
 }

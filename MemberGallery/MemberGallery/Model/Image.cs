@@ -69,7 +69,7 @@ namespace MemberGallery.Model
                 imagesAdressList.Add(images[i].ToString());
             }
 
-            // Using "Select" loop my list to match against Regexobject approved extensions.
+            // Using "Select" loop my list to match against Regexobject approved extensions.....
             imagesAdressList.Select(imageName => ApprovedExtensions.IsMatch(imageName));
             imagesAdressList.TrimExcess();
             imagesAdressList.Sort();

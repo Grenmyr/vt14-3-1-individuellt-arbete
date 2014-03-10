@@ -94,7 +94,7 @@ namespace MemberGallery.Model
         public void SaveImage(Stream stream, int imageID)
         {
 
-            // Setting my image/thumbnail as stream type and next line saving it with the path and filename...
+            // Setting my image/thumbnail as stream type and next line saving it with the path and filename....
             try
             {
                 using (var image = System.Drawing.Image.FromStream(stream))

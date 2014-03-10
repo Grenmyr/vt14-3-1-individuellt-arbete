@@ -14,7 +14,7 @@
         <div id="image">
             <asp:Image ID="CurrentImage" runat="server" Width="800"  />
         </div>
-      <uc1:ViewImage runat="server" ID="ViewImage"/>
+      <uc1:ViewImage runat="server" ID="ViewImage" SetURL="" />
 
        
         <%-- Listview generating images --%>
@@ -30,10 +30,9 @@
             <ItemTemplate>
                 <div>
 
-                    <%-- Hyperlink which present images throug imageurl, the "Item" is the picture. And Navigateurl "# "?"  Item" expression set filename in browser field. --%>
-               <%--    <asp:ImageButton runat="server" ID="imageB" ImageUrl='<%#"~/Content/Thumbnails/"+Item.ImgName %>'  />--%>
-                    <asp:HyperLink runat="server" Text='<%# Item.ImgName%>'
-                        ImageUrl='<%#"~/Content/Thumbnails/"+Item.ImgName %>' NavigateUrl='<%# GetRouteUrl("ViewImage", new { ImageID = Item.ImageID })  %>'  ></asp:HyperLink>
+    
+               <%--    THUMBNAIL with hyperlink to present picture  />--%>
+                    <asp:HyperLink ID="HyperLink1" runat="server" Text='<%# Item.ImgName%>'  ImageUrl='<%#"~/Content/Thumbnails/"+Item.ImgName %>' NavigateUrl='<%# string.Format("{0}&name={1}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImgName)  %>' ></asp:HyperLink>
                 </div>
             </ItemTemplate>
             <InsertItemTemplate>

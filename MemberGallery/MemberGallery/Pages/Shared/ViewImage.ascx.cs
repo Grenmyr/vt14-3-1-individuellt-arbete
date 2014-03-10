@@ -11,8 +11,13 @@ namespace MemberGallery.Pages.Shared
     {
         public void Page_Load(object sender, EventArgs e)
         {
-
+            if (SetURL != null)
+            {
+                CurrentImage.ImageUrl = SetURL;
+            }
         }
+
+        public string SetURL { get; set; }
       
     }
 }

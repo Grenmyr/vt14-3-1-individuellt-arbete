@@ -30,9 +30,14 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
             set { Session["text"] = value; }
         }
+        public string URL
+        {
+            set { }
+            get { return Request.QueryString["name"]; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //CurrentImage.ImageUrl = "~/Content/Pictures/" + FileName;
+             CurrentImage.ImageUrl = "~/Content/Pictures/" + URL;
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
@@ -99,6 +104,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
         public IEnumerable<Category> CategoryListView_GetData()
         {
             return Service.GetCategories();
+        }
+
+        protected void ImageButton_Click(object sender, ImageClickEventArgs e)
+        {
+            //ViewImage.SetURL= 
         }
     }
 }

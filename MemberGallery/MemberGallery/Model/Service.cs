@@ -47,6 +47,11 @@ namespace MemberGallery.Model
         {
             ImageDescDAL.SaveImageDesc(imageDesc);
         }
+        // Metod för att spara images.
+        internal static void DeleteImage()
+        {
+            
+        }
 
         // Metoder till Category
 
@@ -81,6 +86,17 @@ namespace MemberGallery.Model
         public void DeleteCategory(int categoryID)
         {
             CategoryDAL.DeleteCategory(categoryID);
+        }
+
+
+        public void DeleteImage(int imageID, short categoryID)
+        {
+           ImageDAL.DeleteImage(imageID, categoryID);
+        }
+
+        internal static void GetImageByID()
+        {
+            throw new NotImplementedException();
         }
     }
 }

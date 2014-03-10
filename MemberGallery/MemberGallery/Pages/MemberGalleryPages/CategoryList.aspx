@@ -48,9 +48,11 @@
                     <td class="SidoCommand">
 
                         <%-- Buttons to remove and edit contacts in the list, they are rendered to the right in table. --%>
-                        <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
-                            OnClientClick='<%# String.Format("return confirm(\"Ta Kontakten {0}?\")", Item.CategoryProp) %>'></asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
+                        
+                            <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
+                                OnClientClick='<%# String.Format("return confirm(\"Ta Kontakten {0}?\")", Item.CategoryProp) %>'></asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
+                      
                     </td>
                 </tr>
             </ItemTemplate>

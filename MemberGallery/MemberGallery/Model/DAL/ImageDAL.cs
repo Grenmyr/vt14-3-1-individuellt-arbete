@@ -59,11 +59,36 @@ namespace MemberGallery.Model.DAL
 
                 cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
                 cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+               
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
                  image.ImageID = (int)cmd.Parameters["@ImageID"].Value;
 
+            }
+        }
+
+        public void DeleteImage(int imageID, short categoryID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                try
+                {
+                   
+                    SqlCommand cmd = new SqlCommand("AppSchema.DeleteImage", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Value = categoryID;
+                    cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Value = imageID;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                 
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel har skett i DAL");
+                }
             }
         }
     }

@@ -50,9 +50,27 @@ namespace MemberGallery.Model.DAL
         }
 
 
-        internal static void UpdateContact(Category category)
+        public void UpdateContact(Category category)
         {
-            throw new NotImplementedException();
+            //try
+            //{
+                using (SqlConnection conn = CreateConnection())
+                {
+                    SqlCommand cmd = new SqlCommand("AppSchema.UpdateContact", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@ContactID", SqlDbType.Int, 4).Value = category.CategoryID;
+                    cmd.Parameters.Add("@Category", SqlDbType.VarChar, 20).Value = category.CategoryProp;
+                    
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+            //}
+            //catch
+            //{
+            //    throw new ApplicationException("Ett fel har skett i DAL");
+            //}
         }
 
         public void InsertContact(Category category)
@@ -79,38 +97,43 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        public Category GetCategoryByCategoryID(int CategoryID)
+        public Category GetCategoryByCategoryID(int categoryID)
         {
             using (SqlConnection conn = CreateConnection())
             {
-                try
-                {   // Se metod GetContacs för kommentarer.
-                    var cmd = new SqlCommand("Person.uspGetContacts", conn);
+                //try
+                //{   // Se metod GetContacs för kommentarer.
+                    var cmd = new SqlCommand("AppSchema.GetCategoryByCategoryID", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 
                     conn.Open();
 
                     using (var reader = cmd.ExecuteReader())
                     {
-                        var categoryIDIndex = reader.GetOrdinal("CategoryID");
-                        var categoryIndex = reader.GetOrdinal("Category");
+                    
                   
 
                         if (reader.Read())
                         {
+                            var categoryIDIndex = reader.GetOrdinal("CategoryID");
+                            var categoryIndex = reader.GetOrdinal("Category");
+
                             return new Category
                             {
-                                CategoryID = reader.GetInt32(categoryIDIndex),
+                                CategoryID = reader.GetInt16(categoryIDIndex),
                                 CategoryProp = reader.GetString(categoryIndex),       
                             };
                         }
                         return null;
                     }
-                }
-                catch
-                {
-                    throw new ApplicationException("Ett fel har skett i DAL");
-                }
+                //}
+                //catch
+                //{
+                //    throw new ApplicationException("Ett fel har skett i DAL");
+                //}
             }
         }
     }

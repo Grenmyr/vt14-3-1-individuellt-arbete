@@ -26,9 +26,17 @@ namespace MemberGallery.Pages.MemberGalleryPages
             }
             set { Session["text"] = value; }
         }
+        private bool HasMessage
+        {
+            get { return Session["text"] != null; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Service.GetContacts();
+            if (HasMessage)
+            {
+                PlaceHolder.Visible = true;
+                ConfirmationMessage.Text = SessionProp;
+            }
         }
        
         public void  CategoryListView_InsertItem(Category category)
@@ -63,20 +71,20 @@ namespace MemberGallery.Pages.MemberGalleryPages
         public void CategoryListView_UpdateItem(int CategoryID)
         {
             var category = Service.GetCategoryByCategoryID(CategoryID);
-            MemberGallery.Model.Category item = null;
             // Load the item here, e.g. item = MyDataLayer.Find(id);
-            if (item == null)
+            if (category == null)
             {
                 // The item wasn't found
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", CategoryID));
+                ModelState.AddModelError("", String.Format("Category with id {0} was not found", CategoryID));
                 return;
             }
-            TryUpdateModel(item);
-            if (ModelState.IsValid)
+            if (TryUpdateModel(category))
             {
-                // Save changes here, e.g. MyDataLayer.SaveChanges();
-
+                Service.SaveCategory(category);
             }
+            ConfirmationMessage.Text = String.Format(" Efter Redigering är uppgifterna | Category: {0} | sparade.", category.CategoryProp);
+           
+          
         }
     }
 }

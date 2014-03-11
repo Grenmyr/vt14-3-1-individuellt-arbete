@@ -64,7 +64,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             /// image obj
             var image = ImageProp;
-            // upload button
+            // upload button.
             var selectedPic = Select.FileContent;
             var selectedFilename = Select.FileName;
             var extension = Path.GetExtension(selectedFilename);

@@ -38,21 +38,41 @@ namespace MemberGallery.Model
             return ImageDAL.GetImagesByCategoryID(categoryID);
         }
         // Metod för Spara Images.
-        public void SaveFileName(Image image)
-        {
-            ImageDAL.SaveFileName(image);
-        }
+        //public void SaveFileName(Image image)
+        //{
+        //    ImageDAL.SaveFileName(image);
+        //}
         // Metod för Spara Imagedescriptions
         public void SaveImageDesc(ImageDesc imageDesc)
         {
             ImageDescDAL.SaveImageDesc(imageDesc);
         }
         // Metod för att spara images.
-        internal static void DeleteImage()
+        public void SaveImage(Image image)
         {
-            
+            ICollection<ValidationResult> validationresults;
+            if (!image.Validate(out validationresults))
+            {
+                throw new ApplicationException();
+            }
+
+            if (image.ImageID == 0)
+            {
+                ImageDAL.SaveFileName(image);
+            }
+            else
+            {
+               ImageDAL.UpdateImage(image);
+            }
         }
-        public Image  GetImageByImageID(int imageID)
+        // Metod för radera image.
+        public int DeleteImage(int imageID, short categoryID)
+        {
+            return ImageDAL.DeleteImage(imageID, categoryID);
+        }
+
+
+        public Image GetImageByImageID(int imageID)
         {
             return ImageDAL.GetImageByImageID(imageID);
         }
@@ -93,11 +113,10 @@ namespace MemberGallery.Model
         }
 
 
-        public int DeleteImage(int imageID, short categoryID)
-        {
-          return  ImageDAL.DeleteImage(imageID, categoryID);
-        }
+       
 
-        
+
+
+       
     }
 }

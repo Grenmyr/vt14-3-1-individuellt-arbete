@@ -73,7 +73,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             image.ImgName = FileName;
 
             // Sparar den nya bilden med alla dess egenskaper, returnerar ID som out från lagrade procedur.
-            Service.SaveFileName(image);
+            Service.SaveImage(image);
 
             // Sparar bilden på disk under ImageID, i SaveImage hackar jag även in extension till filnamn på disk.
             image.SaveImage(selectedPic, image.ImageID);
@@ -142,22 +142,20 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // The id parameter name should match the DataKeyNames value set on the control
         public void ImageListView_UpdateItem(int ImageID)
         {
-            MemberGallery.Model.Image item = null;
-
             var image = Service.GetImageByImageID(ImageID);
-            // Load the item here, e.g. item = MyDataLayer.Find(id);
-            if (item == null)
+            if (image == null)
             {
                 // The item wasn't found
-                ModelState.AddModelError("", String.Format("Item with id {0} was not found", ImageID));
+                ModelState.AddModelError("", String.Format("Image with id {0} was not found", ImageID));
                 return;
             }
-            TryUpdateModel(item);
+            
+            TryUpdateModel(image);
             if (ModelState.IsValid)
             {
-                // Save changes here, e.g. MyDataLayer.SaveChanges();
-
+                Service.SaveImage(image);
             }
+            ConfirmationMSG.Text = String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", ImageProp.ImgName, ImageProp.Year);
         }
 
 

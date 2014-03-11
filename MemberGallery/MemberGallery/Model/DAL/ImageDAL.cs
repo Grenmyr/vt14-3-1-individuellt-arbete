@@ -103,7 +103,7 @@ namespace MemberGallery.Model.DAL
             {
                 //try
                 //{   // Se metod GetContacs för kommentarer.
-                var cmd = new SqlCommand("AppSchema.GetCategoryByCategoryID", conn);
+                var cmd = new SqlCommand("AppSchema.GetImageByImageID", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
 
@@ -116,14 +116,15 @@ namespace MemberGallery.Model.DAL
 
                     if (reader.Read())
                     {
-                        var imageIDIndex = reader.GetOrdinal("CategoryID");
-                        var imgNameIndex = reader.GetOrdinal("Category");
+                        var imageIDIndex = reader.GetOrdinal("ImageID");
+                        var imgNameIndex = reader.GetOrdinal("ImgName");
                         var yearIndex = reader.GetOrdinal("Year");
 
                         return new Image
                         {
                             ImageID = reader.GetInt16(imageIDIndex),
                             ImgName = reader.GetString(imgNameIndex),
+                            Year = reader.GetDateTime(yearIndex)
                         };
                     }
                     return null;
@@ -134,6 +135,30 @@ namespace MemberGallery.Model.DAL
                 //    throw new ApplicationException("Ett fel har skett i DAL");
                 //}
             }
+        }
+
+        public void UpdateImage(Image image)
+        {
+            //try
+            //{
+            using (SqlConnection conn = CreateConnection())
+            {
+                SqlCommand cmd = new SqlCommand("AppSchema.UpdateImage", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@ImageID", SqlDbType.SmallInt, 4).Value = image.ImageID;
+                cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
+                //cmd.Parameters.Add("@Year", SqlDbType.DateTime2).Value = DateTime.Now.Year;
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+
+            //}
+            //catch
+            //{
+            //    throw new ApplicationException("Ett fel har skett i DAL");
+            //}
         }
     }
 }

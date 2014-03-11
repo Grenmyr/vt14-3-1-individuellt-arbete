@@ -26,7 +26,7 @@
             <ItemTemplate>
                <%--    THUMBNAIL with hyperlink to present picture  />--%>
                 <div >
-
+                    
                     <asp:HyperLink ID="HyperLink1" runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>'  ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# string.Format("{0}&name={1}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImgName)  %>' ></asp:HyperLink>
 
                      <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
@@ -42,6 +42,7 @@
             <asp:ValidationSummary ID="ValidationSummary" runat="server" />
             <asp:PlaceHolder ID="ButtonPlaceHolder" runat="server" Visible="true">
                 <asp:FileUpload ID="Select" runat="server" />
+                <asp:TextBox ID="PictureName" runat="server"  MaxLength="20"></asp:TextBox>
                 <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera bild" OnClick="DeleteButton_Click" />
             </asp:PlaceHolder>

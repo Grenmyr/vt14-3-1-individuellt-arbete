@@ -93,7 +93,7 @@ namespace MemberGallery.Model
             image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid;
         }
 
-        public string SaveImage(Stream stream, int imageID)
+        public void SaveImage(Stream stream, int imageID)
         {
 
             // Setting my image/thumbnail as stream type and next line saving it with the path and filename....
@@ -123,7 +123,6 @@ namespace MemberGallery.Model
                     {
                         thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
                     }
-                    return fileName;
                 }
                
             }

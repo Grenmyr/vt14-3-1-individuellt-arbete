@@ -37,11 +37,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (URL != null) 
+            if (URL != null)
             {
                 CurrentImage.ImageUrl = "~/Content/Pictures/" + URL;
             }
-           
+
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
@@ -56,11 +56,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
             // TODO: Om denna sidan laddas först krachar aplikationen efter detta ska jag debugga och kolla att IMGKategorier sparas.
 
             var galleryDesc = Service.GetImagesByCategoryID(CategoryID);
-        
+
             return galleryDesc;
         }
 
-        protected void UploadButton_Click(object sender, EventArgs e )
+        protected void UploadButton_Click(object sender, EventArgs e)
         {
             /// image obj
             var image = ImageProp;
@@ -68,14 +68,17 @@ namespace MemberGallery.Pages.MemberGalleryPages
             var selectedPic = Select.FileContent;
             var selectedFilename = Select.FileName;
             var extension = Path.GetExtension(selectedFilename);
+
             image.Extension = extension;
-            image.ImgName = selectedFilename;
+            image.ImgName = PictureName.Text;
+
+            // Sparar den nya bilden med alla dess egenskaper, returnerar ID som out från lagrade procedur.
             Service.SaveFileName(image);
 
-            // gallery stream string filnamn disk
-            var savedfilename = image.SaveImage(selectedPic, image.ImageID);
-          
-            // sparar vilka kategetorier bilden tillhör
+            // Sparar bilden på disk under ImageID, i SaveImage hackar jag även in extension till filnamn på disk.
+            image.SaveImage(selectedPic, image.ImageID);
+
+            // sparar vilka kategetorier användare sagt att bilden ska tillhöra. Ett Anrop för varje kategori.
             foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
             {
                 var cat = new ImageDesc();
@@ -83,7 +86,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 cat.ImageID = image.ImageID;
                 Service.SaveImageDesc(cat);
             }
-    
+
         }
 
         protected void DeleteButton_Click(object sender, EventArgs e)
@@ -114,14 +117,12 @@ namespace MemberGallery.Pages.MemberGalleryPages
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
-        public void ImageListView_DeleteItem(int imageID,[RouteData] short CategoryID)
+        public void ImageListView_DeleteItem(int imageID, [RouteData] short CategoryID)
         {
+            // TODO: Ska programmera här sen!
             try
             {
-               
-                
-
-            Service.DeleteImage(imageID, CategoryID);
+                Service.DeleteImage(imageID, CategoryID);
 
             }
             catch (Exception)

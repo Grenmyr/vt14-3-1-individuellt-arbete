@@ -88,6 +88,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 Service.SaveImageDesc(cat);
             }
             Response.RedirectToRoute("ImageList");
+            Context.ApplicationInstance.CompleteRequest();
             
         }
 
@@ -136,6 +137,25 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Raderas.");
             }
             
+        }
+
+        // The id parameter name should match the DataKeyNames value set on the control
+        public void ImageListView_UpdateItem(int ImageID)
+        {
+            MemberGallery.Model.Image item = null;
+            // Load the item here, e.g. item = MyDataLayer.Find(id);
+            if (item == null)
+            {
+                // The item wasn't found
+                ModelState.AddModelError("", String.Format("Item with id {0} was not found", ImageID));
+                return;
+            }
+            TryUpdateModel(item);
+            if (ModelState.IsValid)
+            {
+                // Save changes here, e.g. MyDataLayer.SaveChanges();
+
+            }
         }
 
 

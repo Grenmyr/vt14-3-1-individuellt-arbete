@@ -46,13 +46,10 @@
                         <%# Item.CategoryProp %>
                     </td>
                     <td class="SidoCommand">
-
                         <%-- Buttons to remove and edit contacts in the list, they are rendered to the right in table. --%>
-                        
                             <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
                                 OnClientClick='<%# String.Format("return confirm(\"Ta Kontakten {0}?\")", Item.CategoryProp) %>'></asp:LinkButton>
                             <asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
-                      
                     </td>
                 </tr>
             </ItemTemplate>
@@ -71,7 +68,6 @@
                     <td>
                         <asp:TextBox ID="FirstName" runat="server" Text='<%# BindItem.CategoryProp %>' MaxLength="50"></asp:TextBox>
                     </td>
-
                     <td class="TopCommand">
                         <%-- Buttons to control insertion of rows into table, they are rendered in top of table because of the FirstItem postion --%>
                         <asp:LinkButton ID="LinkButton5" runat="server" CommandName="Insert" Text="Lägg till" ValidationGroup="Insert"></asp:LinkButton>

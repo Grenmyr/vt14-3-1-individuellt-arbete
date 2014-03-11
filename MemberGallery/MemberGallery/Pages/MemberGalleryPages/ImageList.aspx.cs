@@ -67,11 +67,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
             // upload button
             var selectedPic = Select.FileContent;
             var selectedFilename = Select.FileName;
+            var extension = Path.GetExtension(selectedFilename);
+            image.Extension = extension;
             image.ImgName = selectedFilename;
             Service.SaveFileName(image);
 
             // gallery stream string filnamn disk
-            image.SaveImage(selectedPic, image.ImageID);
+            var savedfilename = image.SaveImage(selectedPic, image.ImageID);
           
             // sparar vilka kategetorier bilden tillhör
             foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
@@ -80,9 +82,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 cat.CategoryID = int.Parse(item.Value);
                 cat.ImageID = image.ImageID;
                 Service.SaveImageDesc(cat);
-
-                
-                FileName = image.ImgName ;
             }
     
         }

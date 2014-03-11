@@ -27,7 +27,7 @@
                <%--    THUMBNAIL with hyperlink to present picture  />--%>
                 <div >
 
-                    <asp:HyperLink ID="HyperLink1" runat="server" Text='<%# Item.ImageID%>'  ImageUrl='<%#"~/Content/Thumbnails/"+Item.ImageID %>' NavigateUrl='<%# string.Format("{0}&name={1}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImgName)  %>' ></asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink1" runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>'  ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# string.Format("{0}&name={1}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImgName)  %>' ></asp:HyperLink>
 
                      <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
                             OnClientClick='<%# String.Format("return confirm(\"Ta Bilden {0}?\")", Item.ImgName) %>'></asp:LinkButton>

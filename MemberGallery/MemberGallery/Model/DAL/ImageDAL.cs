@@ -27,6 +27,7 @@ namespace MemberGallery.Model.DAL
                     var imageIDIndex = reader.GetOrdinal("ImageID");
                     var upLoadedIndex = reader.GetOrdinal("UpLoaded");
                     var imgNameIndex = reader.GetOrdinal("ImgName");
+                    var extensionIndex = reader.GetOrdinal("Extension");
 
                     while (reader.Read())
                     {
@@ -35,7 +36,8 @@ namespace MemberGallery.Model.DAL
                         {
                             ImageID = reader.GetInt16(imageIDIndex),
                             UpLoaded = reader.GetDateTime(upLoadedIndex),
-                            ImgName = reader.GetString(imgNameIndex)
+                            ImgName = reader.GetString(imgNameIndex),
+                            Extension = reader.GetString(extensionIndex)
                         });
                     }
                     imglist.TrimExcess();
@@ -58,6 +60,7 @@ namespace MemberGallery.Model.DAL
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
+                cmd.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = image.Extension;
                 cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
                
 

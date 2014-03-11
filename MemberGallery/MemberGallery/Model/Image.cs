@@ -27,6 +27,8 @@ namespace MemberGallery.Model
 
         public string PhysicalFileName { get; set; }
 
+        public string Extension { get; set; }
+
         private static readonly Regex ApprovedExtensions;
         private static readonly Regex SantizePath;
         private static string PhysicalUploadedImagesPath;
@@ -91,7 +93,7 @@ namespace MemberGallery.Model
             image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid;
         }
 
-        public void SaveImage(Stream stream, int imageID)
+        public string SaveImage(Stream stream, int imageID)
         {
 
             // Setting my image/thumbnail as stream type and next line saving it with the path and filename....
@@ -102,7 +104,7 @@ namespace MemberGallery.Model
                     var fileName = "";
                     if (image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid)
                     {
-                        fileName = String.Format("{0}.JPEG", imageID);
+                        fileName = String.Format("{0}.JPG", imageID);
                     }
                     else if (   image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid)
                     {
@@ -121,6 +123,7 @@ namespace MemberGallery.Model
                     {
                         thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
                     }
+                    return fileName;
                 }
                
             }
@@ -147,7 +150,7 @@ namespace MemberGallery.Model
         public void DeleteImage(int imageId)
         {
 
-            DeleteImage(string.Format("{0}.JPEG",imageId));
+            DeleteImage(string.Format("{0}.JPG",imageId));
             DeleteImage(string.Format("{0}.PNG", imageId));
             
         }

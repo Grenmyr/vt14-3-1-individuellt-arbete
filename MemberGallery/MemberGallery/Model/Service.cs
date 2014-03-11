@@ -30,7 +30,7 @@ namespace MemberGallery.Model
             get { return _imageDescDAL ?? (_imageDescDAL = new ImageDescDAL()); }
         }
 
-
+        // Metoder för hämta images.
 
         // Method to generate all Images from CategoryID
         public List<Image> GetImagesByCategoryID(short categoryID)
@@ -51,6 +51,10 @@ namespace MemberGallery.Model
         internal static void DeleteImage()
         {
             
+        }
+        public Image  GetImageByImageID(int imageID)
+        {
+            return ImageDAL.GetImageByImageID(imageID);
         }
 
         // Metoder till Category
@@ -94,9 +98,6 @@ namespace MemberGallery.Model
           return  ImageDAL.DeleteImage(imageID, categoryID);
         }
 
-        internal static void GetImageByID()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

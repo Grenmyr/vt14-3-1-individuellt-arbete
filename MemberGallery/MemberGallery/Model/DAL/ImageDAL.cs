@@ -96,5 +96,44 @@ namespace MemberGallery.Model.DAL
                 }
             }
         }
+
+        public Image GetImageByImageID(int imageID)
+        {
+            using (SqlConnection conn = CreateConnection())
+            {
+                //try
+                //{   // Se metod GetContacs för kommentarer.
+                var cmd = new SqlCommand("AppSchema.GetCategoryByCategoryID", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+
+                cmd.Parameters.AddWithValue("@ImageID", imageID);
+
+                conn.Open();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+
+                    if (reader.Read())
+                    {
+                        var imageIDIndex = reader.GetOrdinal("CategoryID");
+                        var imgNameIndex = reader.GetOrdinal("Category");
+                        var yearIndex = reader.GetOrdinal("Year");
+
+                        return new Image
+                        {
+                            ImageID = reader.GetInt16(imageIDIndex),
+                            ImgName = reader.GetString(imgNameIndex),
+                        };
+                    }
+                    return null;
+                }
+                //}
+                //catch
+                //{
+                //    throw new ApplicationException("Ett fel har skett i DAL");
+                //}
+            }
+        }
     }
 }

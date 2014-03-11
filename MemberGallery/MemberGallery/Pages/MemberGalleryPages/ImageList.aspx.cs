@@ -143,6 +143,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
         public void ImageListView_UpdateItem(int ImageID)
         {
             MemberGallery.Model.Image item = null;
+
+            var image = Service.GetImageByImageID(ImageID);
             // Load the item here, e.g. item = MyDataLayer.Find(id);
             if (item == null)
             {

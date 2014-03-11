@@ -146,6 +146,7 @@ namespace MemberGallery.Model
                 }
             }
         }
+        // MEtod, Anropar Den andra DeleteIMage och kollar om det finns bilder med filnamnet under exension JPG eller PNG.
         public void DeleteImage(int imageId)
         {
 

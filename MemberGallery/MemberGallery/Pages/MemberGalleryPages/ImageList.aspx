@@ -14,27 +14,28 @@
        
         <%-- Listview generating images --%>
         <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
-            SelectMethod="ImageListView_GetData"  DeleteMethod="ImageListView_DeleteItem"
+            SelectMethod="ImageListView_GetData"  DeleteMethod="ImageListView_DeleteItem" 
            
             DataKeyNames="ImageID" InsertItemPosition="LastItem">
             <LayoutTemplate>
 
                     <h4>Kategorier-- Detta är min databas ImageList.aspx</h4>
-
+               
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </LayoutTemplate>
             <ItemTemplate>
                <%--    THUMBNAIL with hyperlink to present picture  />--%>
                 <div >
-                    
-                    <asp:HyperLink ID="HyperLink1" runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>'  ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# string.Format("{0}&name={1}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImgName)  %>' ></asp:HyperLink>
-
+                      
+                    <asp:HyperLink ID="HyperLink1" runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>'  ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# string.Format("{0}&name={1}{2}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImageID,Item.Extension)  %>' ></asp:HyperLink>    
                      <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
                             OnClientClick='<%# String.Format("return confirm(\"Ta Bilden {0}?\")", Item.ImgName) %>'></asp:LinkButton>
+                     <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
                       </div>
             </ItemTemplate>
             <InsertItemTemplate>
             </InsertItemTemplate>
+          
          
         </asp:ListView>
         
@@ -46,6 +47,7 @@
                 <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera bild" OnClick="DeleteButton_Click" />
             </asp:PlaceHolder>
+             <asp:Literal ID="ConfirmationMSG" runat="server" Visible="false"></asp:Literal>
             <asp:CheckBoxList ID="CheckBoxList" runat="server" ItemType="MemberGallery.Model.Category" DataTextField="CategoryProp" DataValueField="CategoryID" SelectMethod="CategoryListView_GetData">
             </asp:CheckBoxList>
          

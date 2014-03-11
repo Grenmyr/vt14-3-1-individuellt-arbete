@@ -25,7 +25,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             get
             {
                 var message = Session["text"] as string;
-
+            
                 return message;
             }
 
@@ -41,7 +41,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             {
                 CurrentImage.ImageUrl = "~/Content/Pictures/" + URL;
             }
-
+           
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
@@ -68,9 +68,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
             var selectedPic = Select.FileContent;
             var selectedFilename = Select.FileName;
             var extension = Path.GetExtension(selectedFilename);
-
+            FileName = PictureName.Text;
             image.Extension = extension;
-            image.ImgName = PictureName.Text;
+            image.ImgName = FileName;
 
             // Sparar den nya bilden med alla dess egenskaper, returnerar ID som out från lagrade procedur.
             Service.SaveFileName(image);
@@ -78,6 +78,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             // Sparar bilden på disk under ImageID, i SaveImage hackar jag även in extension till filnamn på disk.
             image.SaveImage(selectedPic, image.ImageID);
 
+            
             // sparar vilka kategetorier användare sagt att bilden ska tillhöra. Ett Anrop för varje kategori.
             foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
             {
@@ -86,7 +87,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 cat.ImageID = image.ImageID;
                 Service.SaveImageDesc(cat);
             }
-
+            Response.RedirectToRoute("ImageList");
+            
         }
 
         protected void DeleteButton_Click(object sender, EventArgs e)
@@ -119,13 +121,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // The id parameter name should match the DataKeyNames value set on the control
         public void ImageListView_DeleteItem(int imageID, [RouteData] short CategoryID)
         {
-            // TODO: Ska programmera här sen!
+            // Anropar Lagrad procedur och ta bort från bilden från kategorin. 
+            //Retunerar en out parameter som är en count på hur många katerier som är kvar. om 0 så tas filen bort från disk.
             try
             {
                 var remainingCategories = Service.DeleteImage(imageID, CategoryID);
                 if (remainingCategories == 0)
                 {
-
                     ImageProp.DeleteImage(imageID);
                 }
             }
@@ -135,6 +137,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             }
             
         }
+
 
     }
 }

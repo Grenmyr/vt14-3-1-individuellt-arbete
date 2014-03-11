@@ -13,7 +13,7 @@
         </LayoutTemplate>
         <ItemTemplate>
             <div>
-                <asp:HyperLink ID="HyperLink" runat="server" Text='<%#Item.CategoryProp %>' ImageUrl='<%#"~/Files/Thumbnails/"+Item %>' NavigateUrl='<%# GetRouteUrl("ImageList", new { CategoryID = Item.CategoryID })  %>'></asp:HyperLink>
+                <asp:HyperLink  runat="server" Text='<%#Item.CategoryProp %>' ImageUrl='<%#"~/Files/Thumbnails/"+Item %>' NavigateUrl='<%# GetRouteUrl("ImageList", new { CategoryID = Item.CategoryID })  %>'></asp:HyperLink>
             </div>
         </ItemTemplate>
       

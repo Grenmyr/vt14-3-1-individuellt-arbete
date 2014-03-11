@@ -41,19 +41,19 @@ namespace MemberGallery.Pages.MemberGalleryPages
        
         public void  CategoryListView_InsertItem(Category category)
         {
-            //if (ModelState.IsValid)
-            //{
-                //try
-                //{
+            if (ModelState.IsValid)
+            {
+                try
+                {
                     Service.SaveCategory(category);
                     SessionProp = String.Format("Du har laddat upp | Kategori: {0} |", category.CategoryProp);
-                //}
-                //catch (Exception)
-                //{
-                //    ModelState.AddModelError(String.Empty, "Fel inträffade när Kunduppgift skulle Läggas till.");
-                //}
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Läggas till.");
+                }
                     Response.RedirectToRoute("Default");
-            //}
+            }
         }
 
         // The return type can be changed to IEnumerable, however to support
@@ -70,21 +70,21 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // The id parameter name should match the DataKeyNames value set on the control
         public void CategoryListView_UpdateItem(int categoryID)
         {
-            var category = Service.GetCategoryByCategoryID(categoryID);
-            // Load the item here, e.g. item = MyDataLayer.Find(id);
-            if (category == null)
-            {
-                // The item wasn't found
-                ModelState.AddModelError("", String.Format("Category with id {0} was not found", categoryID));
-                return;
-            }
-            if (TryUpdateModel(category))
-            {
-                Service.SaveCategory(category);
-            }
-            ConfirmationMessage.Text = String.Format(" Efter Redigering är uppgifterna | Category: {0} | sparade.", category.CategoryProp);
            
-          
+                var category = Service.GetCategoryByCategoryID(categoryID);
+                // Load the item here, e.g. item = MyDataLayer.Find(id);
+                if (category == null)
+                {
+                    // The item wasn't found
+                    ModelState.AddModelError("", String.Format("Category with id {0} was not found", categoryID));
+                    return;
+                }
+                if (TryUpdateModel(category))
+                {
+                    Service.SaveCategory(category);
+                }
+                ConfirmationMessage.Text = String.Format(" Efter Redigering är uppgifterna | Category: {0} | sparade.", category.CategoryProp);
+
         }
 
         // The id parameter name should match the DataKeyNames value set on the control

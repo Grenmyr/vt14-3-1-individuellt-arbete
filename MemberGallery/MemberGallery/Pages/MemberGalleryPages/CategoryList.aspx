@@ -47,9 +47,9 @@
                     </td>
                     <td class="SidoCommand">
                         <%-- Buttons to remove and edit contacts in the list, they are rendered to the right in table. --%>
-                            <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
+                            <asp:LinkButton  runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
                                 OnClientClick='<%# String.Format("return confirm(\"Ta Kontakten {0}?\")", Item.CategoryProp) %>'></asp:LinkButton>
-                            <asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
+                            <asp:LinkButton  runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -64,28 +64,30 @@
             </EmptyDataTemplate>
             <InsertItemTemplate>
                 <%-- This is how it is rendered into table, with using BindItem links to the different propertie name from columns. --%>
+                 <asp:RequiredFieldValidator runat="server" ErrorMessage="Kategori fältet får ej lämnas tomt." ControlToValidate="CategoryName" ValidationGroup="Insert" Display="None"></asp:RequiredFieldValidator>
                 <tr>
                     <td>
-                        <asp:TextBox ID="FirstName" runat="server" Text='<%# BindItem.CategoryProp %>' MaxLength="50"></asp:TextBox>
+                        <asp:TextBox ID="CategoryName" runat="server" Text='<%# BindItem.CategoryProp %>' MaxLength="20" ValidationGroup="Insert"></asp:TextBox>
                     </td>
                     <td class="TopCommand">
                         <%-- Buttons to control insertion of rows into table, they are rendered in top of table because of the FirstItem postion --%>
-                        <asp:LinkButton ID="LinkButton5" runat="server" CommandName="Insert" Text="Lägg till" ValidationGroup="Insert"></asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton6" runat="server" CausesValidation="false" CommandName="Cancel" Text="Rensa"></asp:LinkButton>
+                        <asp:LinkButton  runat="server" CommandName="Insert" Text="Lägg till" ValidationGroup="Insert"></asp:LinkButton>
+                        <asp:LinkButton  runat="server" CausesValidation="false" CommandName="Cancel" Text="Rensa"></asp:LinkButton>
                     </td>
                 </tr>
             </InsertItemTemplate>
             <EditItemTemplate>
                 <%-- Here i edit my columns it uses same ID on controls as insert, but works as they are't used at same time. --%>
+                             <asp:RequiredFieldValidator runat="server" ErrorMessage="Kategori fältet får ej lämnas tomt." ControlToValidate="CategoryName" ValidationGroup="Update"  Display="None"></asp:RequiredFieldValidator>
                 <tr>
                     <td>
-                        <asp:TextBox ID="FirstName" runat="server" Text='<%# BindItem.CategoryProp %>'></asp:TextBox>
+                        <asp:TextBox ID="CategoryName" runat="server" Text='<%# BindItem.CategoryProp %>' ValidationGroup="Update"></asp:TextBox>
                     </td>
 
                     <td>
                         <%-- BUttons to Edit a contact and abort to cancel the editing. --%>
-                        <asp:LinkButton ID="LinkButton7" runat="server" CommandName="Update" Text="Spara" ValidationGroup="Update"></asp:LinkButton>
-                        <asp:LinkButton ID="LinkButton8" runat="server" CommandName="Cancel" Text="Ångra" CausesValidation="false"></asp:LinkButton>
+                        <asp:LinkButton  runat="server" CommandName="Update" Text="Spara" ValidationGroup="Update"></asp:LinkButton>
+                        <asp:LinkButton  runat="server" CommandName="Cancel" Text="Ångra" CausesValidation="false"></asp:LinkButton>
                     </td>
                 </tr>
             </EditItemTemplate>

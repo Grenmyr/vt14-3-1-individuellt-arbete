@@ -62,6 +62,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         protected void UploadButton_Click(object sender, EventArgs e)
         {
+            if (ModelState.IsValid) 
+            { 
             /// image obj
             var image = ImageProp;
             // upload button.
@@ -89,7 +91,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             }
             Response.RedirectToRoute("ImageList");
             Context.ApplicationInstance.CompleteRequest();
-            
+            }
         }
 
         protected void DeleteButton_Click(object sender, EventArgs e)
@@ -142,20 +144,31 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // The id parameter name should match the DataKeyNames value set on the control
         public void ImageListView_UpdateItem(int ImageID)
         {
-            var image = Service.GetImageByImageID(ImageID);
-            if (image == null)
-            {
-                // The item wasn't found
-                ModelState.AddModelError("", String.Format("Image with id {0} was not found", ImageID));
-                return;
-            }
-            
-            TryUpdateModel(image);
             if (ModelState.IsValid)
             {
-                Service.SaveImage(image);
+                var image = Service.GetImageByImageID(ImageID);
+                if (image == null)
+                {
+                    // The item wasn't found
+                    ModelState.AddModelError("", String.Format("Image with id {0} was not found", ImageID));
+                    return;
+                }
+
+                TryUpdateModel(image);
+                if (ModelState.IsValid)
+                {
+                    Service.SaveImage(image);
+                }
+                ConfirmationMSG.Text = String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", ImageProp.ImgName, ImageProp.Year);
             }
-            ConfirmationMSG.Text = String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", ImageProp.ImgName, ImageProp.Year);
+        }
+
+        // The id parameter should match the DataKeyNames value set on the control
+        // or be decorated with a value provider attribute, e.g. [QueryString]int id
+        public MemberGallery.Model.Image FormView_GetItem([RouteData] short ImageID)
+        {
+           
+            return Service.GetImageByImageID(ImageID);
         }
 
 

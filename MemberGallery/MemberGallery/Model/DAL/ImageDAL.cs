@@ -71,7 +71,7 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        public void DeleteImage(int imageID, short categoryID)
+        public int DeleteImage(int imageID, short categoryID)
         {
             using (SqlConnection conn = CreateConnection())
             {
@@ -83,9 +83,11 @@ namespace MemberGallery.Model.DAL
 
                     cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Value = categoryID;
                     cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Value = imageID;
+                    cmd.Parameters.Add("@Count", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
+                    return (int)cmd.Parameters["@Count"].Value;
                  
                 }
                 catch

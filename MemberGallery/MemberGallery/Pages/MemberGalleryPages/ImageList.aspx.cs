@@ -122,15 +122,18 @@ namespace MemberGallery.Pages.MemberGalleryPages
             // TODO: Ska programmera här sen!
             try
             {
-                Service.DeleteImage(imageID, CategoryID);
+                var remainingCategories = Service.DeleteImage(imageID, CategoryID);
+                if (remainingCategories == 0)
+                {
 
+                    ImageProp.DeleteImage(imageID);
+                }
             }
             catch (Exception)
             {
                 ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Raderas.");
             }
-
-            ImageProp.DeleteImage(imageID);
+            
         }
 
     }

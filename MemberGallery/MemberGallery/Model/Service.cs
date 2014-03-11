@@ -89,9 +89,9 @@ namespace MemberGallery.Model
         }
 
 
-        public void DeleteImage(int imageID, short categoryID)
+        public int DeleteImage(int imageID, short categoryID)
         {
-           ImageDAL.DeleteImage(imageID, categoryID);
+          return  ImageDAL.DeleteImage(imageID, categoryID);
         }
 
         internal static void GetImageByID()

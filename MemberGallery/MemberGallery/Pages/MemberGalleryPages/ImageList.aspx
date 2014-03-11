@@ -12,7 +12,7 @@
 
                 <asp:Image ID="CurrentImage" runat="server" Width="800"  />
                  
-                <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID"  ItemType="MemberGallery.Model.Image"  DefaultMode="ReadOnly" SelectMethod="FormView_GetItem">
+                <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID"  ItemType="MemberGallery.Model.Image"  DefaultMode="ReadOnly" >
                     <ItemTemplate>
                               <asp:Literal ID="Literal1" Text='<%# Item.ImgName %>' runat="server"></asp:Literal>
                     </ItemTemplate>

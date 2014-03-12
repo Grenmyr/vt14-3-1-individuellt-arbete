@@ -74,6 +74,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                     FileName = PictureName.Text;
                     image.Extension = extension;
                     image.ImgName = FileName;
+                    image.UpLoaded = DateTime.Now;
 
                     // Sparar den nya bilden med alla dess egenskaper, returnerar ID som out från lagrade procedur.
                     Service.SaveImage(image);

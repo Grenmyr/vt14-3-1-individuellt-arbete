@@ -63,7 +63,9 @@ namespace MemberGallery.Model.DAL
 
                     cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
                     cmd.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = image.Extension;
+                    cmd.Parameters.Add("@UpLoaded", SqlDbType.DateTime2).Value = image.UpLoaded;
                     cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+              
 
 
                     conn.Open();
@@ -157,7 +159,7 @@ namespace MemberGallery.Model.DAL
 
                 cmd.Parameters.Add("@ImageID", SqlDbType.SmallInt, 4).Value = image.ImageID;
                 cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
-                //cmd.Parameters.Add("@Year", SqlDbType.DateTime2).Value = DateTime.Now.Year;
+                cmd.Parameters.Add("@UpLoaded", SqlDbType.DateTime2).Value = DateTime.Now;
 
                 conn.Open();
                 cmd.ExecuteNonQuery();

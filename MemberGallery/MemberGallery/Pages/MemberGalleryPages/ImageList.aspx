@@ -12,12 +12,7 @@
 
                 <asp:Image ID="CurrentImage" runat="server" Width="800" />
 
-                <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID" ItemType="MemberGallery.Model.Image" DefaultMode="ReadOnly">
-                    <ItemTemplate>
-                        <asp:Literal ID="Literal1" Text='<%# Item.ImgName %>' runat="server"></asp:Literal>
-                    </ItemTemplate>
-
-                </asp:FormView>
+              
             </div>
             <%-- Listview generating images --%>
             <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
@@ -32,7 +27,7 @@
                 <ItemTemplate>
                     <%--    THUMBNAIL with hyperlink to present picture  />--%>
                     <div>
-                        <asp:HyperLink runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# string.Format("{0}&name={1}{2}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImageID,Item.Extension)  %>'></asp:HyperLink>
+                        <asp:HyperLink runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { ImageID = Item.ImageID })%>'></asp:HyperLink>
                         <asp:Label ID="Label1" runat="server" Text='<%# BindItem.ImgName %>'></asp:Label>
                         <asp:LinkButton runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
                             OnClientClick='<%# String.Format("return confirm(\"Ta bort bilden {0}?\")", Item.ImgName  ) %>'></asp:LinkButton>
@@ -56,10 +51,10 @@
 
                 <asp:FileUpload ID="Select" runat="server" />
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Ni måste först välja bild." ControlToValidate="Select" Display="None"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator Visible="false" runat="server" ErrorMessage="Bilden måste vara av typen jpg|png" ControlToValidate="UploadButton" ValidationExpression="^.*\.(jpg|png|JPG|PNG)$"></asp:RegularExpressionValidator>
-                <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="None"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator Visible="false" runat="server" ErrorMessage="Bilden måste vara av typen jpg|png" ControlToValidate="Select" ValidationExpression="^.*\.(jpg|png|JPG|PNG)$"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="Static" ></asp:RequiredFieldValidator>
                 <asp:TextBox ID="PictureName" runat="server" MaxLength="20"></asp:TextBox>
-                <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" CausesValidation="false" />
+                <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera bild" OnClick="DeleteButton_Click" />
 
 

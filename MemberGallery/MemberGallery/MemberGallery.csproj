@@ -63,6 +63,7 @@
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <Content Include="Pages\MemberGalleryPages\CategoryList.aspx" />
+    <Content Include="Pages\MemberGalleryPages\Image.aspx" />
     <Content Include="Pages\MemberGalleryPages\ImageList.aspx" />
     <Content Include="Pages\Shared\Categories.ascx" />
     <Content Include="Pages\Shared\Site.Master" />
@@ -95,6 +96,13 @@
     </Compile>
     <Compile Include="Pages\MemberGalleryPages\CategoryList.aspx.designer.cs">
       <DependentUpon>CategoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MemberGalleryPages\Image.aspx.cs">
+      <DependentUpon>Image.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MemberGalleryPages\Image.aspx.designer.cs">
+      <DependentUpon>Image.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\MemberGalleryPages\ImageList.aspx.cs">
       <DependentUpon>ImageList.aspx</DependentUpon>

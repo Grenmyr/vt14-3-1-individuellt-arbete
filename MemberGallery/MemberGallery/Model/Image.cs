@@ -28,55 +28,55 @@ namespace MemberGallery.Model
         //[RegularExpression(ErrorMessage="fdsafdsa")]
         public string Extension { get; set; }
 
-        private static readonly Regex ApprovedExtensions;
-        private static readonly Regex SantizePath;
+        //private static readonly Regex ApprovedExtensions;
+        //private static readonly Regex SantizePath;
         private static string PhysicalUploadedImagesPath;
         private static string PhysicalUploadedThumbNailPath;
 
         // Constructor
         static Image()
         {
-            //Setting Regex pattern to field.
-            string pattern = @"^.*\.(gif|jpg|png)$";
-            ApprovedExtensions = new Regex(pattern, RegexOptions.IgnoreCase);
+            ////Setting Regex pattern to field.
+            //string pattern = @"^.*\.(gif|jpg|png)$";
+            //ApprovedExtensions = new Regex(pattern, RegexOptions.IgnoreCase);
 
-            //Setting physical direction to my files
+            ////Setting physical direction to my files
             PhysicalUploadedImagesPath = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString(), @"Content\Pictures");
             PhysicalUploadedThumbNailPath = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString(), @"Content\Thumbnails");
 
-            // "GetInvalidFileNameChars()" is a built in collection of illegal chars, which i after saving into variable "invalidchars".
-            // Using my expression "invalidchars "to set my field "sanitizePath" IF the regex escape "invalidchars"
-            var invalidChars = new string(Path.GetInvalidFileNameChars());
-            SantizePath = new Regex(string.Format("[{0}]", Regex.Escape(invalidChars)));
+            // //"GetInvalidFileNameChars()" is a built in collection of illegal chars, which i after saving into variable "invalidchars".
+            // //Using my expression "invalidchars "to set my field "sanitizePath" IF the regex escape "invalidchars"
+            //var invalidChars = new string(Path.GetInvalidFileNameChars());
+            //SantizePath = new Regex(string.Format("[{0}]", Regex.Escape(invalidChars)));
         }
 
-        public IEnumerable<string> GetImageNames()
-        {
-            // Getting files from the path saving them into an array.
-            var images = new DirectoryInfo(PhysicalUploadedImagesPath).GetFiles();
+        //public IEnumerable<string> GetImageNames()
+        //{
+        //    // Getting files from the path saving them into an array.
+        //    var images = new DirectoryInfo(PhysicalUploadedImagesPath).GetFiles();
 
-            //foreach (var image in images)
-            //{
-            //    using (var image2 = System.Drawing.Image.FromFile(image.FullName))
-            //    using (var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
-            //    {
-            //        thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
-            //    }
-            //}
+        //    //foreach (var image in images)
+        //    //{
+        //    //    using (var image2 = System.Drawing.Image.FromFile(image.FullName))
+        //    //    using (var thumbnail = image2.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
+        //    //    {
+        //    //        thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, image.Name));
+        //    //    }
+        //    //}
 
-            List<string> imagesAdressList = new List<string>(images.Length);
-            for (int i = 0; i < images.Length; i++)
-            {
-                imagesAdressList.Add(images[i].ToString());
-            }
+        //    List<string> imagesAdressList = new List<string>(images.Length);
+        //    for (int i = 0; i < images.Length; i++)
+        //    {
+        //        imagesAdressList.Add(images[i].ToString());
+        //    }
 
-            // Using "Select" loop my list to match against Regexobject approved extensions.....
-            imagesAdressList.Select(imageName => ApprovedExtensions.IsMatch(imageName));
-            imagesAdressList.TrimExcess();
-            imagesAdressList.Sort();
+        //    // Using "Select" loop my list to match against Regexobject approved extensions.....
+        //    imagesAdressList.Select(imageName => ApprovedExtensions.IsMatch(imageName));
+        //    imagesAdressList.TrimExcess();
+        //    imagesAdressList.Sort();
 
-            return imagesAdressList.AsEnumerable();
-        }
+        //    return imagesAdressList.AsEnumerable();
+        //}
 
         // Metod that returns true if file and filepatch match.
         public bool ImageExist(string name)

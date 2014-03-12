@@ -23,6 +23,7 @@ namespace MemberGallery.App_Infrastructure
 
             route.MapPageRoute("Categories", "Kategorier", "~/Pages/MemberGalleryPages/Categories.ascx");
             route.MapPageRoute("ImageList", "Bilder/{CategoryID}", "~/Pages/MemberGalleryPages/ImageList.aspx");
+            route.MapPageRoute("Image", "Bild/{ImageID}", "~/Pages/MemberGalleryPages/Image.aspx");
            
         }
     }

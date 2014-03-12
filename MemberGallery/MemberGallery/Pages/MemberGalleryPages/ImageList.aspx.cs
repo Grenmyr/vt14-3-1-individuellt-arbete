@@ -62,7 +62,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         protected void UploadButton_Click(object sender, EventArgs e)
         {
- 
+            if (IsValid) { 
                 if (ModelState.IsValid)
                 {
                     /// image obj
@@ -93,7 +93,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                     Response.RedirectToRoute("ImageList");
                     Context.ApplicationInstance.CompleteRequest();
                 }
-            
+            }
         }
 
         protected void DeleteButton_Click(object sender, EventArgs e)
@@ -133,6 +133,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 var remainingCategories = Service.DeleteImage(imageID, CategoryID);
                 if (remainingCategories == 0)
                 {
+                    // TODO: måste implementera kod för ta bort bild från server.
                     ImageProp.DeleteImage(imageID);
                 }
             }
@@ -167,11 +168,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         // The id parameter should match the DataKeyNames value set on the control
         // or be decorated with a value provider attribute, e.g. [QueryString]int id
-        public MemberGallery.Model.Image FormView_GetItem([RouteData] short ImageID)
-        {
+       
 
-            return Service.GetImageByImageID(ImageID);
-        }
+        // The id parameter should match the DataKeyNames value set on the control
+        // or be decorated with a value provider attribute, e.g. [QueryString]int id
+ 
 
 
     }

@@ -127,14 +127,14 @@ namespace MemberGallery.Model.DAL
                     {
                         var imageIDIndex = reader.GetOrdinal("ImageID");
                         var imgNameIndex = reader.GetOrdinal("ImgName");
-                        var yearIndex = reader.GetOrdinal("Year");
+                        var uploadedIndex = reader.GetOrdinal("UpLoaded");
                         var extensionIndex = reader.GetOrdinal("Extension");
 
                         return new Image
                         {
                             ImageID = reader.GetInt16(imageIDIndex),
                             ImgName = reader.GetString(imgNameIndex),
-                            Year = reader.GetDateTime(yearIndex),
+                            UpLoaded = reader.GetDateTime(uploadedIndex),
                             Extension = reader.GetString(extensionIndex)
                         };
                     }

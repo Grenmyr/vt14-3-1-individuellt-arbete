@@ -137,12 +137,5 @@ namespace MemberGallery.Model
                 }
             }
         }
-        //  Metod som anropar den andra DeleteImage två gånger, eftersom jag inte vet vilket filformat bilden är sparad under. 
-        //  Jag måste lägga till PNG/JPG eftersom bilden är sparad så på disk.
-        public void DeleteImage(int saveName)
-        {
-            DeleteImage(string.Format("{0}.JPG",saveName));
-            DeleteImage(string.Format("{0}.PNG", saveName));
-        }
     }
 }

@@ -1,20 +1,30 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MemberGallery.Pages.Shared.Site" ViewStateMode="Disabled" %>
 
+<%@ Register Src="~/Pages/Shared/Categories.ascx" TagPrefix="uc1" TagName="Categories" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+
     <title></title>
     <link href="../../Style/Style.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
 <body>
-        <h1>Degerhamns Medlemsportal-- Detta är min Masterpage</h1> 
-    <form id="form" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"> </asp:ContentPlaceHolder>
+    <div class="ContentList">
+        <h1>Degerhamns Medlemsportal-- Detta är min Masterpage</h1>
+        <form id="form" runat="server">
+            <asp:Panel ID="Panel1" runat="server" CssClass="Message">
+                <asp:Literal ID="Confirmation" runat="server" Visible="false"></asp:Literal>
+            </asp:Panel>
+
+
+            <div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+                <uc1:Categories runat="server" ID="Categories" Visible="true" />
+            </div>
+        </form>
     </div>
-    </form>
 </body>
-   
+
 </html>

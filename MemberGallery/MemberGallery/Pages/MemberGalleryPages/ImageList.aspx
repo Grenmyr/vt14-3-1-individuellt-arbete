@@ -1,17 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/Site.Master" AutoEventWireup="true" CodeBehind="ImageList.aspx.cs" Inherits="MemberGallery.Pages.MemberGalleryPages.ImageList" %>
 
-<%@ Register Src="~/Pages/Shared/Categories.ascx" TagPrefix="uc1" TagName="Categories" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <asp:Panel ID="Panel1" runat="server">
+ 
         <h2>ImageList -- Här börjar min ContentPlaceholder</h2>
-        <div class="ContentList">
+ 
           
-
-
-     
             <%-- Listview generating images --%>
             <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
                 SelectMethod="ImageListView_GetData" DeleteMethod="ImageListView_DeleteItem" UpdateMethod="ImageListView_UpdateItem"
@@ -19,8 +14,9 @@
                 <LayoutTemplate>
 
                     <h4>Kategorier-- Detta är min databas ImageList.aspx</h4>
-
+                    <div class ="ThumbList">
                     <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
+                        </div>
                 </LayoutTemplate>
                 <ItemTemplate>
                     <%--    THUMBNAIL with hyperlink to present picture  />--%>
@@ -29,18 +25,16 @@
                         <asp:Label ID="Label" runat="server" Text='<%# BindItem.ImgName %>'></asp:Label>
                     </div>
                     <div>
-                       
                         <asp:LinkButton runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
                             OnClientClick='<%# String.Format("return confirm(\"Ta bort bilden {0}?\")", Item.ImgName  ) %>'></asp:LinkButton>
                         <asp:LinkButton runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
-
                     </div>
                 </ItemTemplate>
                 <EditItemTemplate>
                     <asp:HyperLink runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# string.Format("{0}&name={1}{2}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImageID,Item.Extension)  %>'></asp:HyperLink>
 
                     <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="ImgName" Text="*"></asp:RequiredFieldValidator>
-                    <asp:TextBox ID="ImgName" runat="server" Text='<%# BindItem.ImgName %>' MaxLength="50"></asp:TextBox>
+                    <asp:TextBox ID="ImgName" runat="server" Text='<%# BindItem.ImgName %>' MaxLength="20"></asp:TextBox>
                      
                     <asp:LinkButton runat="server" CommandName="Update" Text="Spara" ValidationGroup="Update"></asp:LinkButton>
                     <asp:LinkButton runat="server" CommandName="Cancel" Text="Ångra" CausesValidation="false"></asp:LinkButton>
@@ -61,7 +55,7 @@
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera bild" OnClick="DeleteButton_Click" />
 
 
-                <asp:Literal ID="ConfirmationMSG" runat="server" Visible="false"></asp:Literal>
+      
 
                 <asp:CustomValidator runat="server" ErrorMessage="En checkbox måste fyllas i." Display="None" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
                 <asp:CheckBoxList ID="CheckBoxLisT" runat="server" ItemType="MemberGallery.Model.Category"
@@ -71,11 +65,8 @@
             </div>
             <asp:HyperLink ID="HyperLink" runat="server" Text="Till ända/Lägg till kategorier"
                 NavigateUrl='<%$ RouteUrl:routename=Default %>'></asp:HyperLink>
-        </div>
-    </asp:Panel>
+     
 
-    <%-- Här laddar jag categories.ascx --%>
-    <uc1:Categories runat="server" ID="Categories" Visible="true" />
 
 
     <%-- Here starts part contecrning upload new images. --%>

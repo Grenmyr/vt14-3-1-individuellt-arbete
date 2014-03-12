@@ -1,8 +1,5 @@
 ﻿<%@ Page Title="Galleri översikt" Language="C#" MasterPageFile="~/Pages/Shared/Site.Master" AutoEventWireup="true" CodeBehind="CategoryList.aspx.cs" Inherits="MemberGallery.Pages.MemberGalleryPages.CategoryList" %>
 
-<%@ Register Src="~/Pages/Shared/Categories.ascx" TagPrefix="uc1" TagName="Categories" %>
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%-- Kod här --%>
 </asp:Content>
@@ -93,5 +90,5 @@
             </EditItemTemplate>
         </asp:ListView>
     </div>
-    <uc1:Categories runat="server" ID="Categories" />
+
 </asp:Content>

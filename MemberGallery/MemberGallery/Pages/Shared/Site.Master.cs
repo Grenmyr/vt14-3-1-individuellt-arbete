@@ -11,7 +11,8 @@ namespace MemberGallery.Pages.Shared
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Confirmation.Text = Page.GetTempData("Confirmation") as string;
+            Confirmation.Visible = !String.IsNullOrWhiteSpace(Confirmation.Text);
         }
     }
 }

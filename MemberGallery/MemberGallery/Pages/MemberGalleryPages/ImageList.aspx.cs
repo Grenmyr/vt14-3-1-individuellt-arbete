@@ -37,9 +37,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            ConfirmationMSG.Text = Page.GetTempData("BAJS") as string;
-            ConfirmationMSG.Visible =! String.IsNullOrWhiteSpace(ConfirmationMSG.Text);
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
@@ -95,7 +92,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         cat.ImageID = image.ImageID;
                         Service.SaveImageDesc(cat);
                     }
-                    Page.SetTempData("BAJS","BAJSSEN");
+                    String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", ImageProp.ImgName, ImageProp.Year);
+
+                    Page.SetTempData("Confirmation",String.Format("Bilden {0} har sparats",image.ImgName));
                     Response.RedirectToRoute("ImageList");
                     Context.ApplicationInstance.CompleteRequest();
                 }
@@ -133,7 +132,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         public void ImageListView_DeleteItem(int imageID, [RouteData] short CategoryID)
         {
             // Anropar Lagrad procedur och ta bort från bilden från kategorin. 
-            //Retunerar en out parameter som är en count på hur många katerier som är kvar. om 0 så tas filen bort från disk.
+            //Retunerar en out parameter som är en count på hur många katerier som är kvar. om 0 så går jag in i IF satsen och tar även bort fil från disk.
             try
             {
                 var remainingCategories = Service.DeleteImage(imageID, CategoryID);
@@ -141,7 +140,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 {
                     var image = Service.GetImageByImageID(imageID);    
                     var savename = String.Format("{0}{1}", image.SaveName, image.Extension);
-                    // TODO: måste implementera kod för ta bort bild från server.
+
                     ImageProp.DeleteImage(savename);       
                 }
             }
@@ -170,7 +169,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 {
                     Service.SaveImage(image);
                 }
-                ConfirmationMSG.Text = String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", ImageProp.ImgName, ImageProp.Year);
+                Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", ImageProp.ImgName, ImageProp.Year));
+                Response.RedirectToRoute("ImageList");
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
@@ -186,18 +187,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
             {
                 args.IsValid = false;
             }
-            
-            
-
         }
-        // The id parameter should match the DataKeyNames value set on the control
-        // or be decorated with a value provider attribute, e.g. [QueryString]int id
-       
-
-        // The id parameter should match the DataKeyNames value set on the control
-        // or be decorated with a value provider attribute, e.g. [QueryString]int id
- 
-
-
     }
 }

@@ -25,7 +25,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             get
             {
                 var message = Session["text"] as string;
-            
+
                 return message;
             }
 
@@ -41,7 +41,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             {
                 CurrentImage.ImageUrl = "~/Content/Pictures/" + URL;
             }
-           
+
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
@@ -62,36 +62,38 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         protected void UploadButton_Click(object sender, EventArgs e)
         {
-            if (ModelState.IsValid) 
-            { 
-            /// image obj
-            var image = ImageProp;
-            // upload button.
-            var selectedPic = Select.FileContent;
-            var selectedFilename = Select.FileName;
-            var extension = Path.GetExtension(selectedFilename);
-            FileName = PictureName.Text;
-            image.Extension = extension;
-            image.ImgName = FileName;
+ 
+                if (ModelState.IsValid)
+                {
+                    /// image obj
+                    var image = ImageProp;
+                    // upload button.
+                    var selectedPic = Select.FileContent;
+                    var selectedFilename = Select.FileName;
+                    var extension = Path.GetExtension(selectedFilename);
+                    FileName = PictureName.Text;
+                    image.Extension = extension;
+                    image.ImgName = FileName;
 
-            // Sparar den nya bilden med alla dess egenskaper, returnerar ID som out från lagrade procedur.
-            Service.SaveImage(image);
+                    // Sparar den nya bilden med alla dess egenskaper, returnerar ID som out från lagrade procedur.
+                    Service.SaveImage(image);
 
-            // Sparar bilden på disk under ImageID, i SaveImage hackar jag även in extension till filnamn på disk.
-            image.SaveImage(selectedPic, image.ImageID);
+                    // Sparar bilden på disk under ImageID, i SaveImage hackar jag även in extension till filnamn på disk.
+                    image.SaveImage(selectedPic, image.ImageID);
 
+
+                    // sparar vilka kategetorier användare sagt att bilden ska tillhöra. Ett Anrop för varje kategori.
+                    foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
+                    {
+                        var cat = new ImageDesc();
+                        cat.CategoryID = int.Parse(item.Value);
+                        cat.ImageID = image.ImageID;
+                        Service.SaveImageDesc(cat);
+                    }
+                    Response.RedirectToRoute("ImageList");
+                    Context.ApplicationInstance.CompleteRequest();
+                }
             
-            // sparar vilka kategetorier användare sagt att bilden ska tillhöra. Ett Anrop för varje kategori.
-            foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
-            {
-                var cat = new ImageDesc();
-                cat.CategoryID = int.Parse(item.Value);
-                cat.ImageID = image.ImageID;
-                Service.SaveImageDesc(cat);
-            }
-            Response.RedirectToRoute("ImageList");
-            Context.ApplicationInstance.CompleteRequest();
-            }
         }
 
         protected void DeleteButton_Click(object sender, EventArgs e)
@@ -138,7 +140,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             {
                 ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Raderas.");
             }
-            
+
         }
 
         // The id parameter name should match the DataKeyNames value set on the control
@@ -167,7 +169,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // or be decorated with a value provider attribute, e.g. [QueryString]int id
         public MemberGallery.Model.Image FormView_GetItem([RouteData] short ImageID)
         {
-           
+
             return Service.GetImageByImageID(ImageID);
         }
 

@@ -10,13 +10,13 @@
         <div class="ContentList">
             <div id="image">
 
-                <asp:Image ID="CurrentImage" runat="server" Width="800"  />
-                 
-                <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID"  ItemType="MemberGallery.Model.Image"  DefaultMode="ReadOnly" >
+                <asp:Image ID="CurrentImage" runat="server" Width="800" />
+
+                <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID" ItemType="MemberGallery.Model.Image" DefaultMode="ReadOnly">
                     <ItemTemplate>
-                              <asp:Literal ID="Literal1" Text='<%# Item.ImgName %>' runat="server"></asp:Literal>
+                        <asp:Literal ID="Literal1" Text='<%# Item.ImgName %>' runat="server"></asp:Literal>
                     </ItemTemplate>
-              
+
                 </asp:FormView>
             </div>
             <%-- Listview generating images --%>
@@ -55,9 +55,11 @@
                 <asp:ValidationSummary ID="ValidationSummary" runat="server" />
 
                 <asp:FileUpload ID="Select" runat="server" />
-                <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Text="*"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Ni måste först välja bild." ControlToValidate="Select" Display="None"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator Visible="false" runat="server" ErrorMessage="Bilden måste vara av typen jpg|png" ControlToValidate="UploadButton" ValidationExpression="^.*\.(jpg|png|JPG|PNG)$"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="None"></asp:RequiredFieldValidator>
                 <asp:TextBox ID="PictureName" runat="server" MaxLength="20"></asp:TextBox>
-                <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
+                <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" CausesValidation="false" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera bild" OnClick="DeleteButton_Click" />
 
 

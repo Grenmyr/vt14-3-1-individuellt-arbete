@@ -25,8 +25,7 @@ namespace MemberGallery.Model
 
         public DateTime Year { get; set; }
 
-        public string PhysicalFileName { get; set; }
-
+        //[RegularExpression(ErrorMessage="fdsafdsa")]
         public string Extension { get; set; }
 
         private static readonly Regex ApprovedExtensions;
@@ -86,19 +85,12 @@ namespace MemberGallery.Model
         }
 
         // Return true if valid image
-        private bool IsValidImage(System.Drawing.Image image)
-        {
-            return image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Gif.Guid ||
-            image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid ||
-            image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid;
-        }
 
         public void SaveImage(Stream stream, int imageID)
         {
-
-            // Setting my image/thumbnail as stream type and next line saving it with the path and filename....
             try
             {
+                // Kontrollerar om filtyp är äkta bild. Sparar sen bild/thumbnail med "ImageID.JPG/PNG" på disk.
                 using (var image = System.Drawing.Image.FromStream(stream))
                 {
                     var fileName = "";
@@ -112,13 +104,10 @@ namespace MemberGallery.Model
                     }
                     else
                     {
-                        throw new ArgumentException();
+                        throw new ArgumentException("Filen är ej en bild av typen JPG eller PNG.");
                     }
-
-                    if (IsValidImage(image))
-                    {
                         image.Save(Path.Combine(PhysicalUploadedImagesPath, fileName));
-                    }
+              
                     using (var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
                     {
                         thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
@@ -128,11 +117,12 @@ namespace MemberGallery.Model
             }
             catch (Exception)
             {
-                throw new ArgumentException("Ett oväntat undantag inträffade, du har nu fått virus.");
+                throw new ArgumentException("Ett oväntat undantag inträffade, när bild skulle sparas.");
             }
         }
         private void DeleteImage(string fileName)
         {
+            // Om bilden finns på disk, så tas den bort.
             if (ImageExist(fileName))
             {
                 try
@@ -142,19 +132,16 @@ namespace MemberGallery.Model
                 }
                 catch (Exception)
                 {
-                    throw new ArgumentException("Ett oväntat undantag inträffade, du har nu fått virus.");
+                    throw new ArgumentException("Ett oväntat undantag inträffade när bild skulle tas bort..");
                 }
             }
         }
-        // MEtod, Anropar Den andra DeleteIMage och kollar om det finns bilder med filnamnet under exension JPG eller PNG.
+        //  Metod som anropar den andra DeleteImage två gånger, eftersom jag inte vet vilket filformat bilden är sparad under. 
+        //  Jag måste lägga till PNG/JPG eftersom bilden är sparad så på disk.
         public void DeleteImage(int imageId)
         {
-
             DeleteImage(string.Format("{0}.JPG",imageId));
             DeleteImage(string.Format("{0}.PNG", imageId));
-            
         }
-
-
     }
 }

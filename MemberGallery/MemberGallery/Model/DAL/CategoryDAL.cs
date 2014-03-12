@@ -14,9 +14,8 @@ namespace MemberGallery.Model.DAL
         {  
             using (var conn = CreateConnection())
             {
-                //try
-                //{
-     
+                try
+                {
                     var categories = new List<Category>(100);
                     var cmd = new SqlCommand("AppSchema.GetCategories", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -41,19 +40,19 @@ namespace MemberGallery.Model.DAL
                     }
                     categories.TrimExcess();
                     return categories.OrderBy(c => c.CategoryProp);
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Ett fel har skett i DAL för kategorier");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel har skett i DAL när kategorier skulle hämtas.");
+                }
             }
         }
 
 
         public void UpdateContact(Category category)
         {
-            //try
-            //{
+            try
+            {
                 using (SqlConnection conn = CreateConnection())
                 {
                     SqlCommand cmd = new SqlCommand("AppSchema.UpdateContact", conn);
@@ -66,19 +65,19 @@ namespace MemberGallery.Model.DAL
                     cmd.ExecuteNonQuery();
                 }
 
-            //}
-            //catch
-            //{
-            //    throw new ApplicationException("Ett fel har skett i DAL");
-            //}
+            }
+            catch
+            {
+                throw new ApplicationException("Ett fel har skett i DAL när kategori skulle uppdateras.");
+            }
         }
 
         public void InsertContact(Category category)
         {
             using (SqlConnection conn = CreateConnection())
             {
-                //try
-                //{
+                try
+                {
                     SqlCommand cmd = new SqlCommand("AppSchema.SaveContact", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -89,11 +88,11 @@ namespace MemberGallery.Model.DAL
                     cmd.ExecuteNonQuery();
                     // Setting the ID of my newly created contact to my contacID parameter.
                     category.CategoryID = (int)cmd.Parameters["@CategoryID"].Value;
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Ett fel har skett i DAL");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel har skett i DAL när kategori skulle sparas.");
+                }
             }
         }
 
@@ -101,11 +100,10 @@ namespace MemberGallery.Model.DAL
         {
             using (SqlConnection conn = CreateConnection())
             {
-                //try
-                //{   // Se metod GetContacs för kommentarer.
+                try
+                {   
                     var cmd = new SqlCommand("AppSchema.GetCategoryByCategoryID", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
 
                     cmd.Parameters.AddWithValue("@CategoryID", categoryID);
 
@@ -113,9 +111,6 @@ namespace MemberGallery.Model.DAL
 
                     using (var reader = cmd.ExecuteReader())
                     {
-                    
-                  
-
                         if (reader.Read())
                         {
                             var categoryIDIndex = reader.GetOrdinal("CategoryID");
@@ -129,11 +124,11 @@ namespace MemberGallery.Model.DAL
                         }
                         return null;
                     }
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Ett fel har skett i DAL");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Ett fel har skett i DAL när kategori skulle laddas.");
+                }
             }
         }
 
@@ -152,7 +147,7 @@ namespace MemberGallery.Model.DAL
                 }
                 catch
                 {
-                    throw new ApplicationException("Ett fel har skett i DAL");
+                    throw new ApplicationException("Ett fel har skett i DAL när borttagning av kategori skulle ske.");
                 }
             }
         }

@@ -13,8 +13,8 @@ namespace MemberGallery.Model.DAL
         {
             using (SqlConnection conn = CreateConnection())
             {
-                //try
-                //{   // Se metod GetContacs för kommentarer.
+                try
+                { 
                 var imglist = new List<Image>(100);
 
                 var cmd = new SqlCommand("AppSchema.GetImgByCategory", conn);
@@ -43,11 +43,11 @@ namespace MemberGallery.Model.DAL
                     imglist.TrimExcess();
                     return imglist;
                 }
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Ett fel har skett i DAL");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bildlista.");
+                }
             }
         }
 
@@ -56,17 +56,24 @@ namespace MemberGallery.Model.DAL
             using (SqlConnection conn = CreateConnection())
             {
 
-                SqlCommand cmd = new SqlCommand("AppSchema.SaveFileName", conn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("AppSchema.SaveFileName", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
-                cmd.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = image.Extension;
-                cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-               
+                    cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
+                    cmd.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = image.Extension;
+                    cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                 image.ImageID = (int)cmd.Parameters["@ImageID"].Value;
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    image.ImageID = (int)cmd.Parameters["@ImageID"].Value;
+                }
+                catch 
+                {
+                    throw new ApplicationException("Fel inträffade i DAL vid skapande av bild..");
+                }
 
             }
         }
@@ -92,7 +99,7 @@ namespace MemberGallery.Model.DAL
                 }
                 catch
                 {
-                    throw new ApplicationException("Ett fel har skett i DAL");
+                    throw new ApplicationException("Fel inträffade i DAL vid borttagning av bild.");
                 }
             }
         }
@@ -101,8 +108,8 @@ namespace MemberGallery.Model.DAL
         {
             using (SqlConnection conn = CreateConnection())
             {
-                //try
-                //{   // Se metod GetContacs för kommentarer.
+                try
+                {   
                 var cmd = new SqlCommand("AppSchema.GetImageByImageID", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -129,18 +136,18 @@ namespace MemberGallery.Model.DAL
                     }
                     return null;
                 }
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Ett fel har skett i DAL");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bild.");
+                }
             }
         }
 
         public void UpdateImage(Image image)
         {
-            //try
-            //{
+            try
+            {
             using (SqlConnection conn = CreateConnection())
             {
                 SqlCommand cmd = new SqlCommand("AppSchema.UpdateImage", conn);
@@ -154,11 +161,11 @@ namespace MemberGallery.Model.DAL
                 cmd.ExecuteNonQuery();
             }
 
-            //}
-            //catch
-            //{
-            //    throw new ApplicationException("Ett fel har skett i DAL");
-            //}
+            }
+            catch
+            {
+                throw new ApplicationException("Ett fel har skett i DAL när bild skulle uppdateras.");
+            }
         }
     }
 }

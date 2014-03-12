@@ -16,27 +16,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             get { return _service ?? (_service = new Service()); }
         }
-        public string SessionProp
-        {
-            get
-            {
-                var confirmationMessage = Session["text"] as string;
-                Session.Remove("text");
-                return confirmationMessage;
-            }
-            set { Session["text"] = value; }
-        }
-        private bool HasMessage
-        {
-            get { return Session["text"] != null; }
-        }
+       
+     
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (HasMessage)
-            {
-                PlaceHolder.Visible = true;
-                ConfirmationMessage.Text = SessionProp;
-            }
+           
         }
        
         public void  CategoryListView_InsertItem(Category category)
@@ -46,7 +30,10 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 try
                 {
                     Service.SaveCategory(category);
-                    SessionProp = String.Format("Du har laddat upp | Kategori: {0} |", category.CategoryProp);
+
+                    Page.SetTempData("Confirmation", String.Format("Bildkategori {0} har Lags till ", category.CategoryProp));
+                    Response.RedirectToRoute("Default1");
+                    Context.ApplicationInstance.CompleteRequest();
                 }
                 catch (Exception)
                 {
@@ -55,13 +42,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
                     Response.RedirectToRoute("Default");
             }
         }
-
-        // The return type can be changed to IEnumerable, however to support
-        // paging and sorting, the following parameters must be added:
-        //     int maximumRows
-        //     int startRowIndex
-        //     out int totalRowCount
-        //     string sortByExpression
         public IEnumerable<Category> CategoryListView_GetData()
         {
             return Service.GetCategories();
@@ -83,8 +63,10 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 {
                     Service.SaveCategory(category);
                 }
-                ConfirmationMessage.Text = String.Format(" Efter Redigering är uppgifterna | Category: {0} | sparade.", category.CategoryProp);
-
+                
+                Page.SetTempData("Confirmation", String.Format("Kategorinamn har ändrats till {0}", category.CategoryProp));
+                Response.RedirectToRoute("Default1");
+                Context.ApplicationInstance.CompleteRequest();
         }
 
         // The id parameter name should match the DataKeyNames value set on the control

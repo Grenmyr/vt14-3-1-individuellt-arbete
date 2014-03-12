@@ -13,10 +13,6 @@
         <asp:ValidationSummary ID="ValidationSummary" ValidationGroup="Insert" runat="server" />
         <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Update" runat="server" />
 
-        <%-- Placeholder to handle confirmationmessages. --%>
-        <asp:PlaceHolder ID="PlaceHolder" runat="server" Visible="false">
-            <asp:Literal ID="ConfirmationMessage" runat="server"></asp:Literal></asp:PlaceHolder>
-
         <%-- Listview With Methods to initialize Code --%>
         <asp:ListView ItemType="MemberGallery.Model.Category" runat="server" ID="CategoryListView"
             SelectMethod="CategoryListView_GetData"
@@ -24,13 +20,13 @@
             UpdateMethod="CategoryListView_UpdateItem"
             DeleteMethod="CategoryListView_DeleteItem"
             DataKeyNames="CategoryID"
-            InsertItemPosition="FirstItem" ViewStateMode="Enabled">
+            InsertItemPosition="FirstItem" ViewStateMode="Enabled" >
 
             <%-- Emty table which is filled. --%>
             <LayoutTemplate>
                 <table>
                     <tr>
-                        <th>Kategori
+                        <th>Kategorinamn
                         </th>
                     </tr>
                     <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
@@ -80,7 +76,6 @@
                     <td>
                         <asp:TextBox ID="CategoryName" runat="server" Text='<%# BindItem.CategoryProp %>' ValidationGroup="Update"></asp:TextBox>
                     </td>
-
                     <td>
                         <%-- BUttons to Edit a contact and abort to cancel the editing. --%>
                         <asp:LinkButton  runat="server" CommandName="Update" Text="Spara" ValidationGroup="Update"></asp:LinkButton>

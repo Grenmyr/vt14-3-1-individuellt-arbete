@@ -84,7 +84,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
 
                     // sparar vilka kategetorier användare sagt att bilden ska tillhöra. Ett Anrop för varje kategori.
-                    foreach (var item in CheckBoxList.Items.Cast<ListItem>().Where(item => item.Selected))
+                    foreach (var item in CheckBoxLisT.Items.Cast<ListItem>().Where(item => item.Selected))
                     {
                         var cat = new ImageDesc();
                         cat.CategoryID = int.Parse(item.Value);
@@ -135,7 +135,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 if (remainingCategories == 0)
                 {
                     // TODO: måste implementera kod för ta bort bild från server.
-                    ImageProp.DeleteImage(imageID);
+                    ImageProp.DeleteImage(imageID);       
                 }
             }
             catch (Exception)
@@ -167,6 +167,22 @@ namespace MemberGallery.Pages.MemberGalleryPages
             }
         }
 
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            var validate = 0;
+            foreach (var item in CheckBoxLisT.SelectedValue)
+            {
+               
+            }
+            
+            if (validate != null)
+            {
+                args.IsValid = true;
+            }
+            args.IsValid = false;
+            
+
+        }
         // The id parameter should match the DataKeyNames value set on the control
         // or be decorated with a value provider attribute, e.g. [QueryString]int id
        

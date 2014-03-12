@@ -22,15 +22,6 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// CurrentImage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image CurrentImage;
-        
-        /// <summary>
         /// ImageListView control.
         /// </summary>
         /// <remarks>
@@ -56,15 +47,6 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload Select;
-        
-        /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
         /// PictureName control.

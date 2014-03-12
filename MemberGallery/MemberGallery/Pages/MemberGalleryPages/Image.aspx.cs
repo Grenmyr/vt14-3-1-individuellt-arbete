@@ -17,6 +17,17 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             get { return _service ?? (_service = new Service()); }
         }
+        public string PrevPage
+        {
+            get
+            {
+                var message = Session["text"] as string;
+
+                return message;
+            }
+
+            set { Session["text"] = value; }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 

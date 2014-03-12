@@ -8,12 +8,10 @@
     <asp:Panel ID="Panel1" runat="server">
         <h2>ImageList -- Här börjar min ContentPlaceholder</h2>
         <div class="ContentList">
-            <div id="image">
-
-                <asp:Image ID="CurrentImage" runat="server" Width="800" />
+          
 
 
-            </div>
+     
             <%-- Listview generating images --%>
             <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
                 SelectMethod="ImageListView_GetData" DeleteMethod="ImageListView_DeleteItem" UpdateMethod="ImageListView_UpdateItem"
@@ -27,10 +25,11 @@
                 <ItemTemplate>
                     <%--    THUMBNAIL with hyperlink to present picture  />--%>
                     <div>
-                        <asp:HyperLink runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { CategoryID=Page.RouteData.Values["CategoryID"], ImageID = Item.ImageID })%>'></asp:HyperLink>
-                        <asp:Label ID="Label1" runat="server" Text='<%# BindItem.ImgName %>'></asp:Label>
+                        <asp:HyperLink runat="server" Text='<%# string.Format("{0}{1}", Item.ImgName, Item.Extension ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.SaveName, Item.Extension ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { CategoryID=Page.RouteData.Values["CategoryID"], ImageID = Item.ImageID })%>'></asp:HyperLink>
+                        <asp:Label ID="Label" runat="server" Text='<%# BindItem.ImgName %>'></asp:Label>
                     </div>
                     <div>
+                       
                         <asp:LinkButton runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
                             OnClientClick='<%# String.Format("return confirm(\"Ta bort bilden {0}?\")", Item.ImgName  ) %>'></asp:LinkButton>
                         <asp:LinkButton runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
@@ -42,6 +41,7 @@
 
                     <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="ImgName" Text="*"></asp:RequiredFieldValidator>
                     <asp:TextBox ID="ImgName" runat="server" Text='<%# BindItem.ImgName %>' MaxLength="50"></asp:TextBox>
+                     
                     <asp:LinkButton runat="server" CommandName="Update" Text="Spara" ValidationGroup="Update"></asp:LinkButton>
                     <asp:LinkButton runat="server" CommandName="Cancel" Text="Ångra" CausesValidation="false"></asp:LinkButton>
                 </EditItemTemplate>
@@ -52,9 +52,10 @@
                 <asp:ValidationSummary ID="ValidationSummary" runat="server" />
 
                 <asp:FileUpload ID="Select" runat="server" />
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Ni måste först välja bild." ControlToValidate="Select" Display="None"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator Visible="false" runat="server" ErrorMessage="Bilden måste vara av typen jpg|png" ControlToValidate="Select" ValidationExpression="^.*\.(jpg|png|JPG|PNG)$"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator runat="server" ErrorMessage="Ni måste först välja bild." ControlToValidate="Select" Display="None"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator Visible="false" runat="server" ErrorMessage="Bilden måste vara av typen jpg|png" ControlToValidate="Select" ValidationExpression="^.*\.(jpg|png|JPG|PNG)$"></asp:RegularExpressionValidator>     
                 <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="Static"></asp:RequiredFieldValidator>
+               
                 <asp:TextBox ID="PictureName" runat="server" MaxLength="20"></asp:TextBox>
                 <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
                 <asp:Button ID="DeleteButton" runat="server" Text="Radera bild" OnClick="DeleteButton_Click" />

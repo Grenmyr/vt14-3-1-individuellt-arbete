@@ -28,6 +28,7 @@ namespace MemberGallery.Model.DAL
                     var upLoadedIndex = reader.GetOrdinal("UpLoaded");
                     var imgNameIndex = reader.GetOrdinal("ImgName");
                     var extensionIndex = reader.GetOrdinal("Extension");
+                    var saveNameIndex = reader.GetOrdinal("SaveName");
 
                     while (reader.Read())
                     {
@@ -37,7 +38,8 @@ namespace MemberGallery.Model.DAL
                             ImageID = reader.GetInt16(imageIDIndex),
                             UpLoaded = reader.GetDateTime(upLoadedIndex),
                             ImgName = reader.GetString(imgNameIndex),
-                            Extension = reader.GetString(extensionIndex)
+                            Extension = reader.GetString(extensionIndex),
+                            SaveName = reader.GetString(saveNameIndex)
                         });
                     }
                     imglist.TrimExcess();
@@ -61,12 +63,15 @@ namespace MemberGallery.Model.DAL
                     SqlCommand cmd = new SqlCommand("AppSchema.SaveFileName", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
+                    cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
                     cmd.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = image.Extension;
                     cmd.Parameters.Add("@UpLoaded", SqlDbType.DateTime2).Value = image.UpLoaded;
-                    cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-              
+                    cmd.Parameters.Add("@SaveName", SqlDbType.VarChar, 15).Value = image.SaveName;
 
+                  
+
+                   
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -93,10 +98,11 @@ namespace MemberGallery.Model.DAL
                     cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Value = categoryID;
                     cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Value = imageID;
                     cmd.Parameters.Add("@Count", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+                    
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    return (int)cmd.Parameters["@Count"].Value;
+                    return (int)cmd.Parameters["@Count"].Value; 
                  
                 }
                 catch
@@ -129,13 +135,15 @@ namespace MemberGallery.Model.DAL
                         var imgNameIndex = reader.GetOrdinal("ImgName");
                         var uploadedIndex = reader.GetOrdinal("UpLoaded");
                         var extensionIndex = reader.GetOrdinal("Extension");
+                        var saveNameIndex = reader.GetOrdinal("SaveName");
 
                         return new Image
                         {
                             ImageID = reader.GetInt16(imageIDIndex),
                             ImgName = reader.GetString(imgNameIndex),
                             UpLoaded = reader.GetDateTime(uploadedIndex),
-                            Extension = reader.GetString(extensionIndex)
+                            Extension = reader.GetString(extensionIndex),
+                            SaveName = reader.GetString(saveNameIndex)
                         };
                     }
                     return null;

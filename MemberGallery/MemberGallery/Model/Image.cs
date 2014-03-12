@@ -27,6 +27,7 @@ namespace MemberGallery.Model
 
         //[RegularExpression(ErrorMessage="fdsafdsa")]
         public string Extension { get; set; }
+        public string SaveName { get; set; }
 
         //private static readonly Regex ApprovedExtensions;
         //private static readonly Regex SantizePath;
@@ -86,7 +87,7 @@ namespace MemberGallery.Model
 
         // Return true if valid image
 
-        public void SaveImage(Stream stream, int imageID)
+        public void SaveImage(Stream stream, string saveName)
         {
             try
             {
@@ -96,11 +97,11 @@ namespace MemberGallery.Model
                     var fileName = "";
                     if (image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid)
                     {
-                        fileName = String.Format("{0}.JPG", imageID);
+                        fileName = String.Format("{0}.JPG", saveName);
                     }
                     else if (   image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid)
                     {
-                        fileName = String.Format("{0}.PNG", imageID);
+                        fileName = String.Format("{0}.PNG", saveName);
                     }
                     else
                     {
@@ -120,7 +121,7 @@ namespace MemberGallery.Model
                 throw new ArgumentException("Ett oväntat undantag inträffade, när bild skulle sparas.");
             }
         }
-        private void DeleteImage(string fileName)
+        public void DeleteImage(string fileName)
         {
             // Om bilden finns på disk, så tas den bort.
             if (ImageExist(fileName))
@@ -138,10 +139,10 @@ namespace MemberGallery.Model
         }
         //  Metod som anropar den andra DeleteImage två gånger, eftersom jag inte vet vilket filformat bilden är sparad under. 
         //  Jag måste lägga till PNG/JPG eftersom bilden är sparad så på disk.
-        public void DeleteImage(int imageId)
+        public void DeleteImage(int saveName)
         {
-            DeleteImage(string.Format("{0}.JPG",imageId));
-            DeleteImage(string.Format("{0}.PNG", imageId));
+            DeleteImage(string.Format("{0}.JPG",saveName));
+            DeleteImage(string.Format("{0}.PNG", saveName));
         }
     }
 }

@@ -37,11 +37,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (URL != null)
-            {
-                CurrentImage.ImageUrl = "~/Content/Pictures/" + URL;
-            }
 
+            ConfirmationMSG.Text = Page.GetTempData("BAJS") as string;
+            ConfirmationMSG.Visible =! String.IsNullOrWhiteSpace(ConfirmationMSG.Text);
         }
         private MemberGallery.Model.Image _image;
         // Property to return a Image reference, if null create new one.
@@ -75,12 +73,18 @@ namespace MemberGallery.Pages.MemberGalleryPages
                     image.Extension = extension;
                     image.ImgName = FileName;
                     image.UpLoaded = DateTime.Now;
+                    var saveName = Path.GetRandomFileName();
+
+                    image.SaveName = Path.GetFileNameWithoutExtension(saveName);
+               
+                   
 
                     // Sparar den nya bilden med alla dess egenskaper, returnerar ID som out från lagrade procedur.
                     Service.SaveImage(image);
 
                     // Sparar bilden på disk under ImageID, i SaveImage hackar jag även in extension till filnamn på disk.
-                    image.SaveImage(selectedPic, image.ImageID);
+                    //image.SaveImage(selectedPic, image.ImageID);
+                    image.SaveImage(selectedPic, image.SaveName);
 
 
                     // sparar vilka kategetorier användare sagt att bilden ska tillhöra. Ett Anrop för varje kategori.
@@ -91,6 +95,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         cat.ImageID = image.ImageID;
                         Service.SaveImageDesc(cat);
                     }
+                    Page.SetTempData("BAJS","BAJSSEN");
                     Response.RedirectToRoute("ImageList");
                     Context.ApplicationInstance.CompleteRequest();
                 }
@@ -134,8 +139,10 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 var remainingCategories = Service.DeleteImage(imageID, CategoryID);
                 if (remainingCategories == 0)
                 {
+                    var image = Service.GetImageByImageID(imageID);    
+                    var savename = String.Format("{0}{1}", image.SaveName, image.Extension);
                     // TODO: måste implementera kod för ta bort bild från server.
-                    ImageProp.DeleteImage(imageID);       
+                    ImageProp.DeleteImage(savename);       
                 }
             }
             catch (Exception)
@@ -169,17 +176,17 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            var validate = 0;
-            foreach (var item in CheckBoxLisT.SelectedValue)
-            {
-               
-            }
-            
+            var validate = CheckBoxLisT.SelectedValue;
+
             if (validate != null)
             {
                 args.IsValid = true;
             }
-            args.IsValid = false;
+            else 
+            {
+                args.IsValid = false;
+            }
+            
             
 
         }

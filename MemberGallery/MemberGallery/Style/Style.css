@@ -1,20 +1,37 @@
 ﻿body {
-      
 }
+
 .ContentList {
     max-width: 850px;
     border: 3px solid;
     border-radius: 5px 5px 5px 5px;
-    margin:auto;
-
+    margin: auto;
 }
+
 h1, h2, h3, h4 {
-    text-align:center;
-}
-.Thumbs {
-    overflow-x:auto
-}
-.ThumbList {
-    overflow-x:auto;
+    text-align: center;
 }
 
+.Thumbs {
+    overflow-x: auto;
+}
+
+.ThumbList {
+    overflow-x: auto;
+}
+/*Style to Imagelist.aspx*/
+#CheckBoxLisT {
+
+}
+
+/* Style Categories.ascx NAV*/
+.Categories {
+    margin-bottom: 50px;
+    overflow-x:auto;
+    text-align:center;
+ 
+
+}
+.Categories, a {
+    margin-left:20px;
+}

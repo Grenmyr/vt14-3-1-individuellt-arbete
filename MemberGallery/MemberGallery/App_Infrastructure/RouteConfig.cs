@@ -15,7 +15,7 @@ namespace MemberGallery.App_Infrastructure
         {
             route.MapPageRoute("error", "Error", "~/error.aspx");
     
-            route.MapPageRoute("Default1", "", "~/Pages/MemberGalleryPages/CategoryList.aspx");
+            route.MapPageRoute("CategoriesList", "", "~/Pages/MemberGalleryPages/CategoryList.aspx");
             route.MapPageRoute("Default", "", "~/Pages/Shared/Categories.ascx");
         
             //route.MapPageRoute("Copy", "Bilder/{CategoryID}/{ImageID}", "~/MemberGalleryPages/Image.aspx");

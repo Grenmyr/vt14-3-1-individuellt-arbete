@@ -63,7 +63,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                     Service.SaveImage(image);
                    
                 }
-                Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", image.ImgName, image.UpLoaded));
+                Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | Redigerad: {1} | sparade.", image.ImgName, image.UpLoaded));
                 Response.RedirectToRoute("Image");
                 Context.ApplicationInstance.CompleteRequest();
                
@@ -92,8 +92,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 Response.RedirectToRoute("ImageList");
                 Context.ApplicationInstance.CompleteRequest();
                     
-           
-                
             }
             catch (Exception)
             {

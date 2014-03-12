@@ -59,7 +59,7 @@
 
                 <asp:CustomValidator runat="server" ErrorMessage="En checkbox måste fyllas i." Display="None" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
                 <asp:CheckBoxList ID="CheckBoxLisT" runat="server" ItemType="MemberGallery.Model.Category"
-                    DataTextField="CategoryProp" DataValueField="CategoryID" SelectMethod="CategoryListView_GetData">
+                    DataTextField="CategoryProp" DataValueField="CategoryID" SelectMethod="CategoryListView_GetData" CssClass="CheckBoxList">
                 </asp:CheckBoxList>
 
             </div>

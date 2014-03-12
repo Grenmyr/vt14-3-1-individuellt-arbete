@@ -18,9 +18,8 @@
                 <asp:Literal ID="Confirmation" runat="server" Visible="false"></asp:Literal>
             </asp:Panel>
 
-
             <div>
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"  ></asp:ContentPlaceHolder>
                 <uc1:Categories runat="server" ID="Categories" Visible="true" />
             </div>
         </form>

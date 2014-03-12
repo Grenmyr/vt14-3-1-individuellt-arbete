@@ -32,14 +32,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
                     Service.SaveCategory(category);
 
                     Page.SetTempData("Confirmation", String.Format("Bildkategori {0} har Lags till ", category.CategoryProp));
-                    Response.RedirectToRoute("Default1");
+                    Response.RedirectToRoute("CategoriesList");
                     Context.ApplicationInstance.CompleteRequest();
                 }
                 catch (Exception)
                 {
                     ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Läggas till.");
                 }
-                    Response.RedirectToRoute("Default");
             }
         }
         public IEnumerable<Category> CategoryListView_GetData()
@@ -65,7 +64,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 }
                 
                 Page.SetTempData("Confirmation", String.Format("Kategorinamn har ändrats till {0}", category.CategoryProp));
-                Response.RedirectToRoute("Default1");
+                Response.RedirectToRoute("CategoriesList");
                 Context.ApplicationInstance.CompleteRequest();
         }
 

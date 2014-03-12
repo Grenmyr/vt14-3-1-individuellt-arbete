@@ -113,7 +113,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             return Service.GetCategories();
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        // The id parameter name should match the DataKeyNames value set on the control.
         //public void ImageListView_DeleteItem(int imageID, [RouteData] short CategoryID)
         //{
         //    // Anropar Lagrad procedur och ta bort från bilden från kategorin. 

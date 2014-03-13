@@ -14,7 +14,6 @@ namespace MemberGallery.Pages.Shared
             Confirmation.Text = Page.GetTempData("Confirmation") as string;
             Confirmation.Visible = !String.IsNullOrWhiteSpace(Confirmation.Text);
 
-            //Page.GetPrevPage("PrevPage", String.Format(" Efter Redigering är uppgifterna | Bildnamn: | | Redigerad: | sparade.","fds"));
         }
     }
 }

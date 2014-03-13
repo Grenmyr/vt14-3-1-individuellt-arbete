@@ -72,20 +72,20 @@ namespace MemberGallery.Pages.MemberGalleryPages
                             cat.ImageID = image.ImageID;
                             Service.SaveImageDesc(cat);
                         }
-
+                        // Message saved in Extension method.
                         Page.SetTempData("Confirmation", String.Format("Bilden {0} har sparats", image.ImgName));
+                        // TODO: Want to redirect to uploaded pages category.
                         Response.RedirectToRoute("ImageList");
                         Context.ApplicationInstance.CompleteRequest();
                     }
                     catch (Exception)
                     {
-                        ModelState.AddModelError(String.Empty, "Fel inträffade när Bild  skulle Sparas.");
+                        ModelState.AddModelError(String.Empty, "Fel inträffade när bild  skulle Sparas.");
                     }
                 }
             }
         }
-
-       
+        // Used by Listview as Selectmethod. to generate thumbnails, it return a IEnumerable list.
         public IEnumerable<Category> CategoryListView_GetData()
         {
             return Service.GetCategories();
@@ -138,6 +138,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         //    }
         //}
 
+        // Method from Custovalidator validating checkboxlist. If any checked boxes, it is set to true, else false. Used to prevent saving Images without choosing category.
         protected void CustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
             var validate = CheckBoxLisT.SelectedItem;

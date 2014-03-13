@@ -80,9 +80,9 @@ namespace MemberGallery.Model
         //}
 
         // Metod that returns true if file and filepatch match.
-        public bool ImageExist(string name)
+        public bool ImageExist(string saveName)
         {
-            return File.Exists(string.Format("{0}/{1}", PhysicalUploadedImagesPath, name));
+            return File.Exists(string.Format("{0}/{1}", PhysicalUploadedImagesPath, saveName));
         }
 
         // Return true if valid image
@@ -91,10 +91,10 @@ namespace MemberGallery.Model
         {
             try
             {
-                // Kontrollerar om filtyp är äkta bild. Sparar sen bild/thumbnail med "ImageID.JPG/PNG" på disk.
+                // Kontrollerar om filtyp är äkta bild, om så sparar på disk.
                 using (var image = System.Drawing.Image.FromStream(stream))
                 {
-                    //var fileName = "";
+                
                     if (image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid || image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid)
                     {
                         image.Save(Path.Combine(PhysicalUploadedImagesPath, saveName));
@@ -104,12 +104,10 @@ namespace MemberGallery.Model
                             thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, saveName));
                         }
                     }
-                
                     else
                     {
                         throw new ArgumentException("Filen är ej en bild av typen JPG eller PNG.");
                     }
-                    
                 }
                
             }
@@ -118,15 +116,15 @@ namespace MemberGallery.Model
                 throw new ArgumentException("Ett oväntat undantag inträffade, när bild skulle sparas.");
             }
         }
-        public void DeleteImage(string fileName)
+        public void DeleteImage(string saveName)
         {
             // Om bilden finns på disk, så tas den bort.
-            if (ImageExist(fileName))
+            if (ImageExist(saveName))
             {
                 try
                 {
-                    File.Delete(Path.Combine(PhysicalUploadedImagesPath, fileName));
-                    File.Delete(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
+                    File.Delete(Path.Combine(PhysicalUploadedImagesPath, saveName));
+                    File.Delete(Path.Combine(PhysicalUploadedThumbNailPath, saveName));
                 }
                 catch (Exception)
                 {

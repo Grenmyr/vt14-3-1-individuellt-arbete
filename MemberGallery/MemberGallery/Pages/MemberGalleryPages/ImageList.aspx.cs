@@ -30,7 +30,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         protected void Page_Load(object sender, EventArgs e)
         {
         }
-        // Method to load all images from selected Category ID.
+        // Method to load all images from selected Category ID..
         public IEnumerable<MemberGallery.Model.Image> ImageListView_GetData([RouteData] short CategoryID)
         {
             var galleryDesc = Service.GetImagesByCategoryID(CategoryID);

@@ -74,9 +74,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
                             cat.ImageID = image.ImageID;
                             Service.SaveImageDesc(cat);
                         }
-                        // Message saved in Extension method.
+                        // Message saved in Extension method and redirect to last saved Category.
                         Page.SetTempData("Confirmation", String.Format("Bilden {0} har sparats", image.ImgName));
-                        // TODO: Want to redirect to uploaded pages category.
                         Response.RedirectToRoute("ImageList", new  { CategoryID = cat.CategoryID });
                         Context.ApplicationInstance.CompleteRequest();
                     }

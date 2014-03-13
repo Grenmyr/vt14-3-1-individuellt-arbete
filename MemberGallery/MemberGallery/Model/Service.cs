@@ -37,12 +37,7 @@ namespace MemberGallery.Model
         {
             return ImageDAL.GetImagesByCategoryID(categoryID);
         }
-        // Metod för Spara Images.
-        //public void SaveFileName(Image image)
-        //{
-        //    ImageDAL.SaveFileName(image);
-        //}
-        // Metod för Spara Imagedescriptions
+      
         public void SaveImageDesc(ImageDesc imageDesc)
         {
             ImageDescDAL.SaveImageDesc(imageDesc);

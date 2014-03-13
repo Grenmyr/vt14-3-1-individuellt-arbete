@@ -42,29 +42,19 @@ namespace MemberGallery.Pages.MemberGalleryPages
             if (image == null)
             {
                 // The item wasn't found
-                ModelState.AddModelError("", String.Format("Image with id {0} was not found", ImageID));
+                ModelState.AddModelError(String.Empty, String.Format("Bilden kunde med ImageID {0} inte hittas.", image.ImageID));
                 return;
             }
-
+            // Validating on server that image is valid.
             if (TryUpdateModel(image))
             {
                 Service.SaveImage(image);
 
                 Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | Redigerad: {1} | sparade.", image.ImgName, image.UpLoaded));
-
-                //Page.SetPrevPage("PrevPage")
                 Response.RedirectToRoute("Image");
                 Context.ApplicationInstance.CompleteRequest();
             }
-
-            
-
-
-           
-
-
         }
-
 
         public void FormView_DeleteItem(int imageID, [RouteData] short CategoryID)
         {
@@ -80,7 +70,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                     image.DeleteImage(image.SaveName);
 
                 }
-                Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}{1}", image.ImgName, image.Extension));
+                Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", image.ImgName));
                 Response.RedirectToRoute("ImageList");
                 Context.ApplicationInstance.CompleteRequest();
 

@@ -13,7 +13,7 @@ namespace MemberGallery.Pages.Shared
         {
             // presenting Confirmation msg from all pages using pagextension.cs
             Confirmation.Text = Page.GetTempData("Confirmation") as string;
-            Confirmation.Visible = !String.IsNullOrWhiteSpace(Confirmation.Text);
+            Confirmation.Visible =! String.IsNullOrWhiteSpace(Confirmation.Text);
         }
     }
 }

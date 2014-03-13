@@ -7,6 +7,7 @@ using System.Web.UI;
 
 namespace MemberGallery
 {
+    //Masterpage to handle Session messages.
     public static class PageExtension
     {
         public static object GetTempData(this Page page, string key)
@@ -14,11 +15,6 @@ namespace MemberGallery
             var value = page.Session[key];
             page.Session.Remove(key);
             return value;
-        }
-
-        public static object PeekTempData(this Page page, string key)
-        {
-            return page.Session[key];
         }
 
         public static void SetTempData(this Page page, string key, object value)

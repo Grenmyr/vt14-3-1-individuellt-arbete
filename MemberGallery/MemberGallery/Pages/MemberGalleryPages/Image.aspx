@@ -6,7 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
-    <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID" ItemType="MemberGallery.Model.Image" DefaultMode="ReadOnly" SelectMethod="FormView_GetItem" UpdateMethod="FormView_UpdateItem" DeleteMethod="FormView_DeleteItem">
+
+    <%-- Formview with edititemtemplate that let  me change Name on Image, Automaticly load new date into database on changed. --%>
+    <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID" ItemType="MemberGallery.Model.Image"  SelectMethod="FormView_GetItem" UpdateMethod="FormView_UpdateItem" DeleteMethod="FormView_DeleteItem">
         <ItemTemplate>
             <asp:Image ID="Image" ImageUrl='<%# String.Format("~/Content/Pictures/{0}", Item.SaveName )%>' runat="server" Width="800" />
             <div>
@@ -22,7 +24,7 @@
         <EditItemTemplate>
             <asp:Image ID="Image" ImageUrl='<%# String.Format("~/Content/Pictures/{0}", Item.SaveName )%>' runat="server" Width="800" />
             <div>
-                <asp:TextBox ID="ImgName" runat="server" Text='<%# BindItem.ImgName %>' MaxLength="20"></asp:TextBox>
+                <asp:TextBox ID="ImgName" runat="server" Text='<%# BindItem.ImgName %>' MaxLength="20" ></asp:TextBox>
                 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Update" Text="Spara" ValidationGroup="Update"></asp:LinkButton>
                 <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Cancel" Text="Ångra" CausesValidation="false"></asp:LinkButton>
             </div>
@@ -30,7 +32,6 @@
                      <asp:Literal ID="Literal3" Text='<%#  String.Format("Senast Ändrad: {0}",Item.UpLoaded)  %>' runat="server"></asp:Literal>
                  </div>
         </EditItemTemplate>
-
     </asp:FormView>
 
 </asp:Content>

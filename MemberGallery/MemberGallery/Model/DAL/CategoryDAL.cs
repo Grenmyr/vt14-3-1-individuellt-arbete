@@ -8,11 +8,12 @@ using System.Web;
 namespace MemberGallery.Model.DAL
 {
     public class CategoryDAL : DALBase
-    {
+    {   // Get all Categories from Category table.
         public IEnumerable<Category> GetCategories()
-        {  
+        {
             using (var conn = CreateConnection())
             {
+
                 try
                 {
                     var categories = new List<Category>(100);
@@ -21,7 +22,7 @@ namespace MemberGallery.Model.DAL
 
                     conn.Open();
 
-                
+
                     using (var reader = cmd.ExecuteReader())
                     {
                         var categoryIDIndex = reader.GetOrdinal("CategoryID");
@@ -29,7 +30,7 @@ namespace MemberGallery.Model.DAL
 
                         while (reader.Read())
                         {
-                     
+
                             categories.Add(new Category
                             {
                                 CategoryID = reader.GetInt16(categoryIDIndex),
@@ -47,7 +48,7 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-
+        // Changing CategoryName field by sending in Value and ID to Category Table.
         public void UpdateContact(Category category)
         {
             try
@@ -59,7 +60,7 @@ namespace MemberGallery.Model.DAL
 
                     cmd.Parameters.Add("@ContactID", SqlDbType.Int, 4).Value = category.CategoryID;
                     cmd.Parameters.Add("@Category", SqlDbType.VarChar, 20).Value = category.CategoryProp;
-                    
+
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
@@ -100,7 +101,7 @@ namespace MemberGallery.Model.DAL
             using (SqlConnection conn = CreateConnection())
             {
                 try
-                {   
+                {
                     var cmd = new SqlCommand("AppSchema.GetCategoryByCategoryID", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -118,7 +119,7 @@ namespace MemberGallery.Model.DAL
                             return new Category
                             {
                                 CategoryID = reader.GetInt16(categoryIDIndex),
-                                CategoryProp = reader.GetString(categoryIndex),       
+                                CategoryProp = reader.GetString(categoryIndex),
                             };
                         }
                         return null;

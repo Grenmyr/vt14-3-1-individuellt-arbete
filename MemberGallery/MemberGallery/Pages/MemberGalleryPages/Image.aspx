@@ -6,7 +6,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
-
     <%-- Formview with edititemtemplate that let  me change Name on Image, Automaticly load new date into database on changed. --%>
     <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID" ItemType="MemberGallery.Model.Image"  SelectMethod="FormView_GetItem" UpdateMethod="FormView_UpdateItem" DeleteMethod="FormView_DeleteItem">
         <ItemTemplate>
@@ -33,5 +32,4 @@
                  </div>
         </EditItemTemplate>
     </asp:FormView>
-
 </asp:Content>

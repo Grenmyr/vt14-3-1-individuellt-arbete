@@ -58,11 +58,10 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         //Generating "Uniqe" filename, but removing extension and also adding selecte.filename extension instead.
                         image.SaveName = String.Format("{0}{1}",Path.GetFileNameWithoutExtension(Path.GetRandomFileName()),extension);
 
-                        // Saving the new picture with its properties, from stored procedure i return the newly created Image primary key.
-                        Service.SaveImage(image);
-
                         // Saving Image Stream and image saveName onto disk.
                         image.SaveImage(selectedPic, image.SaveName);
+                        // Saving the new picture with its properties, from stored procedure i return the newly created Image primary key.
+                        Service.SaveImage(image);
 
                         // Creating a foreach loop that for eatch selected checkbox make a SQL call binding the image to that category. 
                         // Forgott the reference but i googled this solution ;-).

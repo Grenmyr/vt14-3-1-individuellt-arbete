@@ -8,13 +8,8 @@ namespace MemberGallery.Model
 {
     public class ImageDesc 
     {
-        // TODO: Not sure about YEAR and DateTime format, also how to do with Index?
         public int ImageID { get; set; }
         public int ImgDescID { get; set; }
         public int CategoryID { get; set; }
-
-        [Required(ErrorMessage = "Fält Year får ej lämnas tomt.")]
-        public DateTime Year { get; set; }
-
     }
 }

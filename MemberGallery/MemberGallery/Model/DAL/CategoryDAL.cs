@@ -9,7 +9,6 @@ namespace MemberGallery.Model.DAL
 {
     public class CategoryDAL : DALBase
     {
-        // TODO: Implement CategoryDAL
         public IEnumerable<Category> GetCategories()
         {  
             using (var conn = CreateConnection())

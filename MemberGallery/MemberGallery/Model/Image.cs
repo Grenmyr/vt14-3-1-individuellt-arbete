@@ -69,7 +69,7 @@ namespace MemberGallery.Model
         }
         public void DeleteImage(string saveName)
         {
-            // IF image exist on disk, i remove picture and thumbnail.
+            // If image exist on disk, i remove picture and thumbnail.
             if (ImageExist(saveName))
             {
                 try

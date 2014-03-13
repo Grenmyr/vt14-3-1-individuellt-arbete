@@ -10,11 +10,11 @@ namespace MemberGallery.Model
 {
     public class Service
     {
-        // TODO: My serviceclass, to acces my DAL.
         private CategoryDAL _categoryDAL;
         private ImageDescDAL _imageDescDAL;
         private ImageDAL _imageDAL;
 
+        // Properties with lazy initialization to initialize classes.
         public ImageDAL ImageDAL
         {
             get { return _imageDAL ?? (_imageDAL = new ImageDAL()); }
@@ -30,7 +30,7 @@ namespace MemberGallery.Model
             get { return _imageDescDAL ?? (_imageDescDAL = new ImageDescDAL()); }
         }
 
-        // Metoder för hämta images.
+        // Methods to make SQL Calls toward Image table.
 
         // Method to generate all Images from CategoryID
         public List<Image> GetImagesByCategoryID(short categoryID)
@@ -42,7 +42,7 @@ namespace MemberGallery.Model
         {
             ImageDescDAL.SaveImageDesc(imageDesc);
         }
-        // Metod för att spara images.
+        // Metod check if valid Image and also redirect if Update or new Image.
         public void SaveImage(Image image)
         {
             ICollection<ValidationResult> validationresults;
@@ -60,20 +60,22 @@ namespace MemberGallery.Model
                ImageDAL.UpdateImage(image);
             }
         }
-        // Metod för radera image.
+        // Metod to delete image that belongs to certain category.
         public int DeleteImage(int imageID, short categoryID)
         {
             return ImageDAL.DeleteImage(imageID, categoryID);
         }
 
-
+        // Method to get image by ID.
         public Image GetImageByImageID(int imageID)
         {
             return ImageDAL.GetImageByImageID(imageID);
         }
 
-        // Metoder till Category
+       
+        // Methods to make SQL Calls toward Category table.
 
+        // Method to validate Categorys, and also redirect if new Category or Updating.
         public void SaveCategory(Category category)
         {
             ICollection<ValidationResult> validationresults;
@@ -101,17 +103,10 @@ namespace MemberGallery.Model
         {
             return CategoryDAL.GetCategoryByCategoryID(CategoryID);
         }
-        // Method to delete my Contact by CategoryID.
+        // Method to delete my Category by CategoryID.
         public void DeleteCategory(int categoryID)
         {
             CategoryDAL.DeleteCategory(categoryID);
         }
-
-
-       
-
-
-
-       
     }
 }

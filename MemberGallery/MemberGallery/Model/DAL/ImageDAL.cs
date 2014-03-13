@@ -27,7 +27,6 @@ namespace MemberGallery.Model.DAL
                     var imageIDIndex = reader.GetOrdinal("ImageID");
                     var upLoadedIndex = reader.GetOrdinal("UpLoaded");
                     var imgNameIndex = reader.GetOrdinal("ImgName");
-                    var extensionIndex = reader.GetOrdinal("Extension");
                     var saveNameIndex = reader.GetOrdinal("SaveName");
 
                     while (reader.Read())
@@ -38,7 +37,6 @@ namespace MemberGallery.Model.DAL
                             ImageID = reader.GetInt16(imageIDIndex),
                             UpLoaded = reader.GetDateTime(upLoadedIndex),
                             ImgName = reader.GetString(imgNameIndex),
-                            Extension = reader.GetString(extensionIndex),
                             SaveName = reader.GetString(saveNameIndex)
                         });
                     }
@@ -65,7 +63,6 @@ namespace MemberGallery.Model.DAL
 
                     cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
-                    cmd.Parameters.Add("@Extension", SqlDbType.VarChar, 5).Value = image.Extension;
                     cmd.Parameters.Add("@UpLoaded", SqlDbType.DateTime2).Value = image.UpLoaded;
                     cmd.Parameters.Add("@SaveName", SqlDbType.VarChar, 15).Value = image.SaveName;
 
@@ -134,7 +131,6 @@ namespace MemberGallery.Model.DAL
                         var imageIDIndex = reader.GetOrdinal("ImageID");
                         var imgNameIndex = reader.GetOrdinal("ImgName");
                         var uploadedIndex = reader.GetOrdinal("UpLoaded");
-                        var extensionIndex = reader.GetOrdinal("Extension");
                         var saveNameIndex = reader.GetOrdinal("SaveName");
 
                         return new Image
@@ -142,7 +138,6 @@ namespace MemberGallery.Model.DAL
                             ImageID = reader.GetInt16(imageIDIndex),
                             ImgName = reader.GetString(imgNameIndex),
                             UpLoaded = reader.GetDateTime(uploadedIndex),
-                            Extension = reader.GetString(extensionIndex),
                             SaveName = reader.GetString(saveNameIndex)
                         };
                     }

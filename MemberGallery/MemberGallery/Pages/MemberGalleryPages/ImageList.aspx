@@ -21,7 +21,7 @@
                 <ItemTemplate>
                     <%--    THUMBNAIL with hyperlink to present picture  />--%>
              <%--       <div>--%>
-                        <asp:HyperLink runat="server" Text='<%# string.Format("{0}{1}", Item.ImgName, Item.Extension ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.SaveName, Item.Extension ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { CategoryID=Page.RouteData.Values["CategoryID"], ImageID = Item.ImageID })%>'></asp:HyperLink>
+                        <asp:HyperLink runat="server" Text='<%# string.Format("{0}", Item.ImgName ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}", Item.SaveName ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { CategoryID=Page.RouteData.Values["CategoryID"], ImageID = Item.ImageID })%>'></asp:HyperLink>
       <%--                  <asp:Label ID="Label" runat="server" Text='<%# BindItem.ImgName %>'></asp:Label>--%>
                <%--     </div>--%>
                     <%--<div>

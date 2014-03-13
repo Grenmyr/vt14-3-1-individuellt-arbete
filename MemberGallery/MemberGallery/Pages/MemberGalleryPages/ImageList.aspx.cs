@@ -52,23 +52,19 @@ namespace MemberGallery.Pages.MemberGalleryPages
                      
                         // Creating Image Reference object and populating it..
                         var image = ImageProp;   
-                        image.Extension = extension;
                         // Name selected by user from Textbox.
                         image.ImgName = PictureName.Text;
                         image.UpLoaded = DateTime.Now;    
-                        //Generating "Uniqe" filename, but removing extension.
-                        image.SaveName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
+                        //Generating "Uniqe" filename, but removing extension and also adding selecte.filename extension instead.
+                        image.SaveName = String.Format("{0}{1}",Path.GetFileNameWithoutExtension(Path.GetRandomFileName()),extension);
 
                         // Saving the new picture with its properties, from stored procedure i return the newly created Image primary key.
                         Service.SaveImage(image);
 
-                        // Sparar bilden på disk under ImageID, i SaveImage hackar jag även in extension till filnamn på disk.
-                        //image.SaveImage(selectedPic, image.ImageID);
-                        // Saving Image on Disk, using the save
-                        image.SaveImage(selectedPic, String.Format("{0}{1}", image.SaveName, extension));
+                        // Saving Image Stream and image saveName onto disk.
+                        image.SaveImage(selectedPic, image.SaveName);
 
-
-                        // sparar vilka kategetorier användare sagt att bilden ska tillhöra. Ett Anrop för varje kategori.
+                        // Saving what categories Image belong to, 1 SQL command for eatch Category. Parsing them as into and
                         foreach (var item in CheckBoxLisT.Items.Cast<ListItem>().Where(item => item.Selected))
                         {
                             var cat = new ImageDesc();
@@ -76,7 +72,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
                             cat.ImageID = image.ImageID;
                             Service.SaveImageDesc(cat);
                         }
-                        String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", ImageProp.ImgName, ImageProp.Year);
 
                         Page.SetTempData("Confirmation", String.Format("Bilden {0} har sparats", image.ImgName));
                         Response.RedirectToRoute("ImageList");

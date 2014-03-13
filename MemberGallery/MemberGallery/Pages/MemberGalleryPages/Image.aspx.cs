@@ -85,9 +85,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 if (remainingCategories == 0)
                 {
                     
-                    var savename = String.Format("{0}{1}", image.SaveName, image.Extension);
-                    
-                    image.DeleteImage(savename);
+                 
+                    image.DeleteImage(image.SaveName);
 
                 }
                 Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}{1}", image.ImgName, image.Extension));

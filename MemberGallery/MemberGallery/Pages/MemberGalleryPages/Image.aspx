@@ -8,7 +8,7 @@
 
     <asp:FormView ID="FormView" runat="server" DataKeyNames="ImageID" ItemType="MemberGallery.Model.Image" DefaultMode="ReadOnly" SelectMethod="FormView_GetItem" UpdateMethod="FormView_UpdateItem" DeleteMethod="FormView_DeleteItem">
         <ItemTemplate>
-            <asp:Image ID="Image" ImageUrl='<%# String.Format("~/Content/Pictures/{0}{1}", Item.SaveName,Item.Extension )%>' runat="server" Width="800" />
+            <asp:Image ID="Image" ImageUrl='<%# String.Format("~/Content/Pictures/{0}", Item.SaveName )%>' runat="server" Width="800" />
             <div>
                 <asp:Literal ID="Literal1" Text='<%#  String.Format("Bildnamn: {0}",Item.ImgName) %>' runat="server"></asp:Literal>
                 <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
@@ -20,7 +20,7 @@
             </div>
         </ItemTemplate>
         <EditItemTemplate>
-            <asp:Image ID="Image" ImageUrl='<%# String.Format("~/Content/Pictures/{0}{1}", Item.SaveName,Item.Extension )%>' runat="server" Width="800" />
+            <asp:Image ID="Image" ImageUrl='<%# String.Format("~/Content/Pictures/{0}", Item.SaveName )%>' runat="server" Width="800" />
             <div>
                 <asp:TextBox ID="ImgName" runat="server" Text='<%# BindItem.ImgName %>' MaxLength="20"></asp:TextBox>
                 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Update" Text="Spara" ValidationGroup="Update"></asp:LinkButton>

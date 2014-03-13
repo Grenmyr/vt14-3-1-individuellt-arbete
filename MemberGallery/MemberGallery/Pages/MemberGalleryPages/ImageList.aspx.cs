@@ -65,7 +65,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         image.SaveImage(selectedPic, image.SaveName);
 
                         // Creating a foreach loop that for eatch selected checkbox make a SQL call binding the image to that category. 
-                        // Forgott the reference but i googled this solution ;-)
+                        // Forgott the reference but i googled this solution ;-).
                         var cat = new ImageDesc();
                         foreach (var item in CheckBoxLisT.Items.Cast<ListItem>().Where(item => item.Selected))
                         {

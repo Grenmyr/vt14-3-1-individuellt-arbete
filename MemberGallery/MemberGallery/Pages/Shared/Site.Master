@@ -13,6 +13,7 @@
 <body>
     <div class="ContentList">
         <h1>Degerhamns Medlemsportal-- Detta är min Masterpage</h1>
+         
         <form id="form" runat="server">
             <asp:Panel ID="Panel1" runat="server" CssClass="Message">
                 <asp:Literal ID="Confirmation" runat="server" Visible="false"></asp:Literal>
@@ -20,6 +21,7 @@
 
             <div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"  ></asp:ContentPlaceHolder>
+                <a href="javascript:history.go(-1)">Föregående Sida</a>
                 <uc1:Categories runat="server" ID="Categories" Visible="true" />
             </div>
         </form>

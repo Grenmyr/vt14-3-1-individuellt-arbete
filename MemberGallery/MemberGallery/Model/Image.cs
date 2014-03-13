@@ -94,25 +94,26 @@ namespace MemberGallery.Model
                 // Kontrollerar om filtyp är äkta bild. Sparar sen bild/thumbnail med "ImageID.JPG/PNG" på disk.
                 using (var image = System.Drawing.Image.FromStream(stream))
                 {
-                    var fileName = "";
-                    if (image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid)
+                    //var fileName = "";
+                    if (image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Jpeg.Guid || image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid)
                     {
-                        fileName = String.Format("{0}.JPG", saveName);
+                        //fileName = String.Format("{0}.JPG", saveName);
+                        image.Save(Path.Combine(PhysicalUploadedImagesPath, saveName));
+
+                        using (var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
+                        {
+                            thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, saveName));
+                        }
                     }
-                    else if (   image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid)
-                    {
-                        fileName = String.Format("{0}.PNG", saveName);
-                    }
+                    //else if (   image.RawFormat.Guid == System.Drawing.Imaging.ImageFormat.Png.Guid)
+                    //{
+                    //    fileName = String.Format("{0}.PNG", saveName);
+                    //}
                     else
                     {
                         throw new ArgumentException("Filen är ej en bild av typen JPG eller PNG.");
                     }
-                        image.Save(Path.Combine(PhysicalUploadedImagesPath, fileName));
-              
-                    using (var thumbnail = image.GetThumbnailImage(60, 45, null, System.IntPtr.Zero))
-                    {
-                        thumbnail.Save(Path.Combine(PhysicalUploadedThumbNailPath, fileName));
-                    }
+                    
                 }
                
             }

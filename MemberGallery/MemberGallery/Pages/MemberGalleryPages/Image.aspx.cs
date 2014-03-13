@@ -64,6 +64,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
                    
                 }
                 Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | Redigerad: {1} | sparade.", image.ImgName, image.UpLoaded));
+                
+                //Page.SetPrevPage("PrevPage")
                 Response.RedirectToRoute("Image");
                 Context.ApplicationInstance.CompleteRequest();
                

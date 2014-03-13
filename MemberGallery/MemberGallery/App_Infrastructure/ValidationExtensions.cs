@@ -9,8 +9,8 @@ namespace MemberGallery
 {
     public static class ValidationExtensions
     {
-        // TODO: Implementera validering för mina object i service klass sen.
-        public static bool Validate<ImageDesc>(this ImageDesc instance, out ICollection<ValidationResult> validationResults)
+        // Extension method used to validate against my properties using data annotaions, works on all classes with data annotations on the properties.
+        public static bool Validate<Object>(this Object instance, out ICollection<ValidationResult> validationResults)
         {
             var validationContext = new ValidationContext(instance);
             validationResults = new List<ValidationResult>();

@@ -11,6 +11,7 @@ namespace MemberGallery.Pages.Shared
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // presenting Confirmation msg from all pages using pagextension.cs
             Confirmation.Text = Page.GetTempData("Confirmation") as string;
             Confirmation.Visible = !String.IsNullOrWhiteSpace(Confirmation.Text);
         }

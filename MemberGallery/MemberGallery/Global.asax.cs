@@ -15,7 +15,7 @@ namespace MemberGallery
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            // Could be wrong on  "using MemberGallery.App_Infrastructure;"
+            // Used to make my Routeconfig to work on all pages.
             RouteConfig.SetRoute(RouteTable.Routes);
         }
 

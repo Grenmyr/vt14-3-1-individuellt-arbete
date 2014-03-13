@@ -8,23 +8,19 @@ namespace MemberGallery.App_Infrastructure
 {
     public class RouteConfig
     {
-        // TODO : Ska lägga in RoutecConfig senare.
+        // TODO : Ska lägga in Error page senare.
 
-         //Extensionclass to "hide" page source. Using 2 atm error and Contact.
         public static void SetRoute(RouteCollection route)
         {
+            // Along with global.asx this routes are used to navigate on pages. First value is routename, second Name in browserfield, third is location and name of webforms name.
             route.MapPageRoute("error", "Error", "~/error.aspx");
     
             route.MapPageRoute("CategoriesList", "", "~/Pages/MemberGalleryPages/CategoryList.aspx");
             route.MapPageRoute("Default", "", "~/Pages/Shared/Categories.ascx");
-        
-            //route.MapPageRoute("Copy", "Bilder/{CategoryID}/{ImageID}", "~/MemberGalleryPages/Image.aspx");
-
-
             route.MapPageRoute("Categories", "Kategorier", "~/Pages/MemberGalleryPages/Categories.ascx");
+            // Sending using CategoryID and Image in this 2 pages browserfield.
             route.MapPageRoute("ImageList", "BildKategori/{CategoryID}", "~/Pages/MemberGalleryPages/ImageList.aspx");
             route.MapPageRoute("Image", "BildKategori/{CategoryID}/Bild/{ImageID}", "~/Pages/MemberGalleryPages/Image.aspx");
-           
         }
     }
 }

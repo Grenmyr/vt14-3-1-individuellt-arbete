@@ -24,52 +24,45 @@ namespace MemberGallery.Pages.MemberGalleryPages
             get { return _image ?? (_image = new MemberGallery.Model.Image()); }
 
         }
-        public string PrevPage
-        {
-            get
-            {
-                var message = Session["text"] as string;
-
-                return message;
-            }
-
-            set { Session["text"] = value; }
-        }
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+        // Method to return Image by ID. I collect ID using Routedata from Browser.
         public MemberGallery.Model.Image FormView_GetItem([RouteData] int ImageID)
         {
             return Service.GetImageByImageID(ImageID);
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        // Method that make SQL call that returns image by ID. Then
         public void FormView_UpdateItem(int ImageID)
         {
-            if (ModelState.IsValid)
-            {
-                var image = Service.GetImageByImageID(ImageID);
-                if (image == null)
-                {
-                    // The item wasn't found
-                    ModelState.AddModelError("", String.Format("Image with id {0} was not found", ImageID));
-                    return;
-                }
 
-                TryUpdateModel(image);
-                if (ModelState.IsValid)
-                {
-                    Service.SaveImage(image);
-                   
-                }
+            var image = Service.GetImageByImageID(ImageID);
+            if (image == null)
+            {
+                // The item wasn't found
+                ModelState.AddModelError("", String.Format("Image with id {0} was not found", ImageID));
+                return;
+            }
+
+            if (TryUpdateModel(image))
+            {
+                Service.SaveImage(image);
+
                 Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | Redigerad: {1} | sparade.", image.ImgName, image.UpLoaded));
-                
+
                 //Page.SetPrevPage("PrevPage")
                 Response.RedirectToRoute("Image");
                 Context.ApplicationInstance.CompleteRequest();
-               
             }
+
+            
+
+
+           
+
+
         }
 
 
@@ -84,15 +77,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 image = Service.GetImageByImageID(imageID);
                 if (remainingCategories == 0)
                 {
-                    
-                 
                     image.DeleteImage(image.SaveName);
 
                 }
                 Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}{1}", image.ImgName, image.Extension));
                 Response.RedirectToRoute("ImageList");
                 Context.ApplicationInstance.CompleteRequest();
-                    
+
             }
             catch (Exception)
             {

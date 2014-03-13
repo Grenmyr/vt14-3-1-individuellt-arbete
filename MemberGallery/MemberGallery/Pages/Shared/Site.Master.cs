@@ -13,7 +13,6 @@ namespace MemberGallery.Pages.Shared
         {
             Confirmation.Text = Page.GetTempData("Confirmation") as string;
             Confirmation.Visible = !String.IsNullOrWhiteSpace(Confirmation.Text);
-
         }
     }
 }

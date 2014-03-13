@@ -3,71 +3,47 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
- 
-        <h2>ImageList -- Här börjar min ContentPlaceholder</h2>
- 
-          
-            <%-- Listview generating images --%>
-            <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
-                SelectMethod="ImageListView_GetData" 
-                DataKeyNames="ImageID">
-                <LayoutTemplate>
 
-                    <h4>Kategorier-- Detta är min databas ImageList.aspx</h4>
-                    <div class ="ThumbList">
-                    <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
-                        </div>
-                </LayoutTemplate>
-                <ItemTemplate>
-                    <%--    THUMBNAIL with hyperlink to present picture  />--%>
-             <%--       <div>--%>
-                        <asp:HyperLink runat="server" Text='<%# string.Format("{0}", Item.ImgName ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}", Item.SaveName ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { CategoryID=Page.RouteData.Values["CategoryID"], ImageID = Item.ImageID })%>'></asp:HyperLink>
-      <%--                  <asp:Label ID="Label" runat="server" Text='<%# BindItem.ImgName %>'></asp:Label>--%>
-               <%--     </div>--%>
-                    <%--<div>
-                        <asp:LinkButton runat="server" CausesValidation="false" CommandName="Delete" Text="Radera"
-                            OnClientClick='<%# String.Format("return confirm(\"Ta bort bilden {0}?\")", Item.ImgName  ) %>'></asp:LinkButton>
-                        <asp:LinkButton runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
-                    </div>--%>
-                </ItemTemplate>
-                <%--<EditItemTemplate>
-                    <asp:HyperLink runat="server" Text='<%# string.Format("{0}{1}", Item.ImageID, Item.Extension ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}{1}", Item.ImageID, Item.Extension ) %>' NavigateUrl='<%# string.Format("{0}&name={1}{2}", GetRouteUrl("ImageList", Page.RouteData.Values["CategoryID"]), Item.ImageID,Item.Extension)  %>'></asp:HyperLink>
-
-                    <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="ImgName" Text="*"></asp:RequiredFieldValidator>
-                    <asp:TextBox ID="ImgName" runat="server" Text='<%# BindItem.ImgName %>' MaxLength="20"></asp:TextBox>
-                     
-                    <asp:LinkButton runat="server" CommandName="Update" Text="Spara" ValidationGroup="Update"></asp:LinkButton>
-                    <asp:LinkButton runat="server" CommandName="Cancel" Text="Ångra" CausesValidation="false"></asp:LinkButton>
-                </EditItemTemplate>--%>
-
-            </asp:ListView>
-
-            <div>
-                <asp:ValidationSummary ID="ValidationSummary" runat="server" />
-
-                <asp:FileUpload ID="Select" runat="server" />
-                <asp:RequiredFieldValidator runat="server" ErrorMessage="Ni måste först välja bild." ControlToValidate="Select" Display="None"></asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator Visible="false" runat="server" ErrorMessage="Bilden måste vara av typen jpg|png" ControlToValidate="Select" ValidationExpression="^.*\.(jpg|png|JPG|PNG)$"></asp:RegularExpressionValidator>     
-                <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="Static"></asp:RequiredFieldValidator>
-               
-                <asp:TextBox ID="PictureName" runat="server" MaxLength="20"></asp:TextBox>
-                <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
-                
+    <h2>ImageList -- Här börjar min ContentPlaceholder</h2>
 
 
-      
+    <%-- Listview generating images --%>
+    <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
+        SelectMethod="ImageListView_GetData"
+        DataKeyNames="ImageID">
+        <LayoutTemplate>
 
-                <asp:CustomValidator runat="server" ErrorMessage="En checkbox måste fyllas i." Display="None" OnServerValidate="CustomValidator_ServerValidate"></asp:CustomValidator>
-                <asp:CheckBoxList ID="CheckBoxLisT" runat="server" ItemType="MemberGallery.Model.Category"
-                    DataTextField="CategoryProp" DataValueField="CategoryID" SelectMethod="CategoryListView_GetData" CssClass="CheckBoxList">
-                </asp:CheckBoxList>
-
+            <h4>Kategorier-- Detta är min databas ImageList.aspx</h4>
+            <div class="ThumbList">
+                <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </div>
-            <asp:HyperLink ID="HyperLink" runat="server" Text="Till ända/Lägg till kategorier"
-                NavigateUrl='<%$ RouteUrl:routename=Default %>'></asp:HyperLink>
-     
+        </LayoutTemplate>
+        <ItemTemplate>
+            <%--    THUMBNAIL with hyperlink to present picture in image.aspx />--%>
+            <asp:HyperLink runat="server" Text='<%# string.Format("{0}", Item.ImgName ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}", Item.SaveName ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { CategoryID=Page.RouteData.Values["CategoryID"], ImageID = Item.ImageID })%>'></asp:HyperLink>
+        </ItemTemplate>
+    </asp:ListView>
+    <div>
+        <%-- ValidationSummary catching all Errors  --%>
+        <asp:ValidationSummary ID="ValidationSummary" runat="server" />
 
+        <%-- FileupLoad button, with 2 Controls validating extension and that a file is selected. TODO: change property of Select button to swedish. --%>
+        <asp:FileUpload ID="Select" runat="server" ToolTip="Välj bild" />
+        <asp:RequiredFieldValidator runat="server" ErrorMessage="Ni måste först välja bild." ControlToValidate="Select" Display="none"></asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator runat="server" Display="None" ErrorMessage="Bild måste vara av filformat .JPG eller .PNG" ValidationExpression="^.*\.(jpg|png|PNG|JPG)$" ControlToValidate="Select"></asp:RegularExpressionValidator>
 
+        <%-- Textbox to Choose Name to present picture with. --%>
+        <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="none"></asp:RequiredFieldValidator>
+        <asp:TextBox ID="PictureName" runat="server" MaxLength="20"></asp:TextBox>
+        <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
 
-    <%-- Here starts part contecrning upload new images. --%>
+        <%-- Checkboxlist using Selectmethod to load available Categories.Presenting users option to save Image into serveral Categories. --%>
+        <asp:CustomValidator runat="server" ErrorMessage="En checkbox måste fyllas i." Display="None" OnServerValidate="CustomValidator_ServerValidate"></asp:CustomValidator>
+        <asp:CheckBoxList ID="CheckBoxLisT" runat="server" ItemType="MemberGallery.Model.Category"
+            DataTextField="CategoryProp" DataValueField="CategoryID" SelectMethod="CategoryListView_GetData" CssClass="CheckBoxList">
+        </asp:CheckBoxList>
+    </div>
+    <%-- Hyperlink to Edit/Delete Categories. --%>
+    <asp:HyperLink ID="HyperLink" runat="server" Text="Till ända/Lägg till kategorier"
+        NavigateUrl='<%$ RouteUrl:routename=Default %>'></asp:HyperLink>
 </asp:Content>

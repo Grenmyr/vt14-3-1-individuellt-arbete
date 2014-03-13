@@ -64,7 +64,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         // Saving Image Stream and image saveName onto disk.
                         image.SaveImage(selectedPic, image.SaveName);
 
-                        // Saving what categories Image belong to, 1 SQL command for eatch Category. Parsing them as into and
+                        // Creating a foreach loop that for eatch selected checkbox make a SQL call binding the image to that category. 
+                        // Forgott the reference but i googled this solution ;-)
                         foreach (var item in CheckBoxLisT.Items.Cast<ListItem>().Where(item => item.Selected))
                         {
                             var cat = new ImageDesc();
@@ -90,53 +91,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             return Service.GetCategories();
         }
-
-        // The id parameter name should match the DataKeyNames value set on the control.
-        //public void ImageListView_DeleteItem(int imageID, [RouteData] short CategoryID)
-        //{
-        //    // Anropar Lagrad procedur och ta bort från bilden från kategorin. 
-        //    //Retunerar en out parameter som är en count på hur många katerier som är kvar. om 0 så går jag in i IF satsen och tar även bort fil från disk.
-        //    try
-        //    {
-        //        var remainingCategories = Service.DeleteImage(imageID, CategoryID);
-        //        if (remainingCategories == 0)
-        //        {
-        //            var image = Service.GetImageByImageID(imageID);    
-        //            var savename = String.Format("{0}{1}", image.SaveName, image.Extension);
-
-        //            ImageProp.DeleteImage(savename);       
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Raderas.");
-        //    }
-
-        //}
-
-        // The id parameter name should match the DataKeyNames value set on the control
-        //public void ImageListView_UpdateItem(int ImageID)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var image = Service.GetImageByImageID(ImageID);
-        //        if (image == null)
-        //        {
-        //            // The item wasn't found
-        //            ModelState.AddModelError("", String.Format("Image with id {0} was not found", ImageID));
-        //            return;
-        //        }
-
-        //        TryUpdateModel(image);
-        //        if (ModelState.IsValid)
-        //        {
-        //            Service.SaveImage(image);
-        //        }
-        //        Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna | Bildnamn: {0} | | År: {1} |sparade.", ImageProp.ImgName, ImageProp.Year));
-        //        Response.RedirectToRoute("ImageList");
-        //        Context.ApplicationInstance.CompleteRequest();
-        //    }
-        //}
 
         // Method from Custovalidator validating checkboxlist. If any checked boxes, it is set to true, else false. Used to prevent saving Images without choosing category.
         protected void CustomValidator_ServerValidate(object source, ServerValidateEventArgs args)

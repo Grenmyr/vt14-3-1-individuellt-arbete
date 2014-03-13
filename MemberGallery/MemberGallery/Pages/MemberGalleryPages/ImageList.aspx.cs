@@ -77,7 +77,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         // Message saved in Extension method.
                         Page.SetTempData("Confirmation", String.Format("Bilden {0} har sparats", image.ImgName));
                         // TODO: Want to redirect to uploaded pages category.
-                        Response.RedirectToRoute("ImageList", new object { CategoryID = cat.CategoryID });
+                        Response.RedirectToRoute("ImageList", new  { CategoryID = cat.CategoryID });
                         Context.ApplicationInstance.CompleteRequest();
                     }
                     catch (Exception)

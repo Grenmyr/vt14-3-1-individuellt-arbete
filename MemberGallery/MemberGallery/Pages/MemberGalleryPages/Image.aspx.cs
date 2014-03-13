@@ -34,7 +34,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             return Service.GetImageByImageID(ImageID);
         }
 
-        // Method that make SQL call that returns image by ID. Then
+        // Method that make SQL call that returns image by ID.
         public void FormView_UpdateItem(int ImageID)
         {
 

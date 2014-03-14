@@ -4,21 +4,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
-    <h2>ImageList -- Här börjar min ContentPlaceholder</h2>
-
-
     <%-- Listview generating images --%>
-    <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
+    <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image" 
         SelectMethod="ImageListView_GetData"
         DataKeyNames="ImageID">
         <LayoutTemplate>
-
-            <h4>Kategorier-- Detta är min databas ImageList.aspx</h4>
             <div class="ThumbList">
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </div>
         </LayoutTemplate>
         <ItemTemplate>
+        
             <%--    THUMBNAIL with hyperlink to present picture in image.aspx />--%>
             <asp:HyperLink runat="server" Text='<%# string.Format("{0}", Item.ImgName ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}", Item.SaveName ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { CategoryID=Page.RouteData.Values["CategoryID"], ImageID = Item.ImageID })%>'></asp:HyperLink>
         </ItemTemplate>

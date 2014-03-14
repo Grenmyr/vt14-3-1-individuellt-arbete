@@ -31,7 +31,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // Method to return Image by ID. I collect ID using Routedata from Browser.
         public MemberGallery.Model.Image FormView_GetItem([RouteData] int ImageID)
         {
-            return Service.GetImageByImageID(ImageID);
+             
+
+            return Service.GetImageByImageID(ImageID); 
         }
 
         // Method that make SQL call that returns image by ID.
@@ -80,6 +82,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 ModelState.AddModelError(String.Empty, "Fel inträffade när Kategori skulle Raderas.");
             }
 
+        }
+
+        // The id parameter should match the DataKeyNames value set on the control
+        // or be decorated with a value provider attribute, e.g. [QueryString]int id
+        public object CategoryFormView_GetCategoryByID([RouteData] int CategoryID)
+        {
+            return Service.GetCategoryByCategoryID(CategoryID);
         }
     }
 }

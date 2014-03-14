@@ -90,7 +90,7 @@ namespace MemberGallery.Model
             }
             else
             {
-                CategoryDAL.UpdateContact(category);
+                CategoryDAL.UpdateCategory(category);
             }
         }
         // Method to generate all categories from my Category Table
@@ -104,9 +104,9 @@ namespace MemberGallery.Model
             return CategoryDAL.GetCategoryByCategoryID(CategoryID);
         }
         // Method to delete my Category by CategoryID.
-        public void DeleteCategory(int categoryID)
+        public int DeleteCategory(int categoryID)
         {
-            CategoryDAL.DeleteCategory(categoryID);
+            return CategoryDAL.DeleteCategory(categoryID);
         }
     }
 }

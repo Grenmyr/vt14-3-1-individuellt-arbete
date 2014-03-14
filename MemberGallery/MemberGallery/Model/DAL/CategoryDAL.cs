@@ -49,13 +49,13 @@ namespace MemberGallery.Model.DAL
         }
 
         // Changing CategoryName field by sending in Value and ID to Category Table.
-        public void UpdateContact(Category category)
+        public void UpdateCategory(Category category)
         {
             try
             {
                 using (SqlConnection conn = CreateConnection())
                 {
-                    SqlCommand cmd = new SqlCommand("AppSchema.UpdateContact", conn);
+                    SqlCommand cmd = new SqlCommand("AppSchema.UpdateCategory", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@ContactID", SqlDbType.Int, 4).Value = category.CategoryID;
@@ -72,13 +72,14 @@ namespace MemberGallery.Model.DAL
             }
         }
 
+        // Saving new Category and returning new categoryID as out parameter. At this stage i don't use the out parameter.
         public void InsertContact(Category category)
         {
             using (SqlConnection conn = CreateConnection())
             {
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("AppSchema.SaveContact", conn);
+                    SqlCommand cmd = new SqlCommand("AppSchema.SaveCategory", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@Category", SqlDbType.VarChar, 50).Value = category.CategoryProp;
@@ -96,6 +97,7 @@ namespace MemberGallery.Model.DAL
             }
         }
 
+        // Get a catery by ID.
         public Category GetCategoryByCategoryID(int categoryID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -132,7 +134,8 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        public void DeleteCategory(int categoryID)
+        // Deleting Categories, it returns a Count parameter, that if Categori
+        public int DeleteCategory(int categoryID)
         {
             using (SqlConnection conn = CreateConnection())
             {
@@ -142,10 +145,13 @@ namespace MemberGallery.Model.DAL
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Value = categoryID;
+                    cmd.Parameters.Add("@Count", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+
                     conn.Open();
                     cmd.ExecuteNonQuery();
+                    return (int)cmd.Parameters["@Count"].Value;
                 }
-                catch
+                catch (Exception)
                 {
                     throw new ApplicationException("Ett fel har skett i DAL när borttagning av kategori skulle ske.");
                 }

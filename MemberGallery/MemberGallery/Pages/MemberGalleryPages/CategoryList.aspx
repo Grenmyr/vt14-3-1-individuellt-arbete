@@ -11,7 +11,7 @@
     <div class="ContentList">
         <%-- ValidationSummary för de 2 olika validationgrupperna. Samt Rättmeddelande under. --%>
         <asp:ValidationSummary ID="ValidationSummary" ValidationGroup="Insert" runat="server" />
-        <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Update" runat="server" />
+        <%--<asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Update" runat="server" />--%>
 
         <%-- Listview With Methods to initialize Code --%>
         <asp:ListView ItemType="MemberGallery.Model.Category" runat="server" ID="CategoryListView"

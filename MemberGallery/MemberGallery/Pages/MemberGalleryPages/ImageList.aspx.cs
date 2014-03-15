@@ -15,7 +15,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
     public partial class ImageList : System.Web.UI.Page
     {
         private MemberGallery.Model.Image _image;
-        // Property to return a Image reference, if null create new one...
+        // Property to return a Image reference, if null create new one....
         private MemberGallery.Model.Image ImageProp
         {
             get { return _image ?? (_image = new MemberGallery.Model.Image()); }

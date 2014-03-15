@@ -1,6 +1,9 @@
 ﻿/*Style by type.*/
 body {
     font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    background-image:url(Pics/pattern.jpg)
+}
+Html {
 }
 
 body, a {
@@ -28,6 +31,7 @@ table {
     border: 3px solid;
     border-radius: 5px 5px 5px 5px;
     margin: auto;
+    background-color:#eee;
 }
 
 h1, h2, h3, h4 {
@@ -66,6 +70,8 @@ h1, h2, h3, h4 {
 
 
 .checkboxArea {
+   margin-left: 20%;
+   text-align:center;
 }
 
 .EditCategories {
@@ -96,4 +102,8 @@ table, input {
 
 .ImageCat {
     margin: auto;
+}
+
+.clear {
+    clear: both;
 }

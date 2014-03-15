@@ -13,7 +13,7 @@ namespace MemberGallery.App_Infrastructure
         public static void SetRoute(RouteCollection route)
         {
             // Along with global.asx this routes are used to navigate on pages. First value is routename, second Name in browserfield, third is location and name of webforms name.
-            route.MapPageRoute("error", "Error", "~/error.aspx");
+            route.MapPageRoute("error", "Error", "~/Error.aspx");
     
             route.MapPageRoute("CategoriesList", "", "~/Pages/MemberGalleryPages/CategoryList.aspx");
             route.MapPageRoute("Default", "", "~/Pages/Shared/Categories.ascx");

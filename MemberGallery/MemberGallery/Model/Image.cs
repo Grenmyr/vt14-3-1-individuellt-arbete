@@ -19,12 +19,9 @@ namespace MemberGallery.Model
         [StringLength(20, ErrorMessage = "Bildnamn kan max vara 20 tecken långt.")]
         public string ImgName { get; set; }
 
-        [DataType(DataType.Date, ErrorMessage = "Felaktig Datatyp för Datum.")]
         [Required(ErrorMessage = "Datum får ej lämnas tomt.")]
         public DateTime UpLoaded { get; set; }
 
-
-        [DataType(DataType.Date, ErrorMessage = "Felaktig Datatyp för Datum.")]
         public DateTime Year { get; set; }
 
         [StringLength(12, ErrorMessage = "Savename kan max vara 12 tecken långt.")]

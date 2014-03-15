@@ -87,7 +87,6 @@
     <Compile Include="Model\DAL\DALBase.cs" />
     <Compile Include="Model\DAL\ImageDAL.cs" />
     <Compile Include="Model\DAL\ImageDescDAL.cs" />
-    <Compile Include="Model\DAL\PathBase.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\ImageDesc.cs" />
     <Compile Include="Model\Service.cs" />

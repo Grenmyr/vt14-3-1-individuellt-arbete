@@ -73,7 +73,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             try
             {
-                Service.DeleteCategory(categoryID);
+                var imageCount = Service.DeleteCategory(categoryID);
+                if (imageCount != 0)
+                {
+                    ModelState.AddModelError(String.Empty, "Kategori kan ej tas bort så länge bilder finns i kategorin.");
+                }
             }
             catch (Exception)
             {

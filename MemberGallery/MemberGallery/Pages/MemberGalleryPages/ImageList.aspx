@@ -34,7 +34,7 @@
 
         <%-- Textbox to Choose Name to present picture with. --%>
         <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="none"></asp:RequiredFieldValidator>
-        <asp:TextBox ID="PictureName" runat="server" MaxLength="20"></asp:TextBox>
+        <asp:TextBox ID="PictureName" runat="server" MaxLength="20" text="Bildnamn" ></asp:TextBox>
         <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
 
         <%-- Checkboxlist using Selectmethod to load available Categories.Presenting users option to save Image into serveral Categories. --%>

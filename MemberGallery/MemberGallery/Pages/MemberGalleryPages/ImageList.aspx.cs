@@ -29,6 +29,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
       
         protected void Page_Load(object sender, EventArgs e)
         {
+            PictureName.Focus();
         }
         // Method to load all images from selected Category ID..
         public IEnumerable<MemberGallery.Model.Image> ImageListView_GetData([RouteData] short CategoryID)

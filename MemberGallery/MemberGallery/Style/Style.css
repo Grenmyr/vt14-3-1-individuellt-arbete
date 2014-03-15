@@ -38,26 +38,47 @@ h1, h2, h3, h4 {
     overflow-x: auto;
 }
 
+
+/*Style to Imagelist.aspx*/
 .ThumbList {
     overflow-x: auto;
 }
-/*Style to Imagelist.aspx*/
+
+.ThumbList, img {
+    overflow-x: auto;
+      border-radius: 5px 5px 5px 5px;
+      margin:5px;
+}
+
+.ThumbList img:hover {
+     	box-shadow: 0 10px 6px rgba(0,0,0,.8);
+    
+}
+
+
 #ContentPlaceHolder_CheckBoxLisT {
     float: left;
     margin-bottom: 10px;
+    border-radius: initial;
+    border: initial;
+    box-shadow: none;
 }
+
 
 .checkboxArea {
 }
 
 .EditCategories {
-    margin-bottom:20px;
-    margin-top:20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+table, input {
 }
 
 /* Style Categories.ascx NAV*/
 .Categories {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     overflow-x: auto;
     text-align: center;
 }

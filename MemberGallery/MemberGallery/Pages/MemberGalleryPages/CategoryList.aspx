@@ -9,7 +9,7 @@
   
         <%-- ValidationSummary for update and insert --%>
         <asp:ValidationSummary ID="ValidationSummary" ValidationGroup="Insert" runat="server" />
-        <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Update" runat="server" />
+        <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Update" runat="server" ShowModelStateErrors="False" />
 
         <%-- Listview With Methods to initialize Code --%>
         <asp:ListView ItemType="MemberGallery.Model.Category" runat="server" ID="CategoryListView"

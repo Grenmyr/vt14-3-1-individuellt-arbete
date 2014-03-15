@@ -22,7 +22,7 @@
             
     <div class="EditCategories">          
     <%-- Hyperlink to Edit/Delete Categories. --%>
-    <asp:HyperLink ID="HyperLink" runat="server" Text="Till ända/Lägg till kategorier"
+    <asp:HyperLink ID="HyperLink" runat="server" Text="Gå till Kategorier"
         NavigateUrl='<%$ RouteUrl:routename=Default %>'></asp:HyperLink>
         </div> 
 
@@ -37,7 +37,7 @@
 
         <%-- Textbox to Choose Name to present picture with. --%>
         <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="none"></asp:RequiredFieldValidator>
-        <asp:TextBox ID="PictureName" runat="server" MaxLength="20" text="Bildnamn" ></asp:TextBox>
+        <asp:TextBox ID="PictureName" runat="server" MaxLength="20"  ToolTip="Fyll i Bildnamn"></asp:TextBox>
         <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
     <div class="checkboxArea">
         <%-- Checkboxlist using Selectmethod to load available Categories.Presenting users option to save Image into serveral Categories. --%>

@@ -9,6 +9,7 @@
         <LayoutTemplate>
 
             <h4>Kategorier</h4>
+
             <div class="ThumbList">
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </div>
@@ -19,13 +20,17 @@
         </ItemTemplate>
     </asp:ListView>
             
-    <div>
+    <div class="EditCategories">          
+    <%-- Hyperlink to Edit/Delete Categories. --%>
+    <asp:HyperLink ID="HyperLink" runat="server" Text="Till ända/Lägg till kategorier"
+        NavigateUrl='<%$ RouteUrl:routename=Default %>'></asp:HyperLink>
+        </div> 
 
         <%-- ValidationSummary catching all Errors  --%>
         <asp:ValidationSummary ID="ValidationSummary" runat="server" />
 
         <%-- FileupLoad button, with 2 Controls validating extension and that a file is selected. TODO: change property of Select button to swedish. --%>
-
+     <div class="checkboxArea">
         <asp:FileUpload ID="Select" runat="server" ToolTip="Välj bild" />
         <asp:RequiredFieldValidator runat="server" ErrorMessage="Ni måste först välja bild." ControlToValidate="Select" Display="none"></asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator runat="server" Display="None" ErrorMessage="Bild måste vara av filformat .JPG eller .PNG" ValidationExpression="^.*\.(jpg|png|PNG|JPG)$" ControlToValidate="Select"></asp:RegularExpressionValidator>
@@ -34,7 +39,7 @@
         <asp:RequiredFieldValidator runat="server" ErrorMessage="Bildnamn fältet får ej lämnas tomt." ControlToValidate="PictureName" Display="none"></asp:RequiredFieldValidator>
         <asp:TextBox ID="PictureName" runat="server" MaxLength="20" text="Bildnamn" ></asp:TextBox>
         <asp:Button ID="UploadButton" runat="server" Text="Ladda upp bild" OnClick="UploadButton_Click" />
-
+   
         <%-- Checkboxlist using Selectmethod to load available Categories.Presenting users option to save Image into serveral Categories. --%>
         <asp:CustomValidator runat="server" ErrorMessage="En checkbox måste fyllas i." Display="None" OnServerValidate="CustomValidator_ServerValidate"></asp:CustomValidator>
         <asp:CheckBoxList ID="CheckBoxLisT" runat="server" ItemType="MemberGallery.Model.Category"
@@ -42,8 +47,5 @@
         </asp:CheckBoxList>
 
     </div>
-                
-    <%-- Hyperlink to Edit/Delete Categories. --%>
-    <asp:HyperLink ID="HyperLink" runat="server" Text="Till ända/Lägg till kategorier"
-        NavigateUrl='<%$ RouteUrl:routename=Default %>'></asp:HyperLink>
+     
 </asp:Content>

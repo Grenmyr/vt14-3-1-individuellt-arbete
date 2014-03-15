@@ -1,23 +1,30 @@
 ﻿/*Style by type.*/
 body {
-        font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
-body,a {
-    color:grey;
-       font-size:1.1em;
+
+body, a {
+    color: grey;
+    font-size: 1.1em;
 }
-body,a:hover {
-    color:black;
-    font-size:1.1em;
- 
-}
+
+    body, a:hover {
+        color: black;
+        font-size: 1.1em;
+    }
+
 body {
-  text-align:center;
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    text-align: left;
 }
 
 .ContentList {
     max-width: 850px;
-    margin-left:5px;
+    margin-left: 5px;
     border: 3px solid;
     border-radius: 5px 5px 5px 5px;
     margin: auto;
@@ -35,28 +42,37 @@ h1, h2, h3, h4 {
     overflow-x: auto;
 }
 /*Style to Imagelist.aspx*/
-#CheckBoxLisT {
+#ContentPlaceHolder_CheckBoxLisT {
+    float: left;
+    margin-bottom: 10px;
+}
 
+.checkboxArea {
+}
+
+.EditCategories {
+    margin-bottom:20px;
+    margin-top:20px;
 }
 
 /* Style Categories.ascx NAV*/
 .Categories {
-    margin-bottom: 50px;
-    overflow-x:auto;
-    text-align:center;
- 
-
+    margin-bottom: 10px;
+    overflow-x: auto;
+    text-align: center;
 }
+
 .Categories, a {
-    margin-left:20px;
+    margin-left: 20px;
 }
 /*Style for Image*/
 #ContentPlaceHolder_CategoryFormView_ReturnThumbnails {
-    float:right;
+    float: right;
 }
-#Image {
 
+#Image {
 }
+
 .ImageCat {
-    margin:auto;
+    margin: auto;
 }

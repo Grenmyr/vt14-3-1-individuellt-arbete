@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
     <h2>Bildkategorier</h2>
-
+<div class="Categories">
     <%-- Gamla över här --%>
   
         <%-- ValidationSummary for update and insert --%>
@@ -83,5 +83,5 @@
             </EditItemTemplate>
         </asp:ListView>
 
-
+    </div>
 </asp:Content>

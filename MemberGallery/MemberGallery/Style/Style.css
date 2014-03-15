@@ -1,8 +1,23 @@
-﻿body {
+﻿/*Style by type.*/
+body {
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+}
+body,a {
+    color:grey;
+       font-size:1.1em;
+}
+body,a:hover {
+    color:black;
+    font-size:1.1em;
+ 
+}
+body {
+  text-align:center;
 }
 
 .ContentList {
     max-width: 850px;
+    margin-left:5px;
     border: 3px solid;
     border-radius: 5px 5px 5px 5px;
     margin: auto;
@@ -34,4 +49,14 @@ h1, h2, h3, h4 {
 }
 .Categories, a {
     margin-left:20px;
+}
+/*Style for Image*/
+#ContentPlaceHolder_CategoryFormView_ReturnThumbnails {
+    float:right;
+}
+#Image {
+
+}
+.ImageCat {
+    margin:auto;
 }

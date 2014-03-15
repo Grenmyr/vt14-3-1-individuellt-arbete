@@ -6,7 +6,7 @@
     <h2>Bildkategorier</h2>
 
     <%-- Gamla över här --%>
-    <div class="ContentList">
+  
         <%-- ValidationSummary for update and insert --%>
         <asp:ValidationSummary ID="ValidationSummary" ValidationGroup="Insert" runat="server" />
         <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Update" runat="server" />
@@ -82,6 +82,6 @@
                 </tr>
             </EditItemTemplate>
         </asp:ListView>
-    </div>
+
 
 </asp:Content>

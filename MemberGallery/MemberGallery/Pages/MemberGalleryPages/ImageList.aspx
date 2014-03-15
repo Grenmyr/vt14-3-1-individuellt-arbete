@@ -2,15 +2,13 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
-    <h2>ImageList -- Här börjar min ContentPlaceholder</h2>
-
     <%-- Listview generating images --%>
     <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
         SelectMethod="ImageListView_GetData"
         DataKeyNames="ImageID">
         <LayoutTemplate>
 
-            <h4>Kategorier-- Detta är min databas ImageList.aspx</h4>
+            <h4>Kategorier</h4>
             <div class="ThumbList">
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </div>

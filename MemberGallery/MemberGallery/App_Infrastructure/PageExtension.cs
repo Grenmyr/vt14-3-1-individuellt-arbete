@@ -7,7 +7,7 @@ using System.Web.UI;
 
 namespace MemberGallery
 {
-    //Masterpage to handle Session messages.
+    //PageExtension used in masterpage to handle Session messages.
     public static class PageExtension
     {
         public static object GetTempData(this Page page, string key)

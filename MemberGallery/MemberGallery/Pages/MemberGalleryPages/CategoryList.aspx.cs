@@ -17,12 +17,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
             get { return _service ?? (_service = new Service()); }
         }
        
-     
         protected void Page_Load(object sender, EventArgs e)
         {
            
         }
-       
+       // Method to add Categories. Binding item categoryName to my Category objekt.
         public void  CategoryListView_InsertItem(Category category)
         {
             if (ModelState.IsValid)
@@ -41,12 +40,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 }
             }
         }
+        // Full list of categories.
         public IEnumerable<Category> CategoryListView_GetData()
         {
             return Service.GetCategories();
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        // Method to get category object by ID and then another to update it.
         public void CategoryListView_UpdateItem(int categoryID)
         {
            
@@ -68,7 +68,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 Context.ApplicationInstance.CompleteRequest();
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        // Method to delete Categories by ID, however in stored procedure i can only delete if no images left. So It return INt parameter, and if !0 i present msg.
         public void CategoryListView_DeleteItem(int categoryID)
         {
             try

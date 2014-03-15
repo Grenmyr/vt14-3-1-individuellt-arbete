@@ -105,9 +105,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 args.IsValid = false;
             }
         }
-
-      
-
     }
 
 }

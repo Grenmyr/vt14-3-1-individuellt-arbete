@@ -1,15 +1,13 @@
 ﻿<%@ Page Title="Galleri översikt" Language="C#" MasterPageFile="~/Pages/Shared/Site.Master" AutoEventWireup="true" CodeBehind="CategoryList.aspx.cs" Inherits="MemberGallery.Pages.MemberGalleryPages.CategoryList" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%-- Kod här --%>
-</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <%-- Kod här --%>
+
     <h2>Bildkategorier</h2>
 
     <%-- Gamla över här --%>
     <div class="ContentList">
-        <%-- ValidationSummary för de 2 olika validationgrupperna. Samt Rättmeddelande under. --%>
+        <%-- ValidationSummary for update and insert --%>
         <asp:ValidationSummary ID="ValidationSummary" ValidationGroup="Insert" runat="server" />
         <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="Update" runat="server" />
 

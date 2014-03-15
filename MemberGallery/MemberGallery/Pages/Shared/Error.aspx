@@ -3,7 +3,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <div class="errorMSG">
         <p>
-            Vi är beklagar att ett fel inträffade och vi inte kunde hantera din förfrågan.
+            Ett oväntat fel inträffade, Försök igen.
         </p>
         <p>
             <a id="A1" href='<%$ RouteUrl:routename=Default %>' runat="server">Tillbaka till Kategorier</a>

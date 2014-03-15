@@ -1,11 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/Shared/Site.Master" AutoEventWireup="true" CodeBehind="ImageList.aspx.cs" Inherits="MemberGallery.Pages.MemberGalleryPages.ImageList" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
     <h2>ImageList -- Här börjar min ContentPlaceholder</h2>
-
 
     <%-- Listview generating images --%>
     <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"

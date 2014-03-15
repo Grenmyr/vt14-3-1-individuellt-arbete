@@ -13,7 +13,6 @@ namespace MemberGallery.Model.DAL
         {
             using (var conn = CreateConnection())
             {
-
                 try
                 {
                     var categories = new List<Category>(100);
@@ -134,7 +133,7 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        // Deleting Categories, it returns a Count parameter, that if Categori
+        // Deleting Categories, it returns a Count parameter on how many images that is in the category. If more then 0 i prenset msg in code behind.
         public int DeleteCategory(int categoryID)
         {
             using (SqlConnection conn = CreateConnection())

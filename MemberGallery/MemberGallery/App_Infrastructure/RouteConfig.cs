@@ -8,8 +8,6 @@ namespace MemberGallery.App_Infrastructure
 {
     public class RouteConfig
     {
-        // TODO : Ska lägga in Error page senare.
-
         public static void SetRoute(RouteCollection route)
         {
             // Along with global.asx this routes are used to navigate on pages. First value is routename, second Name in browserfield, third is location and name of webforms name.

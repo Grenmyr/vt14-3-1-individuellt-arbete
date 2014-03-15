@@ -21,6 +21,7 @@ namespace MemberGallery.Pages.Shared
         {
 
         }
+        // Get full list of All categories.
         public IEnumerable<Category> CategoryListView_GetData()
         {
             return Service.GetCategories();

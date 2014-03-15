@@ -1,6 +1,8 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MemberGallery.Pages.Shared.Site" ViewStateMode="Disabled" %>
 
 <%@ Register Src="~/Pages/Shared/Categories.ascx" TagPrefix="uc1" TagName="Categories" %>
+<%@ Register Src="~/Pages/Shared/Upload.ascx" TagPrefix="uc1" TagName="Upload" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,7 +22,7 @@
             </asp:Panel>
             <div>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"  ></asp:ContentPlaceHolder>
-               
+                <uc1:Upload runat="server" id="Upload" />
                 <uc1:Categories runat="server" ID="Categories" Visible="true" />
             </div>
         </form>

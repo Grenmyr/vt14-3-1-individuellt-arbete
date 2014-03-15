@@ -49,7 +49,7 @@
            
             </asp:PlaceHolder>
          <%-- Button to show uploadplaceholder. --%>
-                <asp:Button ID="ShowUpload" runat="server" Text="Ladda upp bilder." OnClick="ShowUpload_Click" />
+             
     </div>
                 
     <%-- Hyperlink to Edit/Delete Categories. --%>

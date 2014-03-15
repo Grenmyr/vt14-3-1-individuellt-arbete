@@ -25,7 +25,7 @@
     </asp:ListView>
             
     <div>
-        <asp:PlaceHolder ID="UploadPlaceholder" runat="server" Visible="true">
+
         <%-- ValidationSummary catching all Errors  --%>
         <asp:ValidationSummary ID="ValidationSummary" runat="server" />
 
@@ -46,10 +46,6 @@
             DataTextField="CategoryProp" DataValueField="CategoryID" SelectMethod="CategoryListView_GetData" CssClass="CheckBoxList">
         </asp:CheckBoxList>
 
-           
-            </asp:PlaceHolder>
-         <%-- Button to show uploadplaceholder. --%>
-             
     </div>
                 
     <%-- Hyperlink to Edit/Delete Categories. --%>

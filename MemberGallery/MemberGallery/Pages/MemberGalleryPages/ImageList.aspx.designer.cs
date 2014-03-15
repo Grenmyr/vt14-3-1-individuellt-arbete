@@ -31,15 +31,6 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
         
         /// <summary>
-        /// UploadPlaceholder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder UploadPlaceholder;
-        
-        /// <summary>
         /// Select control.
         /// </summary>
         /// <remarks>
@@ -74,15 +65,6 @@ namespace MemberGallery.Pages.MemberGalleryPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxLisT;
-        
-        /// <summary>
-        /// ShowUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ShowUpload;
         
         /// <summary>
         /// HyperLink control.

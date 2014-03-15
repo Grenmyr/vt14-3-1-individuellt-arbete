@@ -105,10 +105,5 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 args.IsValid = false;
             }
         }
-
-        protected void ShowUpload_Click(object sender, EventArgs e)
-        {
-            UploadPlaceholder.Visible = true;
-        }
     }
 }

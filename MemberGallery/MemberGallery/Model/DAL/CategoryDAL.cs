@@ -8,7 +8,7 @@ using System.Web;
 namespace MemberGallery.Model.DAL
 {
     public class CategoryDAL : DALBase
-    {   // Get all Categories from Category table.
+    {   // Get all Categories from Category table....
         public IEnumerable<Category> GetCategories()
         {
             using (var conn = CreateConnection())

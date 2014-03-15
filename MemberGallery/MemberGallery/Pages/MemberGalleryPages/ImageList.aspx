@@ -23,11 +23,14 @@
             <asp:HyperLink runat="server" Text='<%# string.Format("{0}", Item.ImgName ) %>' ImageUrl='<%# string.Format("~/Content/Thumbnails/{0}", Item.SaveName ) %>' NavigateUrl='<%# GetRouteUrl("Image", new { CategoryID=Page.RouteData.Values["CategoryID"], ImageID = Item.ImageID })%>'></asp:HyperLink>
         </ItemTemplate>
     </asp:ListView>
+            
     <div>
+        <asp:PlaceHolder ID="UploadPlaceholder" runat="server" Visible="true">
         <%-- ValidationSummary catching all Errors  --%>
         <asp:ValidationSummary ID="ValidationSummary" runat="server" />
 
         <%-- FileupLoad button, with 2 Controls validating extension and that a file is selected. TODO: change property of Select button to swedish. --%>
+
         <asp:FileUpload ID="Select" runat="server" ToolTip="Välj bild" />
         <asp:RequiredFieldValidator runat="server" ErrorMessage="Ni måste först välja bild." ControlToValidate="Select" Display="none"></asp:RequiredFieldValidator>
         <asp:RegularExpressionValidator runat="server" Display="None" ErrorMessage="Bild måste vara av filformat .JPG eller .PNG" ValidationExpression="^.*\.(jpg|png|PNG|JPG)$" ControlToValidate="Select"></asp:RegularExpressionValidator>
@@ -42,7 +45,13 @@
         <asp:CheckBoxList ID="CheckBoxLisT" runat="server" ItemType="MemberGallery.Model.Category"
             DataTextField="CategoryProp" DataValueField="CategoryID" SelectMethod="CategoryListView_GetData" CssClass="CheckBoxList">
         </asp:CheckBoxList>
+
+           
+            </asp:PlaceHolder>
+         <%-- Button to show uploadplaceholder. --%>
+                <asp:Button ID="ShowUpload" runat="server" Text="Ladda upp bilder." OnClick="ShowUpload_Click" />
     </div>
+                
     <%-- Hyperlink to Edit/Delete Categories. --%>
     <asp:HyperLink ID="HyperLink" runat="server" Text="Till ända/Lägg till kategorier"
         NavigateUrl='<%$ RouteUrl:routename=Default %>'></asp:HyperLink>

@@ -105,5 +105,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 args.IsValid = false;
             }
         }
+
+        // Button method to present filupload controls.
+        protected void ShowUpload_Click(object sender, EventArgs e)
+        {
+            UploadPlaceholder.Visible = true;
+        }
+
     }
+
 }

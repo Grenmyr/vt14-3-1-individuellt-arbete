@@ -23,7 +23,7 @@
             <div>
                 <%-- All content inside this. --%>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server"  ></asp:ContentPlaceHolder>
-                <%-- UC showing navigtation of categories. --%>
+                <%-- UC showing navigtation of categories.. --%>
                 <uc1:Categories runat="server" ID="Categories" Visible="true" />
             </div>
         </form>

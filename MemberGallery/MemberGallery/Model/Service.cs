@@ -39,10 +39,6 @@ namespace MemberGallery.Model
             return ImageDAL.GetImagesByCategoryID(categoryID);
         }
       
-        //public void SaveImageDesc(ImageDesc imageDesc)
-        //{
-        //    ImageDescDAL.SaveImageDesc(imageDesc);
-        //}
         // Metod check if valid Image and also redirect if Update or new Image.
         public void SaveImage(Image image)
         {
@@ -51,15 +47,9 @@ namespace MemberGallery.Model
             {
                 throw new ApplicationException();
             }
-
-            if (image.ImageID == 0)
-            {
                 ImageDAL.SaveFileName(image);
-            }
-            //else
-            //{
-            //   ImageDAL.UpdateImage(image);
-            //}
+          
+         
         }
         // Metod to delete image that belongs to certain category.
         public int DeleteImage(int imageID, short categoryID)
@@ -135,7 +125,7 @@ namespace MemberGallery.Model
             return files;
         }
 
-        // update imagedesc
+        // First validete then Update/Save new imagedesc object.
         public void SaveImageDesc(ImageDesc imagedesc)
         {
             ICollection<ValidationResult> validationresults;
@@ -153,12 +143,12 @@ namespace MemberGallery.Model
                 ImageDescDAL.UpdateImageDesc(imagedesc);
             }
         }
-
+        // Method to get ImageDescbyImageDescID
         public ImageDesc  GetImageDescByImageDescID(int ImageDescID)
         {
             return ImageDescDAL.GetImageDescByImageDescID(ImageDescID);
         }
-
+        // Method i need when to get Imagedescextension or i don't know ID.
         public ImageDescExtension GetImageDesc(int CategoryID, int ImageID)
         {
             return ImageDescDAL.GetImageDesc(CategoryID, ImageID);

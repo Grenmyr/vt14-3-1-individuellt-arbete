@@ -46,8 +46,8 @@ namespace MemberGallery.Pages.MemberGalleryPages
             if (IsValid) { 
                 if (ModelState.IsValid)
                 {
-                    //try
-                    //{
+                    try
+                    {
                         // Catching stream and extension from filename. from Select button.
                         var selectedPic = Select.FileContent;
                         var extension = Path.GetExtension(Select.FileName);
@@ -66,9 +66,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         // Saving the new picture with its properties, from stored procedure i return the newly created Image primary key.
                         Service.SaveImage(image);
 
-                        // Creating a foreach loop that for eatch selected checkbox make a SQL call binding the image to that category. 
-                        // 
-
+                        // Creating a foreach loop that convert all checkbox items into listitem then for eatch selected checkbox make a SQL call binding the image to that category. 
                         var imagedesc = new ImageDesc();
                         foreach (var item in CheckBoxLisT.Items.Cast<ListItem>().Where(item => item.Selected))
                         {
@@ -84,11 +82,11 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         Page.SetTempData("Confirmation", String.Format("Bilden {0} har sparats", imagedesc.ImgName));
                         Response.RedirectToRoute("ImageList", new  { CategoryID = imagedesc.CategoryID });
                         Context.ApplicationInstance.CompleteRequest();
-                    //}
-                    //catch (Exception)
-                    //{
-                    //    ModelState.AddModelError(String.Empty, "Fel inträffade när bild  skulle Sparas.");
-                    //}
+                    }
+                    catch (Exception)
+                    {
+                        ModelState.AddModelError(String.Empty, "Fel inträffade när bild  skulle Sparas.");
+                    }
                 }
             }
         }

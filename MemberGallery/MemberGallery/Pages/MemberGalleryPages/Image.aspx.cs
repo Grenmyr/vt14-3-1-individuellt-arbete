@@ -28,7 +28,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
 
         }
-        // Method to return Image by ID. I collect ID using Routedata from Browser.
+        // Method to return Imagedescextmsion by CategoryID and ImageID.
         public ImageDescExtension FormView_GetItem([RouteData] int CategoryID, [RouteData] int ImageID)
         {
             return Service.GetImageDesc(CategoryID, ImageID); 
@@ -45,7 +45,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 ModelState.AddModelError(String.Empty, String.Format("Bilden kunde med ImageID {0} inte hittas.", ImgDescID));
                 return;
             }
-            // Validating on server that image is valid.
+            // Validating on server that imageDesc is valid.
             if (TryUpdateModel(imageDesc))
             {
                 imageDesc.Edited = DateTime.Now;

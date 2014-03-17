@@ -100,32 +100,9 @@ namespace MemberGallery.Model
             return CategoryDAL.DeleteCategory(categoryID);
         }
 
-        // Catcha data
-        public IEnumerable<Image> GetFiles()
-        {
-            
-            var regex = new Regex("(.pdf|.png)", RegexOptions.IgnoreCase);
-            var di = new DirectoryInfo(Image.PhysicalUploadedImagesPath);
-            return (from fi in di.GetFiles()
-                    select new Image
-                    {
-                        //SaveName = fi.Name,
-                        SaveName = regex.IsMatch(fi.Extension) ? fi.Extension.Substring(1) : String.Empty
-                    }).AsEnumerable();
-        }
+        // Methods toward ImageDesc Table.
 
-        public IEnumerable<Image> GetCachedFiles()
-        {
-            var files = HttpContext.Current.Cache["files"] as IEnumerable<Image>;
-            if (files == null)
-            {
-                files = GetFiles();
-                HttpContext.Current.Cache.Insert("files", files, null, DateTime.Now.AddMinutes(1), TimeSpan.Zero);
-            }
-            return files;
-        }
-
-        // First validete then Update/Save new imagedesc object.
+        // First validate then Update/Save new imagedesc object.
         public void SaveImageDesc(ImageDesc imagedesc)
         {
             ICollection<ValidationResult> validationresults;
@@ -148,6 +125,9 @@ namespace MemberGallery.Model
         {
             return ImageDescDAL.GetImageDescByImageDescID(ImageDescID);
         }
+
+        //Method toward my imagedescExtension
+
         // Method i need when to get Imagedescextension or i don't know ID.
         public ImageDescExtension GetImageDesc(int CategoryID, int ImageID)
         {

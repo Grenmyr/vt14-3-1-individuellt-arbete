@@ -14,8 +14,8 @@ namespace MemberGallery.Model.DAL
             using (SqlConnection conn = CreateConnection())
             {
 
-                //try
-                //{
+                try
+                {
                     var imglist = new List<Image>(30);
 
                     var cmd = new SqlCommand("AppSchema.GetImgByCategory", conn);
@@ -28,7 +28,6 @@ namespace MemberGallery.Model.DAL
                     {
                         var imageIDIndex = reader.GetOrdinal("ImageID");
                         var upLoadedIndex = reader.GetOrdinal("UpLoaded");
-                        //var imgNameIndex = reader.GetOrdinal("ImgName");
                         var saveNameIndex = reader.GetOrdinal("SaveName");
 
                         while (reader.Read())
@@ -37,22 +36,21 @@ namespace MemberGallery.Model.DAL
                             {
                                 ImageID = reader.GetInt16(imageIDIndex),
                                 UpLoaded = reader.GetDateTime(upLoadedIndex),
-                                //ImgName = reader.GetString(imgNameIndex),
                                 SaveName = reader.GetString(saveNameIndex)
                             });
                         }
                         imglist.TrimExcess();
                         return imglist;
                     }
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bildlista.");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bildlista.");
+                }
             }
         }
 
-        // Saving Images, 4 imput variables and return ImageID as int output parameter.
+        // Saving Images, 3 imput variables and return ImageID as int output parameter.
         public void SaveFileName(Image image)
         {
             using (SqlConnection conn = CreateConnection())
@@ -62,7 +60,6 @@ namespace MemberGallery.Model.DAL
                 {
                     SqlCommand cmd = new SqlCommand("AppSchema.SaveFileName", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@UpLoaded", SqlDbType.DateTime2).Value = image.UpLoaded;
                     cmd.Parameters.Add("@SaveName", SqlDbType.VarChar, 15).Value = image.SaveName;
@@ -88,7 +85,6 @@ namespace MemberGallery.Model.DAL
                
                 try
                 {
-
                     SqlCommand cmd = new SqlCommand("AppSchema.DeleteImage", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -100,7 +96,6 @@ namespace MemberGallery.Model.DAL
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     return (int)cmd.Parameters["@Count"].Value;
-
                 }
                 catch
                 {
@@ -108,19 +103,15 @@ namespace MemberGallery.Model.DAL
                 }
             }
         }
-
         // Retriving image by inserting imageID
         public Image GetImageByImageID(int imageID)
         {
             using (SqlConnection conn = CreateConnection())
             {
-
                 try
                 {
                     var cmd = new SqlCommand("AppSchema.GetImageByImageID", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
-
-
                     cmd.Parameters.AddWithValue("@ImageID", imageID);
 
                     conn.Open();
@@ -134,13 +125,11 @@ namespace MemberGallery.Model.DAL
                             var uploadedIndex = reader.GetOrdinal("UpLoaded");
                             var saveNameIndex = reader.GetOrdinal("SaveName");
                    
-
                             return new Image
                             {
                                 ImageID = reader.GetInt16(imageIDIndex),
                                 UpLoaded = reader.GetDateTime(uploadedIndex),
                                 SaveName = reader.GetString(saveNameIndex),
-                               
                             };
                         }
                         return null;

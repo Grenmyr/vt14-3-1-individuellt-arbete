@@ -13,6 +13,15 @@ namespace MemberGallery.Pages.MemberGalleryPages {
     public partial class Image {
         
         /// <summary>
+        /// ValidationSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary;
+        
+        /// <summary>
         /// CategoryFormView control.
         /// </summary>
         /// <remarks>

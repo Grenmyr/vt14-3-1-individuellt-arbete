@@ -16,9 +16,6 @@ namespace MemberGallery.Model
         public int UserID { get; set; }
 
 
-       
-
-        
         public DateTime UpLoaded { get; set; }
         public DateTime Year { get; set; }
 
@@ -26,8 +23,8 @@ namespace MemberGallery.Model
         [Required(ErrorMessage = "Fält SaveName får ej lämnas tomt.")]
         public string SaveName { get; set; }
 
-        public static string PhysicalUploadedImagesPath;
-        public static string PhysicalUploadedThumbNailPath;
+        private static string PhysicalUploadedImagesPath;
+        private static string PhysicalUploadedThumbNailPath;
 
         // Constructor
         static Image()

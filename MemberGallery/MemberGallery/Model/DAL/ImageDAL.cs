@@ -170,6 +170,8 @@ namespace MemberGallery.Model.DAL
 
                     cmd.Parameters.Add("@ImageID", SqlDbType.SmallInt, 4).Value = image.ImageID;
                     cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
+                    // Best choise would be set valute to Edited property in Code behind, by getting Imaagedesc from database by send in ImageID and CategoryID
+                    // and then set value in code behind but i did't have time.
                     cmd.Parameters.Add("@Edited", SqlDbType.DateTime2).Value = DateTime.Now;
 
                     conn.Open();

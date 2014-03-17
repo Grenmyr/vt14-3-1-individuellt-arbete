@@ -14,8 +14,8 @@ namespace MemberGallery.Model.DAL
             using (SqlConnection conn = CreateConnection())
             {
 
-                try
-                {
+                //try
+                //{
                     var imglist = new List<Image>(30);
 
                     var cmd = new SqlCommand("AppSchema.GetImgByCategory", conn);
@@ -28,7 +28,7 @@ namespace MemberGallery.Model.DAL
                     {
                         var imageIDIndex = reader.GetOrdinal("ImageID");
                         var upLoadedIndex = reader.GetOrdinal("UpLoaded");
-                        var imgNameIndex = reader.GetOrdinal("ImgName");
+                        //var imgNameIndex = reader.GetOrdinal("ImgName");
                         var saveNameIndex = reader.GetOrdinal("SaveName");
 
                         while (reader.Read())
@@ -37,18 +37,18 @@ namespace MemberGallery.Model.DAL
                             {
                                 ImageID = reader.GetInt16(imageIDIndex),
                                 UpLoaded = reader.GetDateTime(upLoadedIndex),
-                                ImgName = reader.GetString(imgNameIndex),
+                                //ImgName = reader.GetString(imgNameIndex),
                                 SaveName = reader.GetString(saveNameIndex)
                             });
                         }
                         imglist.TrimExcess();
                         return imglist;
                     }
-                }
-                catch
-                {
-                    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bildlista.");
-                }
+                //}
+                //catch
+                //{
+                //    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bildlista.");
+                //}
             }
         }
 
@@ -57,14 +57,13 @@ namespace MemberGallery.Model.DAL
         {
             using (SqlConnection conn = CreateConnection())
             {
-                
+
                 try
                 {
                     SqlCommand cmd = new SqlCommand("AppSchema.SaveFileName", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
                     cmd.Parameters.Add("@UpLoaded", SqlDbType.DateTime2).Value = image.UpLoaded;
                     cmd.Parameters.Add("@SaveName", SqlDbType.VarChar, 15).Value = image.SaveName;
 
@@ -132,18 +131,16 @@ namespace MemberGallery.Model.DAL
                         if (reader.Read())
                         {
                             var imageIDIndex = reader.GetOrdinal("ImageID");
-                            var imgNameIndex = reader.GetOrdinal("ImgName");
                             var uploadedIndex = reader.GetOrdinal("UpLoaded");
                             var saveNameIndex = reader.GetOrdinal("SaveName");
-                            var editedIndex = reader.GetOrdinal("Edited");
+                   
 
                             return new Image
                             {
                                 ImageID = reader.GetInt16(imageIDIndex),
-                                ImgName = reader.GetString(imgNameIndex),
                                 UpLoaded = reader.GetDateTime(uploadedIndex),
                                 SaveName = reader.GetString(saveNameIndex),
-                                Edited = reader.GetDateTime(editedIndex)
+                               
                             };
                         }
                         return null;
@@ -158,31 +155,31 @@ namespace MemberGallery.Model.DAL
 
         // TODO: Make change only on the Category its set on. I need a Date on Imagedesc table to do this.
         // Updating ImgName and UpLoaded date. Uploaded is also used as "Last modyfied msg". I know i got an error here, as Image will be updated on all Categories if changed on 1.
-        public void UpdateImage(Image image)
-        {
+        //public void UpdateImage(Image image)
+        //{
      
-            try
-            {
-                using (SqlConnection conn = CreateConnection())
-                {
-                    SqlCommand cmd = new SqlCommand("AppSchema.UpdateImage", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
+        //    try
+        //    {
+        //        using (SqlConnection conn = CreateConnection())
+        //        {
+        //            SqlCommand cmd = new SqlCommand("AppSchema.UpdateImage", conn);
+        //            cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@ImageID", SqlDbType.SmallInt, 4).Value = image.ImageID;
-                    cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
-                    // Best choise would be set valute to Edited property in Code behind, by getting Imaagedesc from database by send in ImageID and CategoryID
-                    // and then set value in code behind but i did't have time.
-                    cmd.Parameters.Add("@Edited", SqlDbType.DateTime2).Value = DateTime.Now;
+        //            cmd.Parameters.Add("@ImageID", SqlDbType.SmallInt, 4).Value = image.ImageID;
+        //            cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
+        //            // Best choise would be set valute to Edited property in Code behind, by getting Imaagedesc from database by send in ImageID and CategoryID
+        //            // and then set value in code behind but i did't have time.
+        //            cmd.Parameters.Add("@Edited", SqlDbType.DateTime2).Value = DateTime.Now;
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
+        //            conn.Open();
+        //            cmd.ExecuteNonQuery();
+        //        }
 
-            }
-            catch
-            {
-                throw new ApplicationException("Ett fel har skett i DAL när bild skulle uppdateras.");
-            }
-        }
+        //    }
+        //    catch
+        //    {
+        //        throw new ApplicationException("Ett fel har skett i DAL när bild skulle uppdateras.");
+        //    }
+        //}
     }
 }

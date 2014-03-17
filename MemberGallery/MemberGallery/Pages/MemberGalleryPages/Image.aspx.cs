@@ -29,49 +29,50 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         }
         // Method to return Image by ID. I collect ID using Routedata from Browser.
-        public MemberGallery.Model.Image FormView_GetItem([RouteData] int ImageID)
+        public ImageDescExtension FormView_GetItem([RouteData] int CategoryID, [RouteData] int ImageID)
         {
-            return Service.GetImageByImageID(ImageID); 
+            return Service.GetImageDesc(CategoryID, ImageID); 
         }
 
-        // Method that make SQL call that returns image by ID.
-        public void FormView_UpdateItem(int ImageID)
+        // Method that make SQL call that returns imagedesc by imagedescID.
+        public void FormView_UpdateItem(int ImgDescID)
         {
 
-            var image = Service.GetImageByImageID(ImageID);
-            if (image == null)
+            var imageDesc = Service.GetImageDescByImageDescID(ImgDescID);
+            if (imageDesc == null)
             {
                 // The item wasn't found
-                ModelState.AddModelError(String.Empty, String.Format("Bilden kunde med ImageID {0} inte hittas.", image.ImageID));
+                ModelState.AddModelError(String.Empty, String.Format("Bilden kunde med ImageID {0} inte hittas.", ImgDescID));
                 return;
             }
             // Validating on server that image is valid.
-            if (TryUpdateModel(image))
+            if (TryUpdateModel(imageDesc))
             {
-                Service.SaveImage(image);
+                imageDesc.Edited = DateTime.Now;
+                Service.SaveImageDesc(imageDesc);
 
-                Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna  Bildnamn: {0} sparade.", image.ImgName));
+                Page.SetTempData("Confirmation", String.Format(" Efter Redigering är uppgifterna  Bildnamn: {0} sparade.", imageDesc.ImgName));
                 Response.RedirectToRoute("Image");
                 Context.ApplicationInstance.CompleteRequest();
             }
         }
 
-        public void FormView_DeleteItem(int imageID, [RouteData] short CategoryID)
+        public void FormView_DeleteItem(int ImgDescID, [RouteData] short CategoryID, [RouteData] int ImageID)
         {
-            // Anropar Lagrad procedur och ta bort från bilden från kategorin. 
-            //Retunerar en out parameter som är en count på hur många katerier som är kvar. om 0 så går jag in i IF satsen och tar även bort fil från disk.
+            
+            //First get my imagedescextension object by categoryID and ImageID.
+            //Then return an int and if its 0 it means image is't tied to any categories, then i delete it from disk.
             try
             {
-                var image = ImageProp;
-                image = Service.GetImageByImageID(imageID);
-                var remainingCategories = Service.DeleteImage(imageID, CategoryID);
+                var imageDescExt = Service.GetImageDesc(CategoryID, ImageID);
+                var remainingCategories = Service.DeleteImage(ImageID, CategoryID);
                
                 if (remainingCategories == 0)
                 {
-                    image.DeleteImage(image.SaveName);
-                    Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", image.ImgName));
+                    ImageProp.DeleteImage(imageDescExt.SaveName);
+                    Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", imageDescExt.ImgName));
                 }
-                Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", image.ImgName));
+                Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", imageDescExt.ImgName));
                 Response.RedirectToRoute("ImageList");
                 Context.ApplicationInstance.CompleteRequest();
 

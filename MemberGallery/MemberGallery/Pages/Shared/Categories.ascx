@@ -13,7 +13,7 @@
             <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
         </LayoutTemplate>
         <ItemTemplate>
-                <asp:HyperLink  runat="server" Text='<%#Item.CategoryProp %>' ImageUrl='<%#"~/Files/Thumbnails/"+Item %>' NavigateUrl='<%# GetRouteUrl("ImageList", new { CategoryID = Item.CategoryID })  %>'></asp:HyperLink>
+                <asp:HyperLink  runat="server" Text='<%#Item.CategoryProp %>'  NavigateUrl='<%# GetRouteUrl("ImageList", new { CategoryID = Item.CategoryID })  %>'></asp:HyperLink>
         </ItemTemplate>
     </asp:ListView>
 </div>

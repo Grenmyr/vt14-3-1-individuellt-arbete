@@ -39,10 +39,10 @@ namespace MemberGallery.Model
             return ImageDAL.GetImagesByCategoryID(categoryID);
         }
       
-        public void SaveImageDesc(ImageDesc imageDesc)
-        {
-            ImageDescDAL.SaveImageDesc(imageDesc);
-        }
+        //public void SaveImageDesc(ImageDesc imageDesc)
+        //{
+        //    ImageDescDAL.SaveImageDesc(imageDesc);
+        //}
         // Metod check if valid Image and also redirect if Update or new Image.
         public void SaveImage(Image image)
         {
@@ -56,10 +56,10 @@ namespace MemberGallery.Model
             {
                 ImageDAL.SaveFileName(image);
             }
-            else
-            {
-               ImageDAL.UpdateImage(image);
-            }
+            //else
+            //{
+            //   ImageDAL.UpdateImage(image);
+            //}
         }
         // Metod to delete image that belongs to certain category.
         public int DeleteImage(int imageID, short categoryID)
@@ -133,6 +133,35 @@ namespace MemberGallery.Model
                 HttpContext.Current.Cache.Insert("files", files, null, DateTime.Now.AddMinutes(1), TimeSpan.Zero);
             }
             return files;
+        }
+
+        // update imagedesc
+        public void SaveImageDesc(ImageDesc imagedesc)
+        {
+            ICollection<ValidationResult> validationresults;
+            if (!imagedesc.Validate(out validationresults))
+            {
+                throw new ApplicationException();
+            }
+
+            if (imagedesc.ImgDescID == 0)
+            {
+                ImageDescDAL.SaveImageDesc(imagedesc);
+            }
+            else
+            {
+                ImageDescDAL.UpdateImageDesc(imagedesc);
+            }
+        }
+
+        public ImageDesc  GetImageDescByImageDescID(int ImageDescID)
+        {
+            return ImageDescDAL.GetImageDescByImageDescID(ImageDescID);
+        }
+
+        public ImageDescExtension GetImageDesc(int CategoryID, int ImageID)
+        {
+            return ImageDescDAL.GetImageDesc(CategoryID, ImageID);
         }
     }
 }

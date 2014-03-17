@@ -57,7 +57,7 @@ namespace MemberGallery.Model.DAL
                     SqlCommand cmd = new SqlCommand("AppSchema.UpdateCategory", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@ContactID", SqlDbType.Int, 4).Value = category.CategoryID;
+                    cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Value = category.CategoryID;
                     cmd.Parameters.Add("@Category", SqlDbType.VarChar, 20).Value = category.CategoryProp;
 
                     conn.Open();

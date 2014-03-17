@@ -10,14 +10,13 @@ using System.Drawing;
 
 namespace MemberGallery.Model
 {
-    public class Image : ImageDescExtension
+    public class Image 
     {
         public int ImageID { get; set; }
         public int UserID { get; set; }
 
-        [Required(ErrorMessage = "Fält Bildnamn får ej lämnas tomt.")]
-        [StringLength(20, ErrorMessage = "Bildnamn kan max vara 20 tecken långt.")]
-        public string ImgName { get; set; }
+
+       
 
         
         public DateTime UpLoaded { get; set; }

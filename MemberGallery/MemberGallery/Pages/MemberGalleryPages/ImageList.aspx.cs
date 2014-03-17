@@ -45,9 +45,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
             // Have Onservervalidate="CustomValidator_ServerValidate" on my checkboxlist so need to have ISValid to prevent from saving file.
             if (IsValid) { 
                 if (ModelState.IsValid)
-                {         
-                    try
-                    {
+                {
+                    //try
+                    //{
                         // Catching stream and extension from filename. from Select button.
                         var selectedPic = Select.FileContent;
                         var extension = Path.GetExtension(Select.FileName);
@@ -55,7 +55,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         // Creating Image Reference object and populating it..
                         var image = ImageProp;   
                         // Name selected by user from Textbox.
-                        image.ImgName = PictureName.Text;
+                      
                         image.UpLoaded = DateTime.Now;
                         
                         //Generating "Uniqe" filename, but removing extension and also adding selecte.filename extension instead.
@@ -67,26 +67,28 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         Service.SaveImage(image);
 
                         // Creating a foreach loop that for eatch selected checkbox make a SQL call binding the image to that category. 
-                        // Forgott the reference but i googled this solution ;-).
-                        var cat = new ImageDesc();
-                      
+                        // 
+
+                        var imagedesc = new ImageDesc();
                         foreach (var item in CheckBoxLisT.Items.Cast<ListItem>().Where(item => item.Selected))
                         {
                             // TODO: här e jag.
-                            cat.CategoryID = int.Parse(item.Value);
-                            cat.ImageID = image.ImageID;
-                            cat.Edited = DateTime.Now;
-                            Service.SaveImageDesc(cat);
+                            imagedesc = new ImageDesc();
+                            imagedesc.CategoryID = int.Parse(item.Value);
+                            imagedesc.ImageID = image.ImageID;
+                            imagedesc.Edited = DateTime.Now;
+                            imagedesc.ImgName = PictureName.Text;
+                            Service.SaveImageDesc(imagedesc);
                         }
                         // Message saved in Extension method and redirect to last saved Category.
-                        Page.SetTempData("Confirmation", String.Format("Bilden {0} har sparats", image.ImgName));
-                        Response.RedirectToRoute("ImageList", new  { CategoryID = cat.CategoryID });
+                        Page.SetTempData("Confirmation", String.Format("Bilden {0} har sparats", imagedesc.ImgName));
+                        Response.RedirectToRoute("ImageList", new  { CategoryID = imagedesc.CategoryID });
                         Context.ApplicationInstance.CompleteRequest();
-                    }
-                    catch (Exception)
-                    {
-                        ModelState.AddModelError(String.Empty, "Fel inträffade när bild  skulle Sparas.");
-                    }
+                    //}
+                    //catch (Exception)
+                    //{
+                    //    ModelState.AddModelError(String.Empty, "Fel inträffade när bild  skulle Sparas.");
+                    //}
                 }
             }
         }

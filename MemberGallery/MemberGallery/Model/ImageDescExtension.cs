@@ -5,8 +5,8 @@ using System.Web;
 
 namespace MemberGallery.Model
 {
-    public class ImageDescExtension
+    public class ImageDescExtension : ImageDesc
     {
-        public DateTime Edited { get; set; }
+        public string SaveName { get; set; }
     }
 }

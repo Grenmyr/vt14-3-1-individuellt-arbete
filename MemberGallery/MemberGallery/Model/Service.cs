@@ -102,7 +102,7 @@ namespace MemberGallery.Model
 
         // Methods toward ImageDesc Table.
 
-        // First validate then Update/Save new imagedesc object.
+        // First validate then Update/Save new imagedesc object..
         public void SaveImageDesc(ImageDesc imagedesc)
         {
             ICollection<ValidationResult> validationresults;

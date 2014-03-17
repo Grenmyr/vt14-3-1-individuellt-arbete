@@ -31,8 +31,6 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // Method to return Image by ID. I collect ID using Routedata from Browser.
         public MemberGallery.Model.Image FormView_GetItem([RouteData] int ImageID)
         {
-             
-
             return Service.GetImageByImageID(ImageID); 
         }
 

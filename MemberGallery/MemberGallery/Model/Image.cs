@@ -27,8 +27,8 @@ namespace MemberGallery.Model
         [Required(ErrorMessage = "Fält SaveName får ej lämnas tomt.")]
         public string SaveName { get; set; }
 
-        private static string PhysicalUploadedImagesPath;
-        private static string PhysicalUploadedThumbNailPath;
+        public static string PhysicalUploadedImagesPath;
+        public static string PhysicalUploadedThumbNailPath;
 
         // Constructor
         static Image()
@@ -79,5 +79,6 @@ namespace MemberGallery.Model
                 }
             }
         }
+
     }
 }

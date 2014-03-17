@@ -68,6 +68,7 @@
     <Content Include="Pages\Shared\Categories.ascx" />
     <Content Include="Pages\Shared\Error.aspx" />
     <Content Include="Pages\Shared\Site.Master" />
+    <None Include="Properties\PublishProfiles\dg222cs.pubxml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />

@@ -43,6 +43,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // Full list of categories.
         public IEnumerable<Category> CategoryListView_GetData()
         {
+            
             return Service.GetCategories();
         }
 

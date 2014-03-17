@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace MemberGallery.Model
@@ -107,6 +108,31 @@ namespace MemberGallery.Model
         public int DeleteCategory(int categoryID)
         {
             return CategoryDAL.DeleteCategory(categoryID);
+        }
+
+        // Catcha data
+        public IEnumerable<Image> GetFiles()
+        {
+            
+            var regex = new Regex("(.pdf|.png)", RegexOptions.IgnoreCase);
+            var di = new DirectoryInfo(Image.PhysicalUploadedImagesPath);
+            return (from fi in di.GetFiles()
+                    select new Image
+                    {
+                        //SaveName = fi.Name,
+                        SaveName = regex.IsMatch(fi.Extension) ? fi.Extension.Substring(1) : String.Empty
+                    }).AsEnumerable();
+        }
+
+        public IEnumerable<Image> GetCachedFiles()
+        {
+            var files = HttpContext.Current.Cache["files"] as IEnumerable<Image>;
+            if (files == null)
+            {
+                files = GetFiles();
+                HttpContext.Current.Cache.Insert("files", files, null, DateTime.Now.AddMinutes(1), TimeSpan.Zero);
+            }
+            return files;
         }
     }
 }

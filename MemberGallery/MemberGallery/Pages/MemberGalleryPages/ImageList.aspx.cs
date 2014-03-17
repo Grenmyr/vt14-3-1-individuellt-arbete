@@ -34,6 +34,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // Method to load all images from selected Category ID..
         public IEnumerable<MemberGallery.Model.Image> ImageListView_GetData([RouteData] short CategoryID)
         {
+            //var test = Service.GetFiles();
             var galleryDesc = Service.GetImagesByCategoryID(CategoryID);
 
             return galleryDesc;

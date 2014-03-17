@@ -2,7 +2,7 @@
 
 <asp:Content ID="ImageContent" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
-    <%-- Formview with edititemtemplate that let  me change Name on Image, Automaticly load new date into database on changed. --%>
+    <%-- Formview with edititemtemplate that let  me change Name on Image, Automaticly load new date into database on changed.. --%>
     <asp:FormView CssClass="ImageCat" runat="server" DataKeyNames="ImgDescID" ItemType="MemberGallery.Model.ImageDescExtension" SelectMethod="FormView_GetItem" UpdateMethod="FormView_UpdateItem" DeleteMethod="FormView_DeleteItem">
         <ItemTemplate>
             <asp:Image ID="Image" ImageUrl='<%# String.Format("~/Content/Pictures/{0}", Item.SaveName )%>' runat="server" Width="800" />

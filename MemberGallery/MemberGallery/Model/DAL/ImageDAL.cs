@@ -115,7 +115,7 @@ namespace MemberGallery.Model.DAL
         {
             using (SqlConnection conn = CreateConnection())
             {
-                
+
                 try
                 {
                     var cmd = new SqlCommand("AppSchema.GetImageByImageID", conn);
@@ -135,13 +135,15 @@ namespace MemberGallery.Model.DAL
                             var imgNameIndex = reader.GetOrdinal("ImgName");
                             var uploadedIndex = reader.GetOrdinal("UpLoaded");
                             var saveNameIndex = reader.GetOrdinal("SaveName");
+                            var editedIndex = reader.GetOrdinal("Edited");
 
                             return new Image
                             {
                                 ImageID = reader.GetInt16(imageIDIndex),
                                 ImgName = reader.GetString(imgNameIndex),
                                 UpLoaded = reader.GetDateTime(uploadedIndex),
-                                SaveName = reader.GetString(saveNameIndex)
+                                SaveName = reader.GetString(saveNameIndex),
+                                Edited = reader.GetDateTime(editedIndex)
                             };
                         }
                         return null;
@@ -168,7 +170,7 @@ namespace MemberGallery.Model.DAL
 
                     cmd.Parameters.Add("@ImageID", SqlDbType.SmallInt, 4).Value = image.ImageID;
                     cmd.Parameters.Add("@ImgName", SqlDbType.VarChar, 20).Value = image.ImgName;
-                    cmd.Parameters.Add("@UpLoaded", SqlDbType.DateTime2).Value = DateTime.Now;
+                    cmd.Parameters.Add("@Edited", SqlDbType.DateTime2).Value = DateTime.Now;
 
                     conn.Open();
                     cmd.ExecuteNonQuery();

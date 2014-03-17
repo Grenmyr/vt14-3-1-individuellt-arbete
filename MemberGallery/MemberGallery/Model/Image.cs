@@ -10,7 +10,7 @@ using System.Drawing;
 
 namespace MemberGallery.Model
 {
-    public class Image
+    public class Image : ImageDescExtension
     {
         public int ImageID { get; set; }
         public int UserID { get; set; }

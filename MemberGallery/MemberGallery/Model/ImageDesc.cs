@@ -11,5 +11,6 @@ namespace MemberGallery.Model
         public int ImageID { get; set; }
         public int ImgDescID { get; set; }
         public int CategoryID { get; set; }
+        public DateTime Edited { get; set; }
     }
 }

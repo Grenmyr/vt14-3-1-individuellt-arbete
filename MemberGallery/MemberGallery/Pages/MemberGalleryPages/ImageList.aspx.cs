@@ -51,12 +51,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         // Catching stream and extension from filename. from Select button.
                         var selectedPic = Select.FileContent;
                         var extension = Path.GetExtension(Select.FileName);
-                     
+                        
                         // Creating Image Reference object and populating it..
                         var image = ImageProp;   
                         // Name selected by user from Textbox.
                         image.ImgName = PictureName.Text;
-                        image.UpLoaded = DateTime.Now;    
+                        image.UpLoaded = DateTime.Now;
+                        
                         //Generating "Uniqe" filename, but removing extension and also adding selecte.filename extension instead.
                         image.SaveName = String.Format("{0}{1}",Path.GetFileNameWithoutExtension(Path.GetRandomFileName()),extension);
 
@@ -68,11 +69,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
                         // Creating a foreach loop that for eatch selected checkbox make a SQL call binding the image to that category. 
                         // Forgott the reference but i googled this solution ;-).
                         var cat = new ImageDesc();
+                      
                         foreach (var item in CheckBoxLisT.Items.Cast<ListItem>().Where(item => item.Selected))
                         {
                             // TODO: här e jag.
                             cat.CategoryID = int.Parse(item.Value);
                             cat.ImageID = image.ImageID;
+                            cat.Edited = DateTime.Now;
                             Service.SaveImageDesc(cat);
                         }
                         // Message saved in Extension method and redirect to last saved Category.

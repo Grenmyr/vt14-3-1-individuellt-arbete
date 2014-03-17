@@ -13,7 +13,7 @@
                 <asp:LinkButton  runat="server" CausesValidation="false" CommandName="Edit" Text="Redigera"></asp:LinkButton>
             </div>
             <div>
-                <asp:Literal Text='<%#  String.Format("Senast Ändrad: {0}",Item.UpLoaded)  %>' runat="server"></asp:Literal>
+                <asp:Literal Text='<%#  String.Format("Senast Ändrad: {0}",Item.Edited)  %>' runat="server"></asp:Literal>
             </div>
         </ItemTemplate>
         <EditItemTemplate>

@@ -25,7 +25,7 @@ namespace MemberGallery.Model.DAL
 
                     cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Value = imageDesc.ImageID;
                     cmd.Parameters.Add("@CategoryID", SqlDbType.Int, 4).Value = imageDesc.CategoryID;
-
+                    cmd.Parameters.Add("@Edited", SqlDbType.DateTime2).Value = imageDesc.Edited;  
                     cmd.Parameters.Add("@ImgDescID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
 
                     conn.Open();

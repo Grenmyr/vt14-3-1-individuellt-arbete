@@ -91,6 +91,7 @@
     <Compile Include="Model\DAL\ImageDescDAL.cs" />
     <Compile Include="Model\Image.cs" />
     <Compile Include="Model\ImageDesc.cs" />
+    <Compile Include="Model\ImageDescExtension.cs" />
     <Compile Include="Model\Service.cs" />
     <Compile Include="Pages\MemberGalleryPages\CategoryList.aspx.cs">
       <DependentUpon>CategoryList.aspx</DependentUpon>

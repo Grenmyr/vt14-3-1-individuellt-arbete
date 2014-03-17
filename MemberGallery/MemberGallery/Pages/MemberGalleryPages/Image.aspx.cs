@@ -63,13 +63,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
             try
             {
                 var image = ImageProp;
-                var remainingCategories = Service.DeleteImage(imageID, CategoryID);
                 image = Service.GetImageByImageID(imageID);
+                var remainingCategories = Service.DeleteImage(imageID, CategoryID);
+               
                 if (remainingCategories == 0)
                 {
-                    Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", image.ImgName));
                     image.DeleteImage(image.SaveName);
-
+                    Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", image.ImgName));
                 }
                 Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", image.ImgName));
                 Response.RedirectToRoute("ImageList");

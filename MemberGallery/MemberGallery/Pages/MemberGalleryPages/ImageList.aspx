@@ -8,7 +8,7 @@
         DataKeyNames="ImageID">
         <LayoutTemplate>
 
-            <h4>Galleri Mål</h4>
+            <h4>Galleri</h4>
 
             <div class="ThumbList">
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>

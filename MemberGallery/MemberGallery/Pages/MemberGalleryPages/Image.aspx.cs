@@ -69,6 +69,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 image = Service.GetImageByImageID(imageID);
                 if (remainingCategories == 0)
                 {
+                    Page.SetTempData("Confirmation", String.Format(" Du har tagit bort bilden : {0}", image.ImgName));
                     image.DeleteImage(image.SaveName);
 
                 }

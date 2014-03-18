@@ -106,7 +106,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         /// or be decorated with a value provider attribute, e.g. [QueryString]int id
         /// </summary>
         /// <param name="CategoryID"></param>
-        /// <returns></returns>
+        /// <returns>Category</returns>
         public Category CategoryFormView_GetCategoryByID([RouteData] int CategoryID)
         {
             return Service.GetCategoryByCategoryID(CategoryID);

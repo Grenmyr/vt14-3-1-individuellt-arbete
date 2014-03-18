@@ -138,8 +138,8 @@ namespace MemberGallery.Model.DAL
             using (SqlConnection conn = CreateConnection())
             {
 
-                //try
-                //{
+                try
+                {
                 var cmd = new SqlCommand("AppSchema.GetImageDescExtension", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -161,20 +161,20 @@ namespace MemberGallery.Model.DAL
                         return new ImageDescExtension
                         {
                             ImgDescID = reader.GetInt16(imgDescIDIndex),
-                            ImageID = ImageID,
+                            ImageID = reader.GetInt16(imgDescIDIndex),
                             ImgName = reader.GetString(imgNameIndex),
-                            CategoryID = CategoryID,
+                            CategoryID = reader.GetInt16(imgDescIDIndex),
                             Edited = reader.GetDateTime(editedIndex),
                             SaveName = reader.GetString(savename)
                         };
                     }
                     return null;
                 }
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bild.");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bild.");
+                }
             }
         }
     }

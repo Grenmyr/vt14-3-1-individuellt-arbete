@@ -7,7 +7,7 @@
         DataKeyNames="CategoryID"    >
         <LayoutTemplate>
             <div>
-                <h4>Kategorier</h4>
+                <h5>Visa kategori</h5>
             </div>
             <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
         </LayoutTemplate>

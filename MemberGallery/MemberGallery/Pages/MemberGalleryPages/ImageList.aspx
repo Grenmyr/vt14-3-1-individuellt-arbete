@@ -3,13 +3,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
     <%-- Listview generating images --%>
-    <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image"
+    <asp:ListView ID="ImageListView" runat="server" ItemType="MemberGallery.Model.Image" 
         SelectMethod="ImageListView_GetData"
         DataKeyNames="ImageID">
         <LayoutTemplate>
-
-            <h4>Galleriet</h4>
-
             <div class="ThumbList">
                 <asp:PlaceHolder ID="itemPlaceholder" runat="server"></asp:PlaceHolder>
             </div>
@@ -22,7 +19,7 @@
             
     <div class="EditCategories">          
     <%-- Hyperlink to Edit/Delete Categories. --%>
-    <asp:HyperLink ID="HyperLink" runat="server" Text="Gå till Kategorier"
+    <asp:HyperLink ID="HyperLink" runat="server" Text="Skapa/Redigera/Ändra Kategorier"
         NavigateUrl='<%$ RouteUrl:routename=Default %>'></asp:HyperLink>
         </div> 
 

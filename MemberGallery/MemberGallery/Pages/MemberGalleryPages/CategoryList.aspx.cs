@@ -79,6 +79,9 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 {
                     ModelState.AddModelError(String.Empty, "Kategori kan ej tas bort så länge bilder finns i kategorin.");
                 }
+                Page.SetTempData("Confirmation", String.Format("Kategori har tagits bort."));
+                Response.RedirectToRoute("CategoriesList");
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception)
             {

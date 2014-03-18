@@ -112,14 +112,14 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        public ImageDescExtension GetImageDesc(int CategoryID, int ImageID)
+        public ImageDescExtension GetImageDescExtension(int CategoryID, int ImageID)
         {
             using (SqlConnection conn = CreateConnection())
             {
 
                 //try
                 //{
-                var cmd = new SqlCommand("AppSchema.GetImageDesc", conn);
+                var cmd = new SqlCommand("AppSchema.GetImageDescExtension", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
 

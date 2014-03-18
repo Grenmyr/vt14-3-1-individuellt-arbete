@@ -51,14 +51,14 @@ namespace MemberGallery.Model.DAL
         }
 
         // Saving Images, 3 imput variables and return ImageID as int output parameter.
-        public void SaveFileName(Image image)
+        public void SaveImage(Image image)
         {
             using (SqlConnection conn = CreateConnection())
             {
 
                 try
                 {
-                    SqlCommand cmd = new SqlCommand("AppSchema.SaveFileName", conn);
+                    SqlCommand cmd = new SqlCommand("AppSchema.SaveImage", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@ImageID", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@UpLoaded", SqlDbType.DateTime2).Value = image.UpLoaded;

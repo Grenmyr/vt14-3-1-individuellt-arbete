@@ -31,7 +31,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         // Method to return Imagedescextmsion by CategoryID and ImageID.
         public ImageDescExtension FormView_GetItem([RouteData] int CategoryID, [RouteData] int ImageID)
         {
-            return Service.GetImageDesc(CategoryID, ImageID); 
+            return Service.GetImageDescExtension(CategoryID, ImageID); 
         }
 
         // Method that make SQL call that returns imagedesc by imagedescID.
@@ -64,7 +64,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
             //Then return an int and if its 0 it means image is't tied to any categories, then i delete it from disk.
             try
             {
-                var imageDescExt = Service.GetImageDesc(CategoryID, ImageID);
+                var imageDescExt = Service.GetImageDescExtension(CategoryID, ImageID);
                 var remainingCategories = Service.DeleteImage(ImageID, CategoryID);
                
                 if (remainingCategories == 0)

@@ -47,7 +47,7 @@ namespace MemberGallery.Model
             {
                 throw new ApplicationException();
             }
-                ImageDAL.SaveFileName(image);
+            ImageDAL.SaveImage(image);
           
          
         }
@@ -129,9 +129,9 @@ namespace MemberGallery.Model
         //Method toward my imagedescExtension
 
         // Method i need when to get Imagedescextension when i don't have ImageDescID.
-        public ImageDescExtension GetImageDesc(int CategoryID, int ImageID)
+        public ImageDescExtension GetImageDescExtension(int CategoryID, int ImageID)
         {
-            return ImageDescDAL.GetImageDesc(CategoryID, ImageID);
+            return ImageDescDAL.GetImageDescExtension(CategoryID, ImageID);
         }
     }
 }

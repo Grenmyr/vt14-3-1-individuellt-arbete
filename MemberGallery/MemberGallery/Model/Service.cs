@@ -15,7 +15,9 @@ namespace MemberGallery.Model
         private ImageDescDAL _imageDescDAL;
         private ImageDAL _imageDAL;
 
-        // Properties with lazy initialization to initialize classes.
+        /// <summary>
+        /// Properties with lazy initialization to initialize classes.
+        /// </summary>
         public ImageDAL ImageDAL
         {
             get { return _imageDAL ?? (_imageDAL = new ImageDAL()); }
@@ -33,13 +35,21 @@ namespace MemberGallery.Model
 
         // Methods to make SQL Calls toward Image table.
 
-        // Method to generate all Images from CategoryID
+        /// <summary>
+        /// Method to generate all Images from CategoryID
+        /// </summary>
+        /// <param name="categoryID"></param>
+        /// <returns>Image List</returns>
         public List<Image> GetImagesByCategoryID(short categoryID)
         {
             return ImageDAL.GetImagesByCategoryID(categoryID);
         }
-      
-        // Metod check if valid Image and also redirect if Update or new Image.
+
+
+        /// <summary>
+        /// Metod check if valid Image and also redirect if Update or new Image.
+        /// </summary>
+        /// <param name="image"></param>
         public void SaveImage(Image image)
         {
             ICollection<ValidationResult> validationresults;
@@ -48,10 +58,16 @@ namespace MemberGallery.Model
                 throw new ApplicationException();
             }
             ImageDAL.SaveImage(image);
-          
-         
+
+
         }
-        // Metod to delete image that belongs to certain category.
+     
+        /// <summary>
+        /// Metod to delete image that belongs to certain category.
+        /// </summary>
+        /// <param name="imageID"></param>
+        /// <param name="categoryID"></param>
+        /// <returns>Interger</returns>
         public int DeleteImage(int imageID, short categoryID)
         {
             return ImageDAL.DeleteImage(imageID, categoryID);
@@ -59,7 +75,11 @@ namespace MemberGallery.Model
 
         // Methods to make SQL Calls toward Category table.
 
-        // Method to validate Categorys, and also redirect if new Category or Updating.
+       
+        /// <summary>
+        ///  Method to validate Categorys, and also redirect if new Category or Updating.
+        /// </summary>
+        /// <param name="category"></param>
         public void SaveCategory(Category category)
         {
             ICollection<ValidationResult> validationresults;
@@ -77,17 +97,30 @@ namespace MemberGallery.Model
                 CategoryDAL.UpdateCategory(category);
             }
         }
-        // Method to generate all categories from my Category Table
+        /// <summary>
+        /// Method to generate all categories from my Category Table
+        /// </summary>
+        /// <returns>Category IEnumerable</returns>
         public IEnumerable<Category> GetCategories()
         {
             return CategoryDAL.GetCategories();
         }
-        // Method to Get my Category by CategoryID.
+
+        /// <summary>
+        /// Method to Get my Category by CategoryID.
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <returns>Category</returns>
         public Category GetCategoryByCategoryID(int CategoryID)
         {
             return CategoryDAL.GetCategoryByCategoryID(CategoryID);
         }
-        // Method to delete my Category by CategoryID.
+
+        /// <summary>
+        /// Method to delete my Category by CategoryID.
+        /// </summary>
+        /// <param name="categoryID"></param>
+        /// <returns>Interger Count</returns>
         public int DeleteCategory(int categoryID)
         {
             return CategoryDAL.DeleteCategory(categoryID);
@@ -95,7 +128,11 @@ namespace MemberGallery.Model
 
         // Methods toward ImageDesc Table.
 
-        // First validate then Update/Save new imagedesc object..
+
+        /// <summary>
+        /// First validate then Update/Save new imagedesc object..
+        /// </summary>
+        /// <param name="imagedesc"></param>
         public void SaveImageDesc(ImageDesc imagedesc)
         {
             ICollection<ValidationResult> validationresults;
@@ -113,15 +150,24 @@ namespace MemberGallery.Model
                 ImageDescDAL.UpdateImageDesc(imagedesc);
             }
         }
-        // Method to get ImageDescbyImageDescID
-        public ImageDesc  GetImageDescByImageDescID(int ImageDescID)
+        /// <summary>
+        /// Method to get ImageDescbyImageDescID
+        /// </summary>
+        /// <param name="ImageDescID"></param>
+        /// <returns>ImageDesc</returns>
+        public ImageDesc GetImageDescByImageDescID(int ImageDescID)
         {
             return ImageDescDAL.GetImageDescByImageDescID(ImageDescID);
         }
 
         //Method toward my imagedescExtension
 
-        // Method i need when to get Imagedescextension when i don't have ImageDescID.
+        /// <summary>
+        /// Method i need when to get Imagedescextension when i don't have ImageDescID.
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <param name="ImageID"></param>
+        /// <returns>ImageDescExtension that Contain SaveName from Image Table.</returns>
         public ImageDescExtension GetImageDescExtension(int CategoryID, int ImageID)
         {
             return ImageDescDAL.GetImageDescExtension(CategoryID, ImageID);

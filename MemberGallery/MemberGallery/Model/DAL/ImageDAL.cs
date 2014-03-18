@@ -8,7 +8,12 @@ using System.Web;
 namespace MemberGallery.Model.DAL
 {
     public class ImageDAL : DALBase
-    {    // Using this SQLConnection to Access my Image and ImageDesc tables. I get a list of images that belong to certain category from this call.
+    {    
+        /// <summary>
+        /// Using this SQLConnection to Access my Image and ImageDesc tables. I get a list of images that belong to certain category from this call.
+        /// </summary>
+        /// <param name="categoryID"></param>
+        /// <returns>Image List</returns>
         public List<Image> GetImagesByCategoryID(short categoryID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -50,7 +55,10 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        // Saving Images, 3 imput variables and return ImageID as int output parameter.
+        /// <summary>
+        /// Saving Images, 3 imput variables and return ImageID as int output parameter.
+        /// </summary>
+        /// <param name="image"></param>
         public void SaveImage(Image image)
         {
             using (SqlConnection conn = CreateConnection())
@@ -76,8 +84,13 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        // Used to DeleteImage, If there is still categories Image belong to, Image will not be deleted.
-        // However if image belong to no Categories after deleting insterted CategoryID image will be delete.
+        /// <summary>
+        /// Used to DeleteImage, If there is still categories Image belong to, Image will not be deleted.
+        /// However if image belong to no Categories after deleting insterted CategoryID image will be delete.
+        /// </summary>
+        /// <param name="imageID"></param>
+        /// <param name="categoryID"></param>
+        /// <returns></returns>
         public int DeleteImage(int imageID, short categoryID)
         {
             using (SqlConnection conn = CreateConnection())

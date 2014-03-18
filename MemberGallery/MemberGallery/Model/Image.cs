@@ -26,21 +26,32 @@ namespace MemberGallery.Model
         private static string PhysicalUploadedImagesPath;
         private static string PhysicalUploadedThumbNailPath;
 
-        // Constructor
+        /// <summary>
+        ///  Constructor
+        /// </summary>
         static Image()
         {
             PhysicalUploadedImagesPath = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString(), @"Content\Pictures");
             PhysicalUploadedThumbNailPath = Path.Combine(AppDomain.CurrentDomain.GetData("APPBASE").ToString(), @"Content\Thumbnails");
         }
-        // Metod that returns true if file and filepatch match.
+
+        /// <summary>
+        /// Metod that returns true if file and filepatch match.
+        /// </summary>
+        /// <param name="saveName"></param>
+        /// <returns>True/false</returns>
         public bool ImageExist(string saveName)
         {
             return File.Exists(string.Format("{0}/{1}", PhysicalUploadedImagesPath, saveName));
         }
-
+        /// <summary>
+        /// Method to save Image Stream on disk
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="saveName"></param>
         public void SaveImage(Stream stream, string saveName)
         {
-            // If valid imageformat i save file on disk.
+            // If valid imageformat i save file on disk. 
             using (var image = System.Drawing.Image.FromStream(stream))
             {
 
@@ -59,6 +70,10 @@ namespace MemberGallery.Model
                 }
             }
         }
+        /// <summary>
+        ///  Method to delete image on disk.
+        /// </summary>
+        /// <param name="saveName"></param>
         public void DeleteImage(string saveName)
         {
             // If image exist on disk, i remove picture and thumbnail.

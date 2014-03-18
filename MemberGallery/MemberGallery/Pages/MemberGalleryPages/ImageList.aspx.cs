@@ -15,13 +15,19 @@ namespace MemberGallery.Pages.MemberGalleryPages
     public partial class ImageList : System.Web.UI.Page
     {
         private MemberGallery.Model.Image _image;
-        // Property to return a Image reference, if null create new one....
+
+        /// <summary>
+        /// Property to return a Image reference, if null create new one.
+        /// </summary>
         private MemberGallery.Model.Image ImageProp
         {
             get { return _image ?? (_image = new MemberGallery.Model.Image()); }
         }
         private Service _service;
-        // Property to return a Service reference, if null create new one.
+
+        /// <summary>
+        /// Property to return a Service reference, if null create new one.
+        /// </summary>
         private Service Service
         {
             get { return _service ?? (_service = new Service()); }
@@ -31,7 +37,12 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
             PictureName.Focus();
         }
-        // Method to load all images from selected Category ID..
+
+        /// <summary>
+        /// Method to load all images from selected Category ID..
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <returns>Ienumerable Image List</returns>
         public IEnumerable<MemberGallery.Model.Image> ImageListView_GetData([RouteData] short CategoryID)
         {
             //var test = Service.GetFiles();
@@ -39,7 +50,12 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
             return galleryDesc;
         }
-        // Method to Upload image reference on server and save on disk.
+
+        /// <summary>
+        /// Method to Upload image reference on server and save on disk.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void UploadButton_Click(object sender, EventArgs e)
         {
             // Have Onservervalidate="CustomValidator_ServerValidate" on my checkboxlist so need to have ISValid to prevent from saving file.
@@ -90,13 +106,21 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 }
             }
         }
-        // Used by Listview as Selectmethod. to generate thumbnails, it return a IEnumerable list.
+
+        /// <summary>
+        /// Used by Listview as Selectmethod. to generate thumbnails, it return a IEnumerable list.
+        /// </summary>
+        /// <returns>Ienumerable Cageory list</returns>
         public IEnumerable<Category> CategoryListView_GetData()
         {
             return Service.GetCategories();
         }
 
-        // Method from Custovalidator validating checkboxlist. If any checked boxes, it is set to true, else false. Used to prevent saving Images without choosing category.
+        /// <summary>
+        /// Method from Custovalidator validating checkboxlist. If any checked boxes, it is set to true, else false. Used to prevent saving Images without choosing category.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="args"></param>
         protected void CustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
             var validate = CheckBoxLisT.SelectedItem;

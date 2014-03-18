@@ -11,14 +11,20 @@ namespace MemberGallery.Pages.MemberGalleryPages
 {
     public partial class Image : System.Web.UI.Page
     {
+        private MemberGallery.Model.Image _image;
         private Service _service;
-        // Property to return a Servince reference, if null create new one.
+        /// <summary>
+        /// Property to return a Servince reference, if null create new one.
+        /// </summary>
         private Service Service
         {
             get { return _service ?? (_service = new Service()); }
         }
-        private MemberGallery.Model.Image _image;
-        // Property to return a Image reference, if null create new one.
+        
+
+        /// <summary>
+        /// Property to return a Image reference, if null create new one.
+        /// </summary>
         private MemberGallery.Model.Image ImageProp
         {
             get { return _image ?? (_image = new MemberGallery.Model.Image()); }
@@ -28,13 +34,21 @@ namespace MemberGallery.Pages.MemberGalleryPages
         {
 
         }
-        // Method to return Imagedescextmsion by CategoryID and ImageID.
+        /// <summary>
+        /// Method to return Imagedescextmsion by CategoryID and ImageID.
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <param name="ImageID"></param>
+        /// <returns>ImageDescExtension</returns>
         public ImageDescExtension FormView_GetItem([RouteData] int CategoryID, [RouteData] int ImageID)
         {
             return Service.GetImageDescExtension(CategoryID, ImageID); 
         }
 
-        // Method that make SQL call that returns imagedesc by imagedescID.
+        /// <summary>
+        /// Method that make SQL call that call for imagedesc by imagedescID.
+        /// </summary>
+        /// <param name="ImgDescID"></param>
         public void FormView_UpdateItem(int ImgDescID)
         {
 
@@ -56,12 +70,15 @@ namespace MemberGallery.Pages.MemberGalleryPages
                 Context.ApplicationInstance.CompleteRequest();
             }
         }
-
+        /// <summary>
+        /// First get my imagedescextension that contains extension of SaveName (IS located in Image table) by categoryID and ImageID.
+        /// Then return an int and if its 0 it means image is't tied to any categories, then i delete it from disk.
+        /// </summary>
+        /// <param name="ImgDescID"></param>
+        /// <param name="CategoryID"></param>
+        /// <param name="ImageID"></param>
         public void FormView_DeleteItem(int ImgDescID, [RouteData] short CategoryID, [RouteData] int ImageID)
         {
-            
-            //First get my imagedescextension that contains extension of SaveName (Normally belong to Image table) by categoryID and ImageID.
-            //Then return an int and if its 0 it means image is't tied to any categories, then i delete it from disk.
             try
             {
                 var imageDescExt = Service.GetImageDescExtension(CategoryID, ImageID);
@@ -84,9 +101,13 @@ namespace MemberGallery.Pages.MemberGalleryPages
 
         }
 
-        // The id parameter should match the DataKeyNames value set on the control
-        // or be decorated with a value provider attribute, e.g. [QueryString]int id
-        public object CategoryFormView_GetCategoryByID([RouteData] int CategoryID)
+        /// <summary>
+        /// The id parameter should match the DataKeyNames value set on the control
+        /// or be decorated with a value provider attribute, e.g. [QueryString]int id
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <returns></returns>
+        public Category CategoryFormView_GetCategoryByID([RouteData] int CategoryID)
         {
             return Service.GetCategoryByCategoryID(CategoryID);
         }

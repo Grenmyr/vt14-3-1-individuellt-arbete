@@ -10,16 +10,20 @@ namespace MemberGallery.Model.DAL
 {
     public class ImageDescDAL : DALBase
     {
-        /* Saving Image under Categories. 
-         I have another SQL connection in ImageDal named "DeleteImage" That can DeleteImage and Category
-         if no images left in the Category, i was unsure where to place it, but its in ImageDAL. 
-         This Method however binds 1 image Toward 1 category for eatch call. I repeadely call this Stored procedure to bind image to serveral categories if its choosed.*/
+   
+        /// <summary>
+        /// Saving Image under Categories. 
+        ///  I have another SQL connection in ImageDal named "DeleteImage" That can DeleteImage and Category
+        ///  if no images left in the Category, i was unsure where to place it, but its in ImageDAL. 
+        /// This Method however binds 1 image Toward 1 category for eatch call. I repeadely call this Stored procedure to bind image to serveral categories if its choosed.
+        /// </summary>
+        /// <param name="imageDesc"></param>
         public void SaveImageDesc(ImageDesc imageDesc)
         {
             using (SqlConnection conn = CreateConnection())
             {
-                //try
-                //{
+                try
+                {
                     SqlCommand cmd = new SqlCommand("AppSchema.SaveImageDesc", conn);
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -33,14 +37,19 @@ namespace MemberGallery.Model.DAL
                     cmd.ExecuteNonQuery();
                     // Returning last created Imadesc as out parameter, Currently not used in aplication.
                     imageDesc.ImgDescID = (int)cmd.Parameters["@ImgDescID"].Value;
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Fel inträffade i DAL vid Sparande av Bildkategori");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Fel inträffade i DAL vid Sparande av ImageDesc");
+                }
 
             }
         }
+
+        /// <summary>
+        /// Method to Update Imagedesc, by send ImageDesc object.
+        /// </summary>
+        /// <param name="imagedesc"></param>
         public void UpdateImageDesc(ImageDesc imagedesc)
         {
 
@@ -69,13 +78,18 @@ namespace MemberGallery.Model.DAL
             }
         }
 
+        /// <summary>
+        /// Method to get ImageDesc by ID.
+        /// </summary>
+        /// <param name="ImageDescID"></param>
+        /// <returns>ImageDesc</returns>
         public  ImageDesc GetImageDescByImageDescID(int ImageDescID)
         {
             using (SqlConnection conn = CreateConnection())
             {
 
-                //try
-                //{
+                try
+                {
                 var cmd = new SqlCommand("AppSchema.GetImageDescByImageDescID", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
@@ -104,14 +118,21 @@ namespace MemberGallery.Model.DAL
                     }
                     return null;
                 }
-                //}
-                //catch
-                //{
-                //    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bild.");
-                //}
+                }
+                catch
+                {
+                    throw new ApplicationException("Fel inträffade i DAL vid hämtning av ImageDesc.");
+                }
             }
         }
 
+        /// <summary>
+        /// Method to get ImageDescExtension by adding CategoryID and ImageID, it returns
+        /// a combined object from both Image and IMageDesc tables.
+        /// </summary>
+        /// <param name="CategoryID"></param>
+        /// <param name="ImageID"></param>
+        /// <returns>ImageDescExtension</returns>
         public ImageDescExtension GetImageDescExtension(int CategoryID, int ImageID)
         {
             using (SqlConnection conn = CreateConnection())

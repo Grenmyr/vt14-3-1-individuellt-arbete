@@ -72,7 +72,7 @@ namespace MemberGallery.Model.DAL
         }
 
         // Saving new Category and returning new categoryID as out parameter. At this stage i don't use the out parameter.
-        public void InsertContact(Category category)
+        public void SaveCategory(Category category)
         {
             using (SqlConnection conn = CreateConnection())
             {

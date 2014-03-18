@@ -17,6 +17,7 @@
         <h1>Degerhamns Medlemsportal</h1>
          
         <form id="form" runat="server">
+            <%-- Panel showing Messages from Page Load in Masterpage. --%>
             <asp:Panel ID="Panel1" runat="server" CssClass="Message">
                 <asp:Literal ID="Confirmation" runat="server" Visible="false"></asp:Literal>
             </asp:Panel>

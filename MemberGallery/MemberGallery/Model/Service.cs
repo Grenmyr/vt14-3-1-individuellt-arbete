@@ -57,13 +57,6 @@ namespace MemberGallery.Model
             return ImageDAL.DeleteImage(imageID, categoryID);
         }
 
-        // Method to get image by ID.
-        //public Image GetImageByImageID(int imageID)
-        //{
-        //    return ImageDAL.GetImageByImageID(imageID);
-        //}
-
-       
         // Methods to make SQL Calls toward Category table.
 
         // Method to validate Categorys, and also redirect if new Category or Updating.
@@ -77,7 +70,7 @@ namespace MemberGallery.Model
 
             if (category.CategoryID == 0)
             {
-                CategoryDAL.InsertContact(category);
+                CategoryDAL.SaveCategory(category);
             }
             else
             {

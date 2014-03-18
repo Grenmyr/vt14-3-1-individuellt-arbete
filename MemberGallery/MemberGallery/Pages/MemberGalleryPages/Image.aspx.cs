@@ -60,7 +60,7 @@ namespace MemberGallery.Pages.MemberGalleryPages
         public void FormView_DeleteItem(int ImgDescID, [RouteData] short CategoryID, [RouteData] int ImageID)
         {
             
-            //First get my imagedescextension object by categoryID and ImageID.
+            //First get my imagedescextension that contains extension of SaveName (Normally belong to Image table) by categoryID and ImageID.
             //Then return an int and if its 0 it means image is't tied to any categories, then i delete it from disk.
             try
             {

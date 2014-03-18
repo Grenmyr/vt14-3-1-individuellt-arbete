@@ -104,43 +104,43 @@ namespace MemberGallery.Model.DAL
             }
         }
         // Retriving image by inserting imageID
-        public Image GetImageByImageID(int imageID)
-        {
-            using (SqlConnection conn = CreateConnection())
-            {
-                try
-                {
-                    var cmd = new SqlCommand("AppSchema.GetImageByImageID", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@ImageID", imageID);
+        //public Image GetImageByImageID(int imageID)
+        //{
+        //    using (SqlConnection conn = CreateConnection())
+        //    {
+        //        try
+        //        {
+        //            var cmd = new SqlCommand("AppSchema.GetImageByImageID", conn);
+        //            cmd.CommandType = CommandType.StoredProcedure;
+        //            cmd.Parameters.AddWithValue("@ImageID", imageID);
 
-                    conn.Open();
+        //            conn.Open();
 
-                    using (var reader = cmd.ExecuteReader())
-                    {
+        //            using (var reader = cmd.ExecuteReader())
+        //            {
 
-                        if (reader.Read())
-                        {
-                            var imageIDIndex = reader.GetOrdinal("ImageID");
-                            var uploadedIndex = reader.GetOrdinal("UpLoaded");
-                            var saveNameIndex = reader.GetOrdinal("SaveName");
+        //                if (reader.Read())
+        //                {
+        //                    var imageIDIndex = reader.GetOrdinal("ImageID");
+        //                    var uploadedIndex = reader.GetOrdinal("UpLoaded");
+        //                    var saveNameIndex = reader.GetOrdinal("SaveName");
                    
-                            return new Image
-                            {
-                                ImageID = reader.GetInt16(imageIDIndex),
-                                UpLoaded = reader.GetDateTime(uploadedIndex),
-                                SaveName = reader.GetString(saveNameIndex),
-                            };
-                        }
-                        return null;
-                    }
-                }
-                catch
-                {
-                    throw new ApplicationException("Fel inträffade i DAL vid hämtning av bild.");
-                }
-            }
-        }
+        //                    return new Image
+        //                    {
+        //                        ImageID = reader.GetInt16(imageIDIndex),
+        //                        UpLoaded = reader.GetDateTime(uploadedIndex),
+        //                        SaveName = reader.GetString(saveNameIndex),
+        //                    };
+        //                }
+        //                return null;
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            throw new ApplicationException("Fel inträffade i DAL vid hämtning av bild.");
+        //        }
+        //    }
+        //}
 
         // TODO: Make change only on the Category its set on. I need a Date on Imagedesc table to do this.
         // Updating ImgName and UpLoaded date. Uploaded is also used as "Last modyfied msg". I know i got an error here, as Image will be updated on all Categories if changed on 1.

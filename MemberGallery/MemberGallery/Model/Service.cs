@@ -58,10 +58,10 @@ namespace MemberGallery.Model
         }
 
         // Method to get image by ID.
-        public Image GetImageByImageID(int imageID)
-        {
-            return ImageDAL.GetImageByImageID(imageID);
-        }
+        //public Image GetImageByImageID(int imageID)
+        //{
+        //    return ImageDAL.GetImageByImageID(imageID);
+        //}
 
        
         // Methods to make SQL Calls toward Category table.
@@ -128,7 +128,7 @@ namespace MemberGallery.Model
 
         //Method toward my imagedescExtension
 
-        // Method i need when to get Imagedescextension or i don't know ID.
+        // Method i need when to get Imagedescextension when i don't have ImageDescID.
         public ImageDescExtension GetImageDesc(int CategoryID, int ImageID)
         {
             return ImageDescDAL.GetImageDesc(CategoryID, ImageID);

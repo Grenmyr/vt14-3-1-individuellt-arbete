@@ -8,7 +8,11 @@ using System.Web;
 namespace MemberGallery.Model.DAL
 {
     public class CategoryDAL : DALBase
-    {   // Get all Categories from Category table....
+    {   
+        /// <summary>
+        /// Get all Categories from Category table....
+        /// </summary>
+        /// <returns>Ienumerable Category List</returns>
         public IEnumerable<Category> GetCategories()
         {
             using (var conn = CreateConnection())
@@ -47,7 +51,10 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        // Changing CategoryName field by sending in Value and ID to Category Table.
+        /// <summary>
+        /// Changing CategoryName field by sending in Value and ID to Category Table.
+        /// </summary>
+        /// <param name="category"></param>
         public void UpdateCategory(Category category)
         {
             try
@@ -71,7 +78,10 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        // Saving new Category and returning new categoryID as out parameter. At this stage i don't use the out parameter.
+        /// <summary>
+        /// Saving new Category and returning new categoryID as out parameter. At this stage i don't use the out parameter.
+        /// </summary>
+        /// <param name="category"></param>
         public void SaveCategory(Category category)
         {
             using (SqlConnection conn = CreateConnection())
@@ -96,7 +106,11 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        // Get a catery by ID.
+        /// <summary>
+        /// Get a category by ID.
+        /// </summary>
+        /// <param name="categoryID"></param>
+        /// <returns></returns>
         public Category GetCategoryByCategoryID(int categoryID)
         {
             using (SqlConnection conn = CreateConnection())
@@ -133,7 +147,11 @@ namespace MemberGallery.Model.DAL
             }
         }
 
-        // Deleting Categories, it returns a Count parameter on how many images that is in the category. If more then 0 i prenset msg in code behind.
+        /// <summary>
+        /// Deleting Categories, it returns a Count parameter on how many images that is in the category. If more then 0 i prenset msg in code behind.
+        /// </summary>
+        /// <param name="categoryID"></param>
+        /// <returns>Int Count parameter to check if I can delete Category</returns>
         public int DeleteCategory(int categoryID)
         {
             using (SqlConnection conn = CreateConnection())

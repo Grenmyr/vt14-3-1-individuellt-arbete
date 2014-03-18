@@ -15,10 +15,11 @@ namespace MemberGallery.Model.DAL
 
         protected SqlConnection CreateConnection() { return new SqlConnection(_connectionString); }
        
-
+        /// <summary>
+        /// Konstructor to set protected static SQL Connectionstring
+        /// </summary>
         static DALBase()
         {
-            // Setting my Connectionstring, and since its a static field it will not be able to be changed..
             _connectionString = WebConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         }
     }

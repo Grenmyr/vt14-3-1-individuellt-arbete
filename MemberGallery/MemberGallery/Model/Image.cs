@@ -19,6 +19,7 @@ namespace MemberGallery.Model
         public DateTime UpLoaded { get; set; }
         public DateTime Year { get; set; }
 
+        // Behöver igentligen inte validera detta. 
         [StringLength(12, ErrorMessage = "Savename kan max vara 12 tecken långt.")]
         [Required(ErrorMessage = "Fält SaveName får ej lämnas tomt.")]
         public string SaveName { get; set; }
